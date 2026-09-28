@@ -1,129 +1,99 @@
-# Car Damage AI-Pipeline
+# AI-pipeline для анализа повреждений автомобилей по изображениям
 
-Research prototype: an AI-pipeline for recognizing visible car damage from
-photos using Claude Vision, plus an objective benchmark of its quality.
+Исследовательский прототип: конвейер анализа одного снимка мультимодальной моделью
+(Claude, `claude-opus-5-5`) и воспроизводимый benchmark его качества.
+Telegram-бот и расчёт стоимости — вторичны и в первую веху не входят.
 
-This is the object of study. The Telegram bot and the price estimate are
-a minimal demo interface / illustrative feature, not the research focus —
-see the technical specification for the full framing.
-
-**Status:** initial skeleton, per teacher's go-ahead to start the
-repository and Spring Boot scaffold in parallel with finalizing the TZ.
-Not yet runnable end-to-end (see "What's not done yet" below).
-
----
-
-## Structure
+## Структура
 
 ```
 src/main/java/com/cardamage/
-├── controller/          REST endpoint for the DEMO scenario (3-10 photos)
-│   └── advice/          global exception -> JSON error mapping
-├── service/
-│   ├── ClaudeVisionService.java     single-image call to Claude Vision
-│   ├── DamageAnalysisService.java   retry + fallback around the above
-│   └── DamageMergeService.java      multi-photo merging (demo scenario only)
-├── validation/
-│   └── DamageResponseValidator.java explicit Bean Validation call — see
-│                                    its javadoc for why this exists
-├── model/                POJOs (Damage, DamageAssessment) + JPA entity
-├── repository/           Spring Data JPA repository (SQLite)
-├── exception/            ValidationException, ClaudeApiException
-└── config/               WebClient setup for the Anthropic API
-
-src/main/resources/
-├── application.yml            config, incl. anthropic.model (see TODO inside)
-├── schema/damage-assessment-schema.json   reference contract, for humans
-└── data/demo-prices.json      demo price lookup table (illustrative only)
-
+  core/                     ядро pipeline, не зависит от Spring (только Jackson)
+    pipeline/
+      SingleImageAnalyzer   один снимок: вызов модели -> парсинг -> проверка формата -> retry -> fallback
+      ResponseParser        текст ответа -> объект (только структура JSON)
+      ResponseFormatValidator  явная проверка значений (enum, диапазоны, рамка)
+      DamagePrompt          промпт с номером версии
+      VisionModelClient     интерфейс вызова модели
+      StubVisionModelClient заглушка модели (без API и без CarDD)
+    demo/DamageMergeService объединение серии фото (только демо)
+  web/                      тонкий Spring-слой
+    AnalysisController      POST /api/v1/analyze, POST /api/v1/demo/analyze, GET /api/v1/info
+    AnthropicVisionModelClient  реальный вызов Claude API
+    PipelineConfig          выбор stub / anthropic
 scripts/
-└── select_benchmark_samples.py   stratified dev/test sampling from CarDD
-                                   (see its own docstring — this is the
-                                   "fix identifiers before experiments"
-                                   step from the TZ)
-
-benchmark/
-└── (empty until select_benchmark_samples.py is run against the real
-    CarDD annotation files)
+  select_benchmark_samples.py  фиксированная стратифицированная выборка dev/test из CarDD
+  evaluate.py                  сопоставление (IoU >= 0.5, один к одному) и метрики
+  tests/                       тесты Python-скриптов
+benchmark/fixtures/          синтетические данные для разработки (не CarDD)
+docs/first_test_run.md       результат первого прогона тестов
 ```
 
-## Benchmark vs demo scenario — where each lives
+## Требования
 
-Per the TZ, these two use different code paths on purpose:
+- JDK 17+ и Maven 3.8+ (или IntelliJ IDEA — Maven встроен)
+- Python 3.9+ (только стандартная библиотека)
 
-- **Benchmark** (single CarDD image, IoU-matched against ground truth):
-  offline, via `scripts/select_benchmark_samples.py` for sample selection.
-  The benchmark *runner* itself (calling `DamageAnalysisService.analyzeImage`
-  once per selected image, then computing recall/precision/F1/severity
-  accuracy/Brier score against ground truth) is the next milestone — not
-  yet in this skeleton.
-- **Demo** (3-10 photos of one car, from a real user): the
-  `POST /api/v1/assessment/analyze` REST endpoint, which calls
-  `DamageAnalysisService` once per photo and merges results via
-  `DamageMergeService`.
+## Запуск
 
-## What's implemented in this skeleton
-
-- Spring Boot project structure and Maven build file
-- `Damage` / `DamageAssessment` models with Bean Validation annotations
-- `DamageResponseValidator` — the explicit validation step (annotations
-  alone do not validate anything; see its javadoc)
-- `ClaudeVisionService` — builds the prompt, calls the Anthropic Messages
-  API via `WebClient`, parses and validates the response
-- `DamageAnalysisService` — `@Retryable`/`@Recover` retry-then-fallback
-  logic (3 attempts, then a well-formed `status=error` response)
-- `DamageMergeService` — multi-photo merge rules for the demo scenario
-- `DamageAssessmentController` — REST endpoint for the demo scenario, with
-  input validation (3-10 images, format/size checks)
-- SQLite persistence of demo sessions via Spring Data JPA
-- `scripts/select_benchmark_samples.py` — stratified dev/test sampling,
-  tested against synthetic COCO-format fixtures (18 dev + 24 test,
-  reproducible with a fixed seed)
-- Unit tests for `DamageResponseValidator` and `DamageMergeService`
-
-## What's NOT done yet (next milestones)
-
-- **Not built/run in this environment.** This container's network access
-  does not include Maven Central, so `mvn compile` / `mvn test` have not
-  actually been executed here. Please run `mvn clean verify` locally
-  before relying on this.
-- The exact Anthropic API model identifier in `application.yml`
-  (`anthropic.model`) is marked as a TODO — verify it against current
-  Anthropic documentation before the first real call, per the teacher's
-  request to fix this precisely.
-- `ClaudeVisionService` talks to the plain REST endpoint via `WebClient`
-  rather than a vendor SDK, because the official Anthropic Java SDK's
-  Maven coordinates weren't verified. Swap it in if it fits better.
-- The benchmark runner (ground truth loading, IoU matching, metric
-  computation — recall, precision, F1, severity accuracy, Brier score)
-  is not implemented yet. `select_benchmark_samples.py` only produces the
-  fixed list of image IDs to use.
-- Ground truth labeling (part / severity / action for the 42 selected
-  images, by two independent annotators) hasn't started — it depends on
-  actually downloading CarDD, which requires manual access outside this
-  environment.
-- Telegram bot client itself (this REST API is meant to sit behind it).
-
-## Running locally (once you have a JDK/Maven environment)
-
+Тесты Java:
 ```bash
-export ANTHROPIC_API_KEY=your_key_here
-mvn clean verify
+mvn test
+```
+
+Сервис в режиме заглушки (ключ API не нужен, модель не вызывается):
+```bash
+mvn spring-boot:run
+curl -F "image=@car.jpg;type=image/jpeg" http://localhost:8080/api/v1/analyze
+curl http://localhost:8080/api/v1/info
+```
+
+Сервис с реальной моделью (только после разрешения на передачу снимков, см. ниже):
+```bash
+export ANTHROPIC_API_KEY=...
+export PIPELINE_MODEL_CLIENT=anthropic
 mvn spring-boot:run
 ```
 
-## Running the sampling script
-
+Тесты Python и пример оценки на синтетических данных:
 ```bash
 cd scripts
-pip install -r requirements.txt   # not needed yet — stdlib only for now
-python select_benchmark_samples.py \
-    --val-annotations /path/to/CarDD/annotations/instances_val.json \
-    --test-annotations /path/to/CarDD/annotations/instances_test.json \
-    --seed 42 \
-    --out-dir ../benchmark
+python3 -m unittest discover -s tests -v
+python3 evaluate.py --ground-truth ../benchmark/fixtures/ground_truth_synthetic.json \
+                    --predictions  ../benchmark/fixtures/predictions_synthetic.json
 ```
 
-Commit the resulting `benchmark/dev_examples.*` and
-`benchmark/test_examples.*` files immediately — per the TZ, sample
-identifiers must be fixed before any prompt tuning or labeling begins.
+Фиксация выборки (после получения CarDD):
+```bash
+python3 select_benchmark_samples.py \
+    --val-annotations  /path/to/CarDD/annotations/instances_val2017.json \
+    --test-annotations /path/to/CarDD/annotations/instances_test2017.json \
+    --seed 42 --out-dir ../benchmark
+```
+Имена файлов аннотаций указать по фактической структуре архива CarDD.
+Полученные `benchmark/dev_examples.*` и `benchmark/test_examples.*` закоммитить сразу,
+до разметки и настройки промпта.
+
+## Ответ API
+
+| Ситуация | HTTP | status |
+|---|---|---|
+| Анализ выполнен (в т.ч. «повреждений нет») | 200 | success |
+| Нет корректного ответа модели после 3 попыток | 502 | error |
+| Некорректный вход (формат, размер, число фото) | 400 | error |
+
+## CarDD
+
+CarDD — не открытый датасет. Для использования нужно согласие правообладателя (PIC Lab, CAS),
+передача снимков третьим лицам (включая внешний AI-сервис) без разрешения запрещена.
+Снимки CarDD в репозиторий не добавляются (`data/` в `.gitignore`).
+Лицензия: https://cardd-ustc.github.io/docs/CarDD_license.pdf
+
+## Статус первой вехи
+
+Сделано: запускаемый каркас Spring Boot, обработка одного изображения, проверка формата,
+retry/fallback, заглушка модели, тесты, скрипт фиксированной выборки, скрипт оценки
+с правилом сопоставления.
+
+Не сделано: прогон на реальных данных (ждём разрешения на CarDD), ручная разметка,
+скрипт прогона выборки через API, Telegram-бот, расчёт стоимости.

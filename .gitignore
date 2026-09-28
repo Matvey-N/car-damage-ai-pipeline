@@ -8,3 +8,5 @@ target/
 __pycache__/
 *.pyc
 .env
+# CarDD images and annotations must not be committed (license)
+data/
