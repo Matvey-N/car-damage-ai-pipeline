@@ -1,0 +1,18 @@
+{
+  "note": "SYNTHETIC example for development and tests. Not CarDD data. Boxes are pixel [x, y, w, h] as in CarDD/COCO.",
+  "images": [
+    {"image_id": "syn_001", "width": 1000, "height": 800,
+     "damages": [
+       {"bbox": [300, 320, 200, 120], "damage_type": "dent", "part": "door", "severity": "moderate", "action": "repair"}
+     ]},
+    {"image_id": "syn_002", "width": 1200, "height": 900,
+     "damages": [
+       {"bbox": [100, 200, 240, 180], "damage_type": "lamp_broken", "part": "headlight", "severity": "severe", "action": "replacement"},
+       {"bbox": [600, 500, 300, 60], "damage_type": "scratch", "part": "bumper", "severity": "minor", "action": "repair"}
+     ]},
+    {"image_id": "syn_003", "width": 800, "height": 600,
+     "damages": [
+       {"bbox": [200, 100, 400, 300], "damage_type": "glass_shatter", "part": "windshield", "severity": "severe", "action": "replacement"}
+     ]}
+  ]
+}
