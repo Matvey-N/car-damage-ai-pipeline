@@ -1,0 +1,7 @@
+# select_benchmark_samples.py uses only the Python standard library.
+#
+# Listed here for the next milestone's scripts (metric calculation,
+# visualization - not yet implemented):
+scipy>=1.11        # Pearson correlation for the auxiliary calibration check
+numpy>=1.26
+matplotlib>=3.8    # confusion matrix / calibration plots

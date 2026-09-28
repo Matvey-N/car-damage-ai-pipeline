@@ -1,0 +1,25 @@
+{
+  "_disclaimer": "Demo-only price table with illustrative US-average figures. Not derived from a real pricing API. See TZ: price estimation is a secondary demo feature, not the research object.",
+  "currency": "USD",
+  "default_labor_rate_per_hour": 80,
+  "repairs": {
+    "bumper|dent|repair": {"parts_cost_min": 0, "parts_cost_max": 150, "labor_hours": 2.5},
+    "bumper|scratch|repair": {"parts_cost_min": 0, "parts_cost_max": 80, "labor_hours": 1.5},
+    "bumper|crack|replacement": {"parts_cost_min": 200, "parts_cost_max": 800, "labor_hours": 2.0},
+    "door|dent|repair": {"parts_cost_min": 0, "parts_cost_max": 100, "labor_hours": 4.0},
+    "door|scratch|repair": {"parts_cost_min": 0, "parts_cost_max": 60, "labor_hours": 1.0},
+    "headlight|lamp_broken|replacement": {"parts_cost_min": 150, "parts_cost_max": 400, "labor_hours": 1.0},
+    "window|glass_shatter|replacement": {"parts_cost_min": 150, "parts_cost_max": 350, "labor_hours": 1.0},
+    "windshield|glass_shatter|replacement": {"parts_cost_min": 200, "parts_cost_max": 600, "labor_hours": 1.5},
+    "windshield|crack|repair": {"parts_cost_min": 30, "parts_cost_max": 100, "labor_hours": 0.5},
+    "hood|dent|repair": {"parts_cost_min": 0, "parts_cost_max": 200, "labor_hours": 3.0},
+    "fender|dent|repair": {"parts_cost_min": 0, "parts_cost_max": 150, "labor_hours": 2.5},
+    "fender|crack|replacement": {"parts_cost_min": 150, "parts_cost_max": 400, "labor_hours": 2.0},
+    "mirror|crack|replacement": {"parts_cost_min": 50, "parts_cost_max": 200, "labor_hours": 0.5},
+    "wheel|tire_flat|replacement": {"parts_cost_min": 80, "parts_cost_max": 250, "labor_hours": 0.5},
+    "wheel|dent|repair": {"parts_cost_min": 0, "parts_cost_max": 120, "labor_hours": 1.0},
+    "other|dent|repair": {"parts_cost_min": 0, "parts_cost_max": 150, "labor_hours": 2.0},
+    "other|scratch|repair": {"parts_cost_min": 0, "parts_cost_max": 80, "labor_hours": 1.0}
+  },
+  "lookup_key_format": "part|damage_type|action - if no exact match is found, fall back to a generic estimate for the damage_type alone and flag it as low-confidence in the demo report"
+}
