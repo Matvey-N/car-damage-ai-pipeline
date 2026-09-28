@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DamageAssessment",
+  "description": "Reference contract. The same rules are enforced in code by com.cardamage.core.pipeline.ResponseFormatValidator. The model returns only damages + overall_score; status, error_message and attempts are added by the pipeline.",
+  "type": "object",
+  "required": ["damages", "overall_score"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "error"] },
+    "error_message": { "type": "string" },
+    "attempts": { "type": "integer", "minimum": 0 },
+    "overall_score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "damages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["damage_type", "part", "severity", "action", "confidence", "bounding_box"],
+        "properties": {
+          "damage_type": { "enum": ["dent", "scratch", "crack", "glass_shatter", "tire_flat", "lamp_broken"] },
+          "part": { "enum": ["bumper", "door", "headlight", "window", "hood", "fender", "mirror", "wheel", "windshield", "other"] },
+          "severity": { "enum": ["minor", "moderate", "severe"] },
+          "action": { "enum": ["repair", "replacement"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "description": { "type": "string" },
+          "bounding_box": {
+            "description": "[x, y, w, h] normalized to [0, 1] of image width/height; x + w <= 1, y + h <= 1",
+            "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 1 },
+            "minItems": 4, "maxItems": 4
+          }
+        }
+      }
+    }
+  }
+}
