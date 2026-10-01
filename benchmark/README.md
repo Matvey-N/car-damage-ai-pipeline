@@ -1,13 +1,14 @@
 # Артефакты benchmark
 
-Порядок появления файлов:
-
-1. `dev_examples.*`, `test_examples.*` — фиксированная выборка (scripts/select_benchmark_samples.py).
-   Коммитятся до разметки и настройки промпта.
-2. `ground_truth_dev.json`, `ground_truth_test.json` — ручная разметка part/severity/action
-   поверх рамок и типов CarDD. Формат — как в `fixtures/ground_truth_synthetic.json`.
-3. `target_thresholds.json` — целевые пороги метрик, фиксируются после dev set и до test set.
-4. `predictions_test.json` + отчёт `evaluate.py` — формат как в `fixtures/predictions_synthetic.json`.
+| Файл | Создаёт | В Git |
+|---|---|---|
+| `dev_examples.*`, `test_examples.*` | select_benchmark_samples.py | да, сразу после создания |
+| `labels_dev_A.csv`, `labels_dev_B.csv`, `labels_dev_final.csv` (и test) | make_labeling_sheet.py + разметчики | нет (содержат рамки CarDD) |
+| `disagreements_dev.csv` (и test) | compare_labels.py | нет |
+| `ground_truth_dev.json`, `ground_truth_test.json` | build_ground_truth.py | нет (содержат рамки CarDD) |
+| `target_thresholds.json` | вручную, после dev и до test | да |
+| `predictions_*_vN.json` | run_benchmark.py | да |
+| `report_*_vN.json` | evaluate.py | да |
 
 `fixtures/` — синтетические данные для разработки и тестов, не CarDD.
-Снимки CarDD здесь не хранятся (условия лицензии).
+Снимки CarDD здесь не хранятся.
