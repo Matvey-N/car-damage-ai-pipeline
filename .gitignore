@@ -10,3 +10,8 @@ __pycache__/
 .env
 # CarDD images and annotations must not be committed (license)
 data/
+# Files that contain CarDD annotations (boxes) are part of the dataset:
+# keep them out of the repository (share privately with the supervisor if needed).
+benchmark/labels_*.csv
+benchmark/disagreements_*.csv
+benchmark/ground_truth_*.json
