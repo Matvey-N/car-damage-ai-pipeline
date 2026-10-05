@@ -37,6 +37,7 @@ import re
 import struct
 import sys
 from collections import Counter, defaultdict
+from datetime import datetime, timezone
 
 from schema_values import DAMAGE_TYPES, PARTS
 
@@ -219,21 +220,31 @@ def coverage(polygon, box):
 # ------------------------------------------------------------------ split
 
 SESSION_PATTERN = re.compile(r"^ID\d+_(\d{8})_\d{6}$")
+# some devices name files by Unix time in milliseconds: ID5_1726736225270
+EPOCH_MS_PATTERN = re.compile(r"^ID\d+_(\d{13})$")
 
 
 def session_key(file_name, group_by):
     """
-    SYNDCAR file names look like ID1_20240917_150956.png (device, date, time).
+    SYNDCAR file names look like ID1_20240917_150956.png (device, date, time)
+    or ID5_1726736225270.png (device, Unix time in milliseconds; the UTC date
+    is used).
     group_by="date": all images of one day form one group, across devices
     (several devices may have photographed the same car the same day).
     group_by="none": every image is its own group.
     Names that do not match the pattern always form their own group.
     """
     stem = os.path.splitext(file_name)[0]
-    m = SESSION_PATTERN.match(stem)
-    if group_by == "none" or not m:
+    if group_by == "none":
         return "file:" + stem
-    return "date:" + m.group(1)
+    m = SESSION_PATTERN.match(stem)
+    if m:
+        return "date:" + m.group(1)
+    m = EPOCH_MS_PATTERN.match(stem)
+    if m:
+        day = datetime.fromtimestamp(int(m.group(1)) / 1000, tz=timezone.utc)
+        return "date:" + day.strftime("%Y%m%d")
+    return "file:" + stem
 
 
 def split_groups(images, group_by, seed, dev_share=0.5):

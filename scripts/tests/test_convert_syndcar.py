@@ -210,6 +210,9 @@ class SessionSplitTest(unittest.TestCase):
         self.assertEqual(cs.session_key("ID1_20240917_150956.png", "date"), "date:20240917")
         self.assertEqual(cs.session_key("ID3_20240917_160000.jpg", "date"), "date:20240917")
         self.assertEqual(cs.session_key("photo.png", "date"), "file:photo")
+        # Unix time in milliseconds (device ID5): 1726736225270 -> 2024-09-19 UTC
+        self.assertEqual(cs.session_key("ID5_1726736225270.png", "date"), "date:20240919")
+        self.assertEqual(cs.session_key("ID5_1726736227317.png", "date"), "date:20240919")
         self.assertEqual(cs.session_key("ID1_20240917_150956.png", "none"), "file:ID1_20240917_150956")
 
     def test_same_day_never_split_across_pools_even_across_devices(self):
@@ -235,3 +238,15 @@ class SessionSplitTest(unittest.TestCase):
         _, _, report = cs.convert(root)
         self.assertEqual(report["group_by"], "date")
         self.assertTrue(all(k.startswith("file:") for k in report["groups"]))  # synthetic names: no date pattern
+
+
+class Id5BurstTest(unittest.TestCase):
+    def test_burst_of_epoch_named_shots_stays_in_one_pool(self):
+        names = [f"ID1_20240917_15{m:02d}00.png" for m in range(30)] \
+              + [f"ID2_20240918_10{m:02d}00.png" for m in range(10)] \
+              + [f"ID5_17267362{n:05d}.png" for n in range(25270, 27400, 160)]
+        imgs = [{"id": i + 1, "file_name": n} for i, n in enumerate(names)]
+        dev, groups = cs.split_groups(imgs, "date", seed=42)
+        self.assertEqual(sorted(groups), ["date:20240917", "date:20240918", "date:20240919"])
+        burst = groups["date:20240919"]
+        self.assertEqual(len({i in dev for i in burst}), 1)
