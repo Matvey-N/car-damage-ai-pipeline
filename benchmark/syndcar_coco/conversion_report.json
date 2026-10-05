@@ -1,0 +1,88 @@
+{
+  "damage_class_mapping": {
+    "Broken_Glass": "glass_shatter",
+    "Cracks": "crack",
+    "Scratches": "scratch",
+    "Broken_Lights": "lamp_broken"
+  },
+  "part_class_mapping": {
+    "left_side_window": "window",
+    "right_side_window": "window",
+    "left_door": "door",
+    "right_door": "door",
+    "right_rear_quarter_panel": "fender",
+    "left_rear_quarter_panel": "fender",
+    "right_front_quarter_panel": "fender",
+    "left_rear_side_window": "window",
+    "right_rear_side_window": "window",
+    "left_front_side_window": "window",
+    "right_front_side_window": "window",
+    "roof": "other",
+    "left_rear_wheel": "wheel",
+    "right_rear_wheel": "wheel",
+    "left_front_wheel": "wheel",
+    "right_front_wheel": "wheel",
+    "front_windshield": "windshield",
+    "rear_windshield": "windshield",
+    "left_mirror": "mirror",
+    "right_mirror": "mirror",
+    "license_plate": "other",
+    "rear_lights": "light",
+    "front_lights": "light",
+    "front_panel": "bumper",
+    "rear_panel": "bumper",
+    "left_front_quarter_panel": "fender",
+    "left_rocker_panel": "other",
+    "right_rocker_panel": "other"
+  },
+  "images": 245,
+  "damage_boxes": 1295,
+  "per_damage_type": {
+    "glass_shatter": 321,
+    "lamp_broken": 301,
+    "crack": 321,
+    "scratch": 352
+  },
+  "no_auto_part": 0,
+  "skipped": {},
+  "images_without_damage_label_file": 0,
+  "images_over_5mb": 245,
+  "images_with_exif_rotation": [],
+  "image_sizes": [
+    [
+      "2448x3264",
+      89
+    ],
+    [
+      "3264x2448",
+      88
+    ],
+    [
+      "2322x4128",
+      24
+    ],
+    [
+      "4128x2322",
+      22
+    ],
+    [
+      "3000x3000",
+      13
+    ]
+  ],
+  "group_by": "date",
+  "groups": {
+    "date:20240917": {
+      "images": 184,
+      "pool": "test"
+    },
+    "date:20240918": {
+      "images": 48,
+      "pool": "dev"
+    },
+    "date:20240919": {
+      "images": 13,
+      "pool": "dev"
+    }
+  }
+}

@@ -1,0 +1,4780 @@
+{
+ "images": [
+  {
+   "id": 130,
+   "file_name": "ID1_20240918_161134.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 131,
+   "file_name": "ID1_20240918_161203.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 132,
+   "file_name": "ID1_20240918_161204.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 133,
+   "file_name": "ID1_20240918_161209.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 134,
+   "file_name": "ID1_20240918_161210.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 135,
+   "file_name": "ID1_20240918_161217.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 136,
+   "file_name": "ID1_20240918_161223.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 137,
+   "file_name": "ID1_20240918_161228.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 138,
+   "file_name": "ID1_20240918_161240.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 139,
+   "file_name": "ID1_20240918_161245.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 140,
+   "file_name": "ID1_20240918_161253.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 141,
+   "file_name": "ID1_20240918_161301.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 142,
+   "file_name": "ID1_20240918_161305.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 143,
+   "file_name": "ID1_20240918_161312.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 144,
+   "file_name": "ID1_20240918_161319.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 145,
+   "file_name": "ID1_20240918_162440.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 146,
+   "file_name": "ID1_20240918_162445.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 147,
+   "file_name": "ID1_20240918_162447.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 148,
+   "file_name": "ID1_20240918_162452.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 149,
+   "file_name": "ID1_20240918_162456.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 150,
+   "file_name": "ID1_20240918_162503.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 151,
+   "file_name": "ID1_20240918_162504.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 152,
+   "file_name": "ID1_20240918_162512.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 153,
+   "file_name": "ID1_20240918_162513.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 154,
+   "file_name": "ID1_20240918_162522.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 155,
+   "file_name": "ID1_20240918_162526.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 156,
+   "file_name": "ID1_20240918_162531.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 157,
+   "file_name": "ID1_20240918_162538.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 158,
+   "file_name": "ID1_20240918_162543.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 159,
+   "file_name": "ID1_20240918_162551.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 160,
+   "file_name": "ID1_20240918_162556.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 161,
+   "file_name": "ID1_20240918_162602.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 162,
+   "file_name": "ID1_20240918_162609.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 163,
+   "file_name": "ID1_20240918_162613.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 164,
+   "file_name": "ID1_20240918_162616.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 165,
+   "file_name": "ID1_20240918_163335.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 166,
+   "file_name": "ID1_20240918_163342.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 167,
+   "file_name": "ID1_20240918_163350.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 168,
+   "file_name": "ID1_20240918_163355.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 169,
+   "file_name": "ID1_20240918_163402.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 170,
+   "file_name": "ID1_20240918_163407.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 171,
+   "file_name": "ID1_20240918_163413.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 172,
+   "file_name": "ID1_20240918_163417.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 173,
+   "file_name": "ID1_20240918_163430.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 174,
+   "file_name": "ID1_20240918_163433.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 175,
+   "file_name": "ID1_20240918_163438.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 176,
+   "file_name": "ID1_20240918_163442.png",
+   "width": 3264,
+   "height": 2448
+  },
+  {
+   "id": 177,
+   "file_name": "ID1_20240918_163449.png",
+   "width": 2448,
+   "height": 3264
+  },
+  {
+   "id": 233,
+   "file_name": "ID5_1726736225270.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 234,
+   "file_name": "ID5_1726736225427.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 235,
+   "file_name": "ID5_1726736225570.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 236,
+   "file_name": "ID5_1726736225923.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 237,
+   "file_name": "ID5_1726736226108.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 238,
+   "file_name": "ID5_1726736226149.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 239,
+   "file_name": "ID5_1726736226215.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 240,
+   "file_name": "ID5_1726736226352.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 241,
+   "file_name": "ID5_1726736226472.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 242,
+   "file_name": "ID5_1726736226532.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 243,
+   "file_name": "ID5_1726736226625.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 244,
+   "file_name": "ID5_1726736226717.png",
+   "width": 3000,
+   "height": 3000
+  },
+  {
+   "id": 245,
+   "file_name": "ID5_1726736227317.png",
+   "width": 3000,
+   "height": 3000
+  }
+ ],
+ "annotations": [
+  {
+   "id": 716,
+   "image_id": 130,
+   "category_id": 1,
+   "bbox": [
+    917.9,
+    702.3,
+    193.0,
+    398.4
+   ],
+   "area": 76883.2,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 717,
+   "image_id": 130,
+   "category_id": 3,
+   "bbox": [
+    775.0,
+    1842.5,
+    193.4,
+    170.0
+   ],
+   "area": 32884.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 718,
+   "image_id": 130,
+   "category_id": 2,
+   "bbox": [
+    2078.4,
+    1605.3,
+    178.3,
+    158.1
+   ],
+   "area": 28201.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 719,
+   "image_id": 130,
+   "category_id": 4,
+   "bbox": [
+    2239.1,
+    1168.2,
+    112.6,
+    91.1
+   ],
+   "area": 10256.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 720,
+   "image_id": 131,
+   "category_id": 1,
+   "bbox": [
+    1978.4,
+    599.5,
+    121.0,
+    293.1
+   ],
+   "area": 35462.5,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_front_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 721,
+   "image_id": 131,
+   "category_id": 4,
+   "bbox": [
+    2465.3,
+    981.8,
+    78.0,
+    137.5
+   ],
+   "area": 10725.5,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 0.81
+  },
+  {
+   "id": 722,
+   "image_id": 131,
+   "category_id": 1,
+   "bbox": [
+    1711.9,
+    390.8,
+    232.1,
+    262.5
+   ],
+   "area": 60920.8,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 723,
+   "image_id": 131,
+   "category_id": 4,
+   "bbox": [
+    2438.5,
+    914.7,
+    80.1,
+    51.1
+   ],
+   "area": 4093.8,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 724,
+   "image_id": 131,
+   "category_id": 2,
+   "bbox": [
+    1442.9,
+    1435.9,
+    148.1,
+    163.6
+   ],
+   "area": 24237.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 725,
+   "image_id": 131,
+   "category_id": 3,
+   "bbox": [
+    1957.2,
+    1340.2,
+    99.9,
+    117.8
+   ],
+   "area": 11766.3,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_front_quarter_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 726,
+   "image_id": 131,
+   "category_id": 3,
+   "bbox": [
+    1599.6,
+    1985.1,
+    129.0,
+    87.9
+   ],
+   "area": 11340.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.9
+  },
+  {
+   "id": 727,
+   "image_id": 132,
+   "category_id": 3,
+   "bbox": [
+    1726.0,
+    1085.2,
+    112.2,
+    109.4
+   ],
+   "area": 12276.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 728,
+   "image_id": 132,
+   "category_id": 1,
+   "bbox": [
+    2138.6,
+    437.2,
+    223.4,
+    153.1
+   ],
+   "area": 34197.6,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 729,
+   "image_id": 132,
+   "category_id": 2,
+   "bbox": [
+    1662.6,
+    1179.8,
+    93.8,
+    96.5
+   ],
+   "area": 9052.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 730,
+   "image_id": 132,
+   "category_id": 1,
+   "bbox": [
+    1934.7,
+    833.8,
+    113.0,
+    99.1
+   ],
+   "area": 11196.3,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_front_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 731,
+   "image_id": 132,
+   "category_id": 1,
+   "bbox": [
+    994.4,
+    380.2,
+    218.0,
+    127.2
+   ],
+   "area": 27739.1,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 0.97
+  },
+  {
+   "id": 732,
+   "image_id": 132,
+   "category_id": 2,
+   "bbox": [
+    1408.4,
+    1458.0,
+    146.1,
+    161.4
+   ],
+   "area": 23591.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 733,
+   "image_id": 133,
+   "category_id": 1,
+   "bbox": [
+    1476.6,
+    1091.6,
+    86.9,
+    124.7
+   ],
+   "area": 10842.6,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_front_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 734,
+   "image_id": 133,
+   "category_id": 1,
+   "bbox": [
+    757.9,
+    928.2,
+    196.4,
+    169.8
+   ],
+   "area": 33347.6,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 735,
+   "image_id": 133,
+   "category_id": 3,
+   "bbox": [
+    284.2,
+    1910.0,
+    65.4,
+    151.5
+   ],
+   "area": 9912.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 736,
+   "image_id": 133,
+   "category_id": 2,
+   "bbox": [
+    991.6,
+    1851.8,
+    133.8,
+    147.5
+   ],
+   "area": 19730.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 737,
+   "image_id": 133,
+   "category_id": 4,
+   "bbox": [
+    998.5,
+    1591.7,
+    221.3,
+    95.9
+   ],
+   "area": 21226.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 738,
+   "image_id": 133,
+   "category_id": 3,
+   "bbox": [
+    1620.9,
+    1641.7,
+    109.1,
+    157.5
+   ],
+   "area": 17184.6,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 739,
+   "image_id": 134,
+   "category_id": 4,
+   "bbox": [
+    1537.3,
+    1698.7,
+    68.8,
+    118.0
+   ],
+   "area": 8117.2,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_front_quarter_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 740,
+   "image_id": 134,
+   "category_id": 2,
+   "bbox": [
+    1207.7,
+    1645.3,
+    82.8,
+    79.4
+   ],
+   "area": 6572.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 741,
+   "image_id": 134,
+   "category_id": 1,
+   "bbox": [
+    1090.1,
+    1030.6,
+    319.7,
+    489.6
+   ],
+   "area": 156525.9,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 742,
+   "image_id": 134,
+   "category_id": 3,
+   "bbox": [
+    1185.6,
+    1835.8,
+    145.7,
+    83.8
+   ],
+   "area": 12204.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 743,
+   "image_id": 134,
+   "category_id": 3,
+   "bbox": [
+    717.1,
+    1839.3,
+    132.6,
+    58.5
+   ],
+   "area": 7753.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 744,
+   "image_id": 134,
+   "category_id": 4,
+   "bbox": [
+    1837.2,
+    1339.3,
+    129.7,
+    74.9
+   ],
+   "area": 9710.2,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 745,
+   "image_id": 134,
+   "category_id": 2,
+   "bbox": [
+    374.7,
+    1465.0,
+    48.5,
+    65.9
+   ],
+   "area": 3200.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 746,
+   "image_id": 135,
+   "category_id": 2,
+   "bbox": [
+    511.4,
+    1885.1,
+    195.0,
+    168.9
+   ],
+   "area": 32935.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 747,
+   "image_id": 135,
+   "category_id": 1,
+   "bbox": [
+    555.6,
+    939.6,
+    168.3,
+    191.5
+   ],
+   "area": 32234.5,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 748,
+   "image_id": 135,
+   "category_id": 3,
+   "bbox": [
+    743.3,
+    1623.0,
+    107.1,
+    146.3
+   ],
+   "area": 15657.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 749,
+   "image_id": 135,
+   "category_id": 2,
+   "bbox": [
+    1769.1,
+    1902.4,
+    198.1,
+    165.5
+   ],
+   "area": 32790.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 750,
+   "image_id": 135,
+   "category_id": 1,
+   "bbox": [
+    1732.3,
+    742.4,
+    153.7,
+    178.7
+   ],
+   "area": 27465.3,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 751,
+   "image_id": 135,
+   "category_id": 4,
+   "bbox": [
+    561.0,
+    2113.8,
+    341.7,
+    114.7
+   ],
+   "area": 39193.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 752,
+   "image_id": 136,
+   "category_id": 2,
+   "bbox": [
+    1298.3,
+    1493.9,
+    84.8,
+    90.9
+   ],
+   "area": 7710.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 753,
+   "image_id": 136,
+   "category_id": 1,
+   "bbox": [
+    587.6,
+    742.1,
+    248.2,
+    217.3
+   ],
+   "area": 53929.9,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 754,
+   "image_id": 136,
+   "category_id": 2,
+   "bbox": [
+    1489.8,
+    1758.6,
+    115.1,
+    149.1
+   ],
+   "area": 17161.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 755,
+   "image_id": 136,
+   "category_id": 3,
+   "bbox": [
+    871.1,
+    1631.1,
+    95.9,
+    93.4
+   ],
+   "area": 8963.5,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "left_front_quarter_panel",
+   "auto_part_coverage": 0.98
+  },
+  {
+   "id": 756,
+   "image_id": 136,
+   "category_id": 4,
+   "bbox": [
+    1138.9,
+    1814.7,
+    260.8,
+    343.8
+   ],
+   "area": 89652.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.59
+  },
+  {
+   "id": 757,
+   "image_id": 137,
+   "category_id": 1,
+   "bbox": [
+    1754.8,
+    716.1,
+    93.9,
+    137.3
+   ],
+   "area": 12892.0,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 758,
+   "image_id": 137,
+   "category_id": 4,
+   "bbox": [
+    2500.1,
+    1227.4,
+    167.3,
+    114.1
+   ],
+   "area": 19082.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 759,
+   "image_id": 137,
+   "category_id": 3,
+   "bbox": [
+    1343.1,
+    1246.8,
+    50.0,
+    57.7
+   ],
+   "area": 2884.4,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 760,
+   "image_id": 137,
+   "category_id": 2,
+   "bbox": [
+    2718.3,
+    1192.0,
+    58.2,
+    132.3
+   ],
+   "area": 7693.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 761,
+   "image_id": 137,
+   "category_id": 1,
+   "bbox": [
+    2192.1,
+    430.1,
+    248.6,
+    200.8
+   ],
+   "area": 49913.8,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 0.97
+  },
+  {
+   "id": 762,
+   "image_id": 137,
+   "category_id": 4,
+   "bbox": [
+    1997.3,
+    1862.4,
+    120.7,
+    239.1
+   ],
+   "area": 28859.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.94
+  },
+  {
+   "id": 763,
+   "image_id": 138,
+   "category_id": 1,
+   "bbox": [
+    723.6,
+    568.0,
+    151.4,
+    128.2
+   ],
+   "area": 19408.2,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 764,
+   "image_id": 138,
+   "category_id": 2,
+   "bbox": [
+    1036.7,
+    1344.1,
+    115.4,
+    188.1
+   ],
+   "area": 21715.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 765,
+   "image_id": 138,
+   "category_id": 2,
+   "bbox": [
+    1294.8,
+    1055.1,
+    96.3,
+    106.8
+   ],
+   "area": 10289.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 766,
+   "image_id": 138,
+   "category_id": 4,
+   "bbox": [
+    1951.8,
+    840.0,
+    166.1,
+    132.2
+   ],
+   "area": 21951.3,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 767,
+   "image_id": 138,
+   "category_id": 4,
+   "bbox": [
+    2385.6,
+    1416.6,
+    108.2,
+    73.8
+   ],
+   "area": 7990.6,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "left_rocker_panel",
+   "auto_part_coverage": 0.82
+  },
+  {
+   "id": 768,
+   "image_id": 138,
+   "category_id": 3,
+   "bbox": [
+    1305.2,
+    1319.0,
+    78.7,
+    84.1
+   ],
+   "area": 6621.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 769,
+   "image_id": 138,
+   "category_id": 1,
+   "bbox": [
+    1637.5,
+    654.7,
+    174.6,
+    207.9
+   ],
+   "area": 36301.4,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_rear_side_window",
+   "auto_part_coverage": 0.97
+  },
+  {
+   "id": 770,
+   "image_id": 138,
+   "category_id": 3,
+   "bbox": [
+    1711.5,
+    1000.7,
+    91.9,
+    104.4
+   ],
+   "area": 9595.6,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "left_rear_quarter_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 771,
+   "image_id": 139,
+   "category_id": 4,
+   "bbox": [
+    573.9,
+    1706.4,
+    162.3,
+    127.4
+   ],
+   "area": 20683.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 772,
+   "image_id": 139,
+   "category_id": 2,
+   "bbox": [
+    506.2,
+    1854.3,
+    109.8,
+    189.1
+   ],
+   "area": 20756.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 773,
+   "image_id": 139,
+   "category_id": 4,
+   "bbox": [
+    2117.7,
+    1290.7,
+    121.5,
+    215.7
+   ],
+   "area": 26210.7,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "left_front_quarter_panel",
+   "auto_part_coverage": 0.93
+  },
+  {
+   "id": 774,
+   "image_id": 139,
+   "category_id": 1,
+   "bbox": [
+    1457.0,
+    899.1,
+    188.3,
+    147.3
+   ],
+   "area": 27739.3,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 775,
+   "image_id": 140,
+   "category_id": 4,
+   "bbox": [
+    150.6,
+    1578.9,
+    132.0,
+    131.2
+   ],
+   "area": 17315.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 776,
+   "image_id": 140,
+   "category_id": 3,
+   "bbox": [
+    1423.9,
+    1370.5,
+    129.4,
+    129.4
+   ],
+   "area": 16747.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 777,
+   "image_id": 140,
+   "category_id": 1,
+   "bbox": [
+    708.3,
+    771.9,
+    178.4,
+    174.4
+   ],
+   "area": 31106.0,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 778,
+   "image_id": 140,
+   "category_id": 2,
+   "bbox": [
+    180.2,
+    1323.2,
+    77.8,
+    188.3
+   ],
+   "area": 14645.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 779,
+   "image_id": 140,
+   "category_id": 2,
+   "bbox": [
+    273.1,
+    996.0,
+    52.5,
+    92.4
+   ],
+   "area": 4851.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.81
+  },
+  {
+   "id": 780,
+   "image_id": 140,
+   "category_id": 1,
+   "bbox": [
+    1744.8,
+    372.2,
+    147.3,
+    181.1
+   ],
+   "area": 26670.8,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_rear_side_window",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 781,
+   "image_id": 140,
+   "category_id": 3,
+   "bbox": [
+    879.9,
+    1934.7,
+    145.7,
+    165.9
+   ],
+   "area": 24170.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 782,
+   "image_id": 141,
+   "category_id": 1,
+   "bbox": [
+    1118.3,
+    705.3,
+    340.5,
+    229.6
+   ],
+   "area": 78174.5,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 783,
+   "image_id": 141,
+   "category_id": 3,
+   "bbox": [
+    2127.8,
+    1286.1,
+    145.3,
+    90.3
+   ],
+   "area": 13120.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 784,
+   "image_id": 141,
+   "category_id": 3,
+   "bbox": [
+    1157.2,
+    1108.7,
+    67.5,
+    131.1
+   ],
+   "area": 8855.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 785,
+   "image_id": 141,
+   "category_id": 2,
+   "bbox": [
+    956.5,
+    1324.8,
+    153.7,
+    153.4
+   ],
+   "area": 23571.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 786,
+   "image_id": 141,
+   "category_id": 2,
+   "bbox": [
+    2171.8,
+    1102.6,
+    88.6,
+    88.6
+   ],
+   "area": 7853.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 787,
+   "image_id": 141,
+   "category_id": 4,
+   "bbox": [
+    1389.8,
+    1561.5,
+    273.3,
+    115.8
+   ],
+   "area": 31640.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 788,
+   "image_id": 142,
+   "category_id": 2,
+   "bbox": [
+    1040.5,
+    1404.6,
+    168.5,
+    159.2
+   ],
+   "area": 26832.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 789,
+   "image_id": 142,
+   "category_id": 4,
+   "bbox": [
+    1616.4,
+    1613.0,
+    423.5,
+    95.0
+   ],
+   "area": 40234.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 790,
+   "image_id": 142,
+   "category_id": 4,
+   "bbox": [
+    1744.4,
+    1262.5,
+    107.8,
+    46.9
+   ],
+   "area": 5059.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 791,
+   "image_id": 142,
+   "category_id": 2,
+   "bbox": [
+    2120.8,
+    1399.2,
+    167.4,
+    160.9
+   ],
+   "area": 26933.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 792,
+   "image_id": 142,
+   "category_id": 3,
+   "bbox": [
+    932.2,
+    1712.3,
+    129.1,
+    289.3
+   ],
+   "area": 37347.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 793,
+   "image_id": 143,
+   "category_id": 4,
+   "bbox": [
+    430.2,
+    1431.2,
+    286.4,
+    103.9
+   ],
+   "area": 29769.7,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 794,
+   "image_id": 143,
+   "category_id": 4,
+   "bbox": [
+    2215.7,
+    1762.8,
+    56.9,
+    103.9
+   ],
+   "area": 5906.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 795,
+   "image_id": 143,
+   "category_id": 3,
+   "bbox": [
+    802.0,
+    1337.5,
+    125.7,
+    49.7
+   ],
+   "area": 6248.7,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 796,
+   "image_id": 143,
+   "category_id": 4,
+   "bbox": [
+    2360.6,
+    1745.5,
+    65.2,
+    49.4
+   ],
+   "area": 3221.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 797,
+   "image_id": 143,
+   "category_id": 2,
+   "bbox": [
+    2259.2,
+    1545.4,
+    87.0,
+    151.8
+   ],
+   "area": 13200.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 798,
+   "image_id": 143,
+   "category_id": 2,
+   "bbox": [
+    2251.2,
+    1264.2,
+    54.7,
+    79.9
+   ],
+   "area": 4372.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.87
+  },
+  {
+   "id": 799,
+   "image_id": 143,
+   "category_id": 2,
+   "bbox": [
+    1211.1,
+    1446.5,
+    101.7,
+    103.5
+   ],
+   "area": 10522.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 800,
+   "image_id": 143,
+   "category_id": 1,
+   "bbox": [
+    860.5,
+    717.0,
+    124.6,
+    309.1
+   ],
+   "area": 38504.5,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 801,
+   "image_id": 144,
+   "category_id": 1,
+   "bbox": [
+    1398.0,
+    549.6,
+    129.8,
+    156.3
+   ],
+   "area": 20289.7,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 802,
+   "image_id": 144,
+   "category_id": 4,
+   "bbox": [
+    808.4,
+    1061.0,
+    33.2,
+    25.4
+   ],
+   "area": 841.9,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_front_quarter_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 803,
+   "image_id": 144,
+   "category_id": 4,
+   "bbox": [
+    767.4,
+    921.6,
+    94.8,
+    100.8
+   ],
+   "area": 9551.7,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_front_quarter_panel",
+   "auto_part_coverage": 0.7
+  },
+  {
+   "id": 804,
+   "image_id": 144,
+   "category_id": 2,
+   "bbox": [
+    1972.0,
+    1462.5,
+    155.4,
+    195.2
+   ],
+   "area": 30342.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 805,
+   "image_id": 144,
+   "category_id": 3,
+   "bbox": [
+    2251.2,
+    1265.4,
+    236.1,
+    165.2
+   ],
+   "area": 39015.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 806,
+   "image_id": 144,
+   "category_id": 1,
+   "bbox": [
+    1777.1,
+    578.6,
+    143.1,
+    123.1
+   ],
+   "area": 17613.8,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 807,
+   "image_id": 144,
+   "category_id": 1,
+   "bbox": [
+    1860.5,
+    783.8,
+    169.0,
+    146.1
+   ],
+   "area": 24683.9,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 808,
+   "image_id": 145,
+   "category_id": 1,
+   "bbox": [
+    784.3,
+    601.2,
+    196.7,
+    245.5
+   ],
+   "area": 48276.5,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 809,
+   "image_id": 145,
+   "category_id": 3,
+   "bbox": [
+    1955.7,
+    1263.7,
+    105.2,
+    51.1
+   ],
+   "area": 5372.1,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "left_rear_quarter_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 810,
+   "image_id": 145,
+   "category_id": 3,
+   "bbox": [
+    1625.8,
+    1974.1,
+    75.9,
+    112.6
+   ],
+   "area": 8544.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.91
+  },
+  {
+   "id": 811,
+   "image_id": 145,
+   "category_id": 2,
+   "bbox": [
+    1714.9,
+    1124.5,
+    92.8,
+    92.5
+   ],
+   "area": 8579.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 812,
+   "image_id": 145,
+   "category_id": 1,
+   "bbox": [
+    1603.0,
+    641.0,
+    104.1,
+    162.5
+   ],
+   "area": 16916.5,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 813,
+   "image_id": 145,
+   "category_id": 4,
+   "bbox": [
+    1278.9,
+    1797.0,
+    236.4,
+    220.8
+   ],
+   "area": 52197.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 814,
+   "image_id": 145,
+   "category_id": 2,
+   "bbox": [
+    659.1,
+    974.5,
+    63.4,
+    74.4
+   ],
+   "area": 4717.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 815,
+   "image_id": 146,
+   "category_id": 4,
+   "bbox": [
+    421.4,
+    1741.4,
+    100.0,
+    58.1
+   ],
+   "area": 5815.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 816,
+   "image_id": 146,
+   "category_id": 1,
+   "bbox": [
+    1753.0,
+    1139.1,
+    153.2,
+    163.5
+   ],
+   "area": 25054.7,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 817,
+   "image_id": 146,
+   "category_id": 1,
+   "bbox": [
+    1020.5,
+    1237.1,
+    430.6,
+    189.2
+   ],
+   "area": 81466.4,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 818,
+   "image_id": 146,
+   "category_id": 3,
+   "bbox": [
+    1783.9,
+    1832.1,
+    88.0,
+    146.1
+   ],
+   "area": 12858.3,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 0.92
+  },
+  {
+   "id": 819,
+   "image_id": 146,
+   "category_id": 2,
+   "bbox": [
+    1195.8,
+    1967.8,
+    153.9,
+    162.3
+   ],
+   "area": 24982.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 820,
+   "image_id": 147,
+   "category_id": 2,
+   "bbox": [
+    369.0,
+    1408.0,
+    58.1,
+    73.7
+   ],
+   "area": 4280.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 821,
+   "image_id": 147,
+   "category_id": 4,
+   "bbox": [
+    247.7,
+    1813.0,
+    230.8,
+    143.9
+   ],
+   "area": 33214.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 822,
+   "image_id": 147,
+   "category_id": 2,
+   "bbox": [
+    341.2,
+    1659.4,
+    110.6,
+    143.4
+   ],
+   "area": 15859.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 823,
+   "image_id": 147,
+   "category_id": 4,
+   "bbox": [
+    813.5,
+    1439.1,
+    173.8,
+    66.6
+   ],
+   "area": 11584.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.88
+  },
+  {
+   "id": 824,
+   "image_id": 147,
+   "category_id": 1,
+   "bbox": [
+    471.1,
+    1096.1,
+    151.4,
+    209.6
+   ],
+   "area": 31727.0,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 0.94
+  },
+  {
+   "id": 825,
+   "image_id": 147,
+   "category_id": 3,
+   "bbox": [
+    1487.9,
+    1555.0,
+    130.2,
+    169.4
+   ],
+   "area": 22050.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.89
+  },
+  {
+   "id": 826,
+   "image_id": 147,
+   "category_id": 3,
+   "bbox": [
+    1094.3,
+    2261.7,
+    79.3,
+    134.5
+   ],
+   "area": 10661.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 827,
+   "image_id": 148,
+   "category_id": 1,
+   "bbox": [
+    672.3,
+    1029.5,
+    839.3,
+    414.6
+   ],
+   "area": 347936.3,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 828,
+   "image_id": 148,
+   "category_id": 3,
+   "bbox": [
+    1790.0,
+    2065.5,
+    111.0,
+    139.5
+   ],
+   "area": 15478.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 829,
+   "image_id": 148,
+   "category_id": 3,
+   "bbox": [
+    1314.2,
+    1537.8,
+    191.1,
+    80.3
+   ],
+   "area": 15347.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 830,
+   "image_id": 148,
+   "category_id": 2,
+   "bbox": [
+    446.8,
+    1547.3,
+    97.4,
+    98.5
+   ],
+   "area": 9594.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 831,
+   "image_id": 148,
+   "category_id": 2,
+   "bbox": [
+    509.8,
+    1878.7,
+    190.3,
+    175.4
+   ],
+   "area": 33366.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 832,
+   "image_id": 149,
+   "category_id": 1,
+   "bbox": [
+    1436.8,
+    663.2,
+    445.6,
+    259.1
+   ],
+   "area": 115447.8,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 833,
+   "image_id": 149,
+   "category_id": 4,
+   "bbox": [
+    986.4,
+    1747.7,
+    278.9,
+    137.0
+   ],
+   "area": 38210.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 834,
+   "image_id": 149,
+   "category_id": 4,
+   "bbox": [
+    2115.4,
+    1402.0,
+    110.5,
+    83.9
+   ],
+   "area": 9273.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 835,
+   "image_id": 149,
+   "category_id": 2,
+   "bbox": [
+    2322.7,
+    1190.1,
+    89.6,
+    90.6
+   ],
+   "area": 8117.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 836,
+   "image_id": 149,
+   "category_id": 1,
+   "bbox": [
+    1000.0,
+    822.1,
+    212.8,
+    210.7
+   ],
+   "area": 44824.3,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 837,
+   "image_id": 150,
+   "category_id": 3,
+   "bbox": [
+    1120.1,
+    2317.0,
+    113.4,
+    190.4
+   ],
+   "area": 21598.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 838,
+   "image_id": 150,
+   "category_id": 4,
+   "bbox": [
+    2265.7,
+    1922.6,
+    105.1,
+    167.7
+   ],
+   "area": 17626.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 839,
+   "image_id": 150,
+   "category_id": 4,
+   "bbox": [
+    783.4,
+    1474.6,
+    105.1,
+    158.7
+   ],
+   "area": 16687.3,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 0.92
+  },
+  {
+   "id": 840,
+   "image_id": 150,
+   "category_id": 1,
+   "bbox": [
+    1901.7,
+    1077.0,
+    151.3,
+    163.4
+   ],
+   "area": 24715.1,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 841,
+   "image_id": 150,
+   "category_id": 1,
+   "bbox": [
+    835.4,
+    1080.3,
+    149.7,
+    329.2
+   ],
+   "area": 49277.0,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 0.91
+  },
+  {
+   "id": 842,
+   "image_id": 150,
+   "category_id": 2,
+   "bbox": [
+    1283.4,
+    1910.8,
+    161.2,
+    173.9
+   ],
+   "area": 28027.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 843,
+   "image_id": 150,
+   "category_id": 2,
+   "bbox": [
+    2169.0,
+    1754.0,
+    114.0,
+    149.3
+   ],
+   "area": 17016.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 844,
+   "image_id": 150,
+   "category_id": 3,
+   "bbox": [
+    1064.3,
+    2200.4,
+    263.7,
+    71.3
+   ],
+   "area": 18801.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 845,
+   "image_id": 150,
+   "category_id": 3,
+   "bbox": [
+    1262.2,
+    2468.5,
+    92.6,
+    126.1
+   ],
+   "area": 11677.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.89
+  },
+  {
+   "id": 846,
+   "image_id": 151,
+   "category_id": 2,
+   "bbox": [
+    2121.3,
+    1526.8,
+    61.7,
+    76.8
+   ],
+   "area": 4738.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.92
+  },
+  {
+   "id": 847,
+   "image_id": 151,
+   "category_id": 1,
+   "bbox": [
+    1078.7,
+    1159.0,
+    235.6,
+    340.9
+   ],
+   "area": 80337.9,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 848,
+   "image_id": 151,
+   "category_id": 4,
+   "bbox": [
+    1076.0,
+    1826.1,
+    471.9,
+    157.7
+   ],
+   "area": 74436.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 849,
+   "image_id": 151,
+   "category_id": 3,
+   "bbox": [
+    735.4,
+    1694.7,
+    100.6,
+    192.7
+   ],
+   "area": 19380.0,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 850,
+   "image_id": 151,
+   "category_id": 2,
+   "bbox": [
+    1051.1,
+    1678.3,
+    94.7,
+    94.3
+   ],
+   "area": 8930.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 851,
+   "image_id": 152,
+   "category_id": 1,
+   "bbox": [
+    1155.5,
+    804.1,
+    131.1,
+    162.2
+   ],
+   "area": 21265.4,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 852,
+   "image_id": 152,
+   "category_id": 2,
+   "bbox": [
+    1607.2,
+    1433.5,
+    159.2,
+    183.2
+   ],
+   "area": 29177.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 853,
+   "image_id": 152,
+   "category_id": 3,
+   "bbox": [
+    1350.2,
+    456.3,
+    158.8,
+    152.3
+   ],
+   "area": 24190.0,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 854,
+   "image_id": 152,
+   "category_id": 1,
+   "bbox": [
+    917.9,
+    552.7,
+    175.3,
+    135.5
+   ],
+   "area": 23743.1,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 855,
+   "image_id": 152,
+   "category_id": 4,
+   "bbox": [
+    2170.9,
+    984.4,
+    281.9,
+    102.6
+   ],
+   "area": 28919.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.88
+  },
+  {
+   "id": 856,
+   "image_id": 153,
+   "category_id": 4,
+   "bbox": [
+    1063.5,
+    1352.7,
+    156.5,
+    95.6
+   ],
+   "area": 14959.0,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 857,
+   "image_id": 153,
+   "category_id": 2,
+   "bbox": [
+    2415.1,
+    1252.5,
+    105.0,
+    144.5
+   ],
+   "area": 15171.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 858,
+   "image_id": 153,
+   "category_id": 2,
+   "bbox": [
+    2429.7,
+    999.4,
+    55.4,
+    72.7
+   ],
+   "area": 4031.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.94
+  },
+  {
+   "id": 859,
+   "image_id": 153,
+   "category_id": 4,
+   "bbox": [
+    2298.4,
+    961.7,
+    101.2,
+    65.4
+   ],
+   "area": 6614.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 860,
+   "image_id": 153,
+   "category_id": 3,
+   "bbox": [
+    1889.4,
+    1863.9,
+    95.0,
+    115.3
+   ],
+   "area": 10954.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.84
+  },
+  {
+   "id": 861,
+   "image_id": 153,
+   "category_id": 3,
+   "bbox": [
+    1279.3,
+    882.7,
+    132.8,
+    96.2
+   ],
+   "area": 12779.2,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 862,
+   "image_id": 154,
+   "category_id": 3,
+   "bbox": [
+    773.6,
+    1026.1,
+    118.6,
+    102.6
+   ],
+   "area": 12170.5,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 863,
+   "image_id": 154,
+   "category_id": 4,
+   "bbox": [
+    2280.2,
+    1167.6,
+    121.4,
+    146.4
+   ],
+   "area": 17780.5,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 0.93
+  },
+  {
+   "id": 864,
+   "image_id": 154,
+   "category_id": 1,
+   "bbox": [
+    549.0,
+    498.8,
+    240.6,
+    380.3
+   ],
+   "area": 91483.8,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_front_side_window",
+   "auto_part_coverage": 0.77
+  },
+  {
+   "id": 865,
+   "image_id": 154,
+   "category_id": 1,
+   "bbox": [
+    1430.5,
+    837.8,
+    291.9,
+    184.7
+   ],
+   "area": 53918.3,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 866,
+   "image_id": 154,
+   "category_id": 3,
+   "bbox": [
+    765.7,
+    1141.9,
+    146.1,
+    71.5
+   ],
+   "area": 10443.0,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 867,
+   "image_id": 155,
+   "category_id": 3,
+   "bbox": [
+    2414.1,
+    1116.1,
+    91.0,
+    219.9
+   ],
+   "area": 20000.5,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 868,
+   "image_id": 155,
+   "category_id": 4,
+   "bbox": [
+    1007.4,
+    1521.4,
+    232.1,
+    113.0
+   ],
+   "area": 26225.0,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 869,
+   "image_id": 155,
+   "category_id": 1,
+   "bbox": [
+    1075.5,
+    587.2,
+    452.8,
+    270.3
+   ],
+   "area": 122418.3,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 870,
+   "image_id": 155,
+   "category_id": 4,
+   "bbox": [
+    2970.9,
+    1510.1,
+    206.0,
+    102.6
+   ],
+   "area": 21129.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 871,
+   "image_id": 155,
+   "category_id": 1,
+   "bbox": [
+    2297.6,
+    544.6,
+    180.8,
+    158.2
+   ],
+   "area": 28605.5,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 872,
+   "image_id": 156,
+   "category_id": 1,
+   "bbox": [
+    1682.8,
+    1389.0,
+    137.4,
+    103.6
+   ],
+   "area": 14233.4,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 0.92
+  },
+  {
+   "id": 873,
+   "image_id": 156,
+   "category_id": 1,
+   "bbox": [
+    1279.2,
+    1370.2,
+    238.1,
+    121.3
+   ],
+   "area": 28875.7,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 874,
+   "image_id": 156,
+   "category_id": 1,
+   "bbox": [
+    1661.0,
+    1160.0,
+    107.9,
+    92.2
+   ],
+   "area": 9946.9,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 875,
+   "image_id": 156,
+   "category_id": 3,
+   "bbox": [
+    778.6,
+    1081.1,
+    77.7,
+    68.1
+   ],
+   "area": 5285.6,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 0.92
+  },
+  {
+   "id": 876,
+   "image_id": 156,
+   "category_id": 3,
+   "bbox": [
+    1311.7,
+    1060.1,
+    75.9,
+    82.0
+   ],
+   "area": 6226.2,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 0.9
+  },
+  {
+   "id": 877,
+   "image_id": 156,
+   "category_id": 3,
+   "bbox": [
+    632.9,
+    1785.2,
+    123.9,
+    100.3
+   ],
+   "area": 12432.0,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_front_quarter_panel",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 878,
+   "image_id": 157,
+   "category_id": 3,
+   "bbox": [
+    768.9,
+    1726.1,
+    230.7,
+    156.1
+   ],
+   "area": 35997.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 879,
+   "image_id": 157,
+   "category_id": 4,
+   "bbox": [
+    967.8,
+    1074.1,
+    101.4,
+    77.5
+   ],
+   "area": 7859.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 880,
+   "image_id": 157,
+   "category_id": 4,
+   "bbox": [
+    2464.8,
+    1209.0,
+    103.6,
+    119.5
+   ],
+   "area": 12380.0,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 881,
+   "image_id": 157,
+   "category_id": 1,
+   "bbox": [
+    1158.1,
+    399.2,
+    239.1,
+    257.3
+   ],
+   "area": 61523.3,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 882,
+   "image_id": 157,
+   "category_id": 4,
+   "bbox": [
+    1718.7,
+    1822.5,
+    126.8,
+    116.6
+   ],
+   "area": 14781.7,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "right_rocker_panel",
+   "auto_part_coverage": 0.83
+  },
+  {
+   "id": 883,
+   "image_id": 158,
+   "category_id": 4,
+   "bbox": [
+    151.7,
+    1775.3,
+    105.4,
+    70.8
+   ],
+   "area": 7466.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 884,
+   "image_id": 158,
+   "category_id": 1,
+   "bbox": [
+    1325.1,
+    830.5,
+    242.2,
+    492.6
+   ],
+   "area": 119305.5,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_front_side_window",
+   "auto_part_coverage": 0.87
+  },
+  {
+   "id": 885,
+   "image_id": 158,
+   "category_id": 2,
+   "bbox": [
+    1000.6,
+    1535.8,
+    94.2,
+    103.8
+   ],
+   "area": 9785.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 886,
+   "image_id": 158,
+   "category_id": 3,
+   "bbox": [
+    1504.5,
+    687.0,
+    56.7,
+    99.5
+   ],
+   "area": 5641.0,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 887,
+   "image_id": 159,
+   "category_id": 2,
+   "bbox": [
+    184.4,
+    1401.2,
+    115.7,
+    118.2
+   ],
+   "area": 13673.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 888,
+   "image_id": 159,
+   "category_id": 3,
+   "bbox": [
+    921.2,
+    1932.6,
+    241.7,
+    154.4
+   ],
+   "area": 37326.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 889,
+   "image_id": 159,
+   "category_id": 1,
+   "bbox": [
+    342.6,
+    538.5,
+    346.3,
+    692.3
+   ],
+   "area": 239749.9,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 890,
+   "image_id": 159,
+   "category_id": 4,
+   "bbox": [
+    922.7,
+    1554.2,
+    129.4,
+    57.9
+   ],
+   "area": 7499.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 891,
+   "image_id": 159,
+   "category_id": 2,
+   "bbox": [
+    275.3,
+    1819.1,
+    244.8,
+    218.7
+   ],
+   "area": 53545.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 892,
+   "image_id": 160,
+   "category_id": 1,
+   "bbox": [
+    2128.2,
+    162.7,
+    353.3,
+    465.0
+   ],
+   "area": 164277.1,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 893,
+   "image_id": 160,
+   "category_id": 2,
+   "bbox": [
+    858.6,
+    1407.2,
+    235.6,
+    219.1
+   ],
+   "area": 51613.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 894,
+   "image_id": 160,
+   "category_id": 3,
+   "bbox": [
+    1034.4,
+    1225.7,
+    109.2,
+    173.5
+   ],
+   "area": 18944.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 895,
+   "image_id": 160,
+   "category_id": 4,
+   "bbox": [
+    2577.5,
+    1416.4,
+    144.3,
+    187.7
+   ],
+   "area": 27090.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 896,
+   "image_id": 160,
+   "category_id": 3,
+   "bbox": [
+    2472.0,
+    890.7,
+    157.8,
+    114.7
+   ],
+   "area": 18097.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 897,
+   "image_id": 160,
+   "category_id": 2,
+   "bbox": [
+    2332.6,
+    1400.9,
+    234.8,
+    221.5
+   ],
+   "area": 51996.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 898,
+   "image_id": 161,
+   "category_id": 2,
+   "bbox": [
+    1320.5,
+    1870.5,
+    161.4,
+    178.9
+   ],
+   "area": 28873.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 899,
+   "image_id": 161,
+   "category_id": 1,
+   "bbox": [
+    520.2,
+    846.9,
+    233.4,
+    230.1
+   ],
+   "area": 53712.6,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 900,
+   "image_id": 161,
+   "category_id": 3,
+   "bbox": [
+    1194.9,
+    2052.4,
+    193.7,
+    144.5
+   ],
+   "area": 27989.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 901,
+   "image_id": 161,
+   "category_id": 4,
+   "bbox": [
+    697.0,
+    1574.1,
+    242.2,
+    309.9
+   ],
+   "area": 75063.6,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "left_front_quarter_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 902,
+   "image_id": 161,
+   "category_id": 1,
+   "bbox": [
+    1047.3,
+    1263.8,
+    285.7,
+    172.2
+   ],
+   "area": 49208.4,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 903,
+   "image_id": 162,
+   "category_id": 1,
+   "bbox": [
+    1817.0,
+    744.3,
+    220.9,
+    221.6
+   ],
+   "area": 48962.5,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_front_side_window",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 904,
+   "image_id": 162,
+   "category_id": 3,
+   "bbox": [
+    1499.1,
+    1800.3,
+    218.7,
+    122.5
+   ],
+   "area": 26792.2,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "left_rocker_panel",
+   "auto_part_coverage": 0.88
+  },
+  {
+   "id": 905,
+   "image_id": 162,
+   "category_id": 1,
+   "bbox": [
+    811.6,
+    433.6,
+    255.0,
+    230.3
+   ],
+   "area": 58729.8,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 906,
+   "image_id": 162,
+   "category_id": 4,
+   "bbox": [
+    1552.0,
+    993.7,
+    121.8,
+    128.2
+   ],
+   "area": 15609.6,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 907,
+   "image_id": 162,
+   "category_id": 4,
+   "bbox": [
+    2423.4,
+    1266.5,
+    202.6,
+    151.2
+   ],
+   "area": 30642.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 908,
+   "image_id": 163,
+   "category_id": 3,
+   "bbox": [
+    1067.4,
+    436.0,
+    70.3,
+    140.2
+   ],
+   "area": 9859.4,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 0.98
+  },
+  {
+   "id": 909,
+   "image_id": 163,
+   "category_id": 1,
+   "bbox": [
+    1074.4,
+    607.8,
+    554.9,
+    278.5
+   ],
+   "area": 154511.9,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 910,
+   "image_id": 163,
+   "category_id": 3,
+   "bbox": [
+    855.8,
+    1415.4,
+    120.0,
+    64.4
+   ],
+   "area": 7720.2,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 911,
+   "image_id": 163,
+   "category_id": 4,
+   "bbox": [
+    1146.1,
+    1783.0,
+    340.7,
+    172.1
+   ],
+   "area": 58637.5,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 912,
+   "image_id": 164,
+   "category_id": 1,
+   "bbox": [
+    553.9,
+    1031.2,
+    130.4,
+    229.8
+   ],
+   "area": 29978.0,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_rear_side_window",
+   "auto_part_coverage": 0.87
+  },
+  {
+   "id": 913,
+   "image_id": 164,
+   "category_id": 4,
+   "bbox": [
+    603.5,
+    2083.2,
+    233.7,
+    116.9
+   ],
+   "area": 27312.8,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "left_rocker_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 914,
+   "image_id": 164,
+   "category_id": 4,
+   "bbox": [
+    1529.6,
+    1643.8,
+    123.7,
+    274.3
+   ],
+   "area": 33928.5,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 0.94
+  },
+  {
+   "id": 915,
+   "image_id": 165,
+   "category_id": 3,
+   "bbox": [
+    235.8,
+    1372.0,
+    152.4,
+    167.3
+   ],
+   "area": 25483.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 916,
+   "image_id": 165,
+   "category_id": 1,
+   "bbox": [
+    1106.0,
+    665.3,
+    179.7,
+    186.2
+   ],
+   "area": 33460.0,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 917,
+   "image_id": 165,
+   "category_id": 4,
+   "bbox": [
+    1133.3,
+    1169.4,
+    278.1,
+    55.6
+   ],
+   "area": 15472.0,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 918,
+   "image_id": 165,
+   "category_id": 4,
+   "bbox": [
+    541.4,
+    1291.1,
+    148.6,
+    151.2
+   ],
+   "area": 22478.7,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_front_quarter_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 919,
+   "image_id": 165,
+   "category_id": 1,
+   "bbox": [
+    2083.2,
+    639.3,
+    176.7,
+    210.0
+   ],
+   "area": 37120.7,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_rear_side_window",
+   "auto_part_coverage": 0.89
+  },
+  {
+   "id": 920,
+   "image_id": 165,
+   "category_id": 3,
+   "bbox": [
+    1194.7,
+    502.0,
+    48.7,
+    44.0
+   ],
+   "area": 2141.0,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 0.79
+  },
+  {
+   "id": 921,
+   "image_id": 165,
+   "category_id": 1,
+   "bbox": [
+    1666.7,
+    914.5,
+    177.5,
+    149.2
+   ],
+   "area": 26479.0,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 922,
+   "image_id": 165,
+   "category_id": 3,
+   "bbox": [
+    2442.1,
+    933.9,
+    164.5,
+    107.7
+   ],
+   "area": 17716.5,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 0.88
+  },
+  {
+   "id": 923,
+   "image_id": 166,
+   "category_id": 3,
+   "bbox": [
+    724.1,
+    2049.6,
+    248.0,
+    128.7
+   ],
+   "area": 31911.1,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "right_rocker_panel",
+   "auto_part_coverage": 0.81
+  },
+  {
+   "id": 924,
+   "image_id": 166,
+   "category_id": 4,
+   "bbox": [
+    1681.7,
+    1517.2,
+    235.8,
+    185.1
+   ],
+   "area": 43651.3,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 0.89
+  },
+  {
+   "id": 925,
+   "image_id": 166,
+   "category_id": 1,
+   "bbox": [
+    852.8,
+    1384.4,
+    77.8,
+    76.5
+   ],
+   "area": 5952.6,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 926,
+   "image_id": 166,
+   "category_id": 1,
+   "bbox": [
+    903.8,
+    1186.6,
+    79.1,
+    86.5
+   ],
+   "area": 6847.0,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 927,
+   "image_id": 167,
+   "category_id": 2,
+   "bbox": [
+    798.2,
+    1654.0,
+    81.2,
+    89.7
+   ],
+   "area": 7281.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 928,
+   "image_id": 167,
+   "category_id": 3,
+   "bbox": [
+    767.4,
+    2107.5,
+    110.6,
+    106.6
+   ],
+   "area": 11782.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.78
+  },
+  {
+   "id": 929,
+   "image_id": 167,
+   "category_id": 3,
+   "bbox": [
+    1838.0,
+    1400.7,
+    97.0,
+    53.0
+   ],
+   "area": 5140.4,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 930,
+   "image_id": 167,
+   "category_id": 1,
+   "bbox": [
+    926.0,
+    1047.8,
+    122.4,
+    138.1
+   ],
+   "area": 16897.4,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 931,
+   "image_id": 167,
+   "category_id": 4,
+   "bbox": [
+    1774.4,
+    1450.2,
+    58.1,
+    64.6
+   ],
+   "area": 3752.4,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "right_door",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 932,
+   "image_id": 167,
+   "category_id": 4,
+   "bbox": [
+    882.2,
+    1799.5,
+    135.2,
+    65.2
+   ],
+   "area": 8814.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 933,
+   "image_id": 168,
+   "category_id": 1,
+   "bbox": [
+    1582.8,
+    585.4,
+    226.3,
+    433.7
+   ],
+   "area": 98133.8,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "right_front_side_window",
+   "auto_part_coverage": 0.83
+  },
+  {
+   "id": 934,
+   "image_id": 168,
+   "category_id": 2,
+   "bbox": [
+    1074.8,
+    1419.7,
+    100.9,
+    164.0
+   ],
+   "area": 16540.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 935,
+   "image_id": 168,
+   "category_id": 4,
+   "bbox": [
+    1107.3,
+    1796.8,
+    170.9,
+    255.0
+   ],
+   "area": 43585.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.91
+  },
+  {
+   "id": 936,
+   "image_id": 168,
+   "category_id": 3,
+   "bbox": [
+    1927.6,
+    470.7,
+    36.0,
+    43.6
+   ],
+   "area": 1570.2,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 937,
+   "image_id": 168,
+   "category_id": 3,
+   "bbox": [
+    2096.2,
+    468.0,
+    92.7,
+    75.8
+   ],
+   "area": 7027.5,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 0.98
+  },
+  {
+   "id": 938,
+   "image_id": 168,
+   "category_id": 2,
+   "bbox": [
+    1300.7,
+    1176.5,
+    77.0,
+    87.2
+   ],
+   "area": 6707.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 939,
+   "image_id": 169,
+   "category_id": 1,
+   "bbox": [
+    932.0,
+    1083.8,
+    465.5,
+    456.8
+   ],
+   "area": 212658.2,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 940,
+   "image_id": 169,
+   "category_id": 3,
+   "bbox": [
+    1066.2,
+    2364.0,
+    145.5,
+    78.5
+   ],
+   "area": 11429.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 941,
+   "image_id": 169,
+   "category_id": 4,
+   "bbox": [
+    544.4,
+    1903.9,
+    170.0,
+    88.8
+   ],
+   "area": 15102.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 942,
+   "image_id": 169,
+   "category_id": 4,
+   "bbox": [
+    1723.6,
+    2135.7,
+    186.4,
+    155.5
+   ],
+   "area": 28983.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 943,
+   "image_id": 170,
+   "category_id": 1,
+   "bbox": [
+    1376.8,
+    996.8,
+    165.9,
+    126.8
+   ],
+   "area": 21025.7,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 944,
+   "image_id": 170,
+   "category_id": 3,
+   "bbox": [
+    794.0,
+    1369.6,
+    371.8,
+    234.8
+   ],
+   "area": 87286.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 945,
+   "image_id": 170,
+   "category_id": 1,
+   "bbox": [
+    1745.5,
+    776.6,
+    212.9,
+    199.9
+   ],
+   "area": 42558.6,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 946,
+   "image_id": 170,
+   "category_id": 2,
+   "bbox": [
+    2476.3,
+    1240.1,
+    103.4,
+    104.7
+   ],
+   "area": 10827.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 947,
+   "image_id": 170,
+   "category_id": 2,
+   "bbox": [
+    985.2,
+    1604.4,
+    208.3,
+    184.7
+   ],
+   "area": 38465.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 948,
+   "image_id": 171,
+   "category_id": 3,
+   "bbox": [
+    719.7,
+    764.5,
+    91.6,
+    132.0
+   ],
+   "area": 12089.7,
+   "iscrowd": 0,
+   "auto_part": "other",
+   "auto_part_source": "roof",
+   "auto_part_coverage": 0.97
+  },
+  {
+   "id": 949,
+   "image_id": 171,
+   "category_id": 3,
+   "bbox": [
+    1790.0,
+    1557.1,
+    143.4,
+    103.7
+   ],
+   "area": 14869.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.94
+  },
+  {
+   "id": 950,
+   "image_id": 171,
+   "category_id": 1,
+   "bbox": [
+    643.2,
+    1218.0,
+    137.1,
+    287.8
+   ],
+   "area": 39468.7,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_front_side_window",
+   "auto_part_coverage": 0.97
+  },
+  {
+   "id": 951,
+   "image_id": 171,
+   "category_id": 1,
+   "bbox": [
+    1467.0,
+    922.5,
+    218.3,
+    157.4
+   ],
+   "area": 34356.8,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 952,
+   "image_id": 171,
+   "category_id": 2,
+   "bbox": [
+    1153.3,
+    2118.2,
+    198.9,
+    209.4
+   ],
+   "area": 41657.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 953,
+   "image_id": 171,
+   "category_id": 2,
+   "bbox": [
+    931.7,
+    1760.4,
+    118.7,
+    113.4
+   ],
+   "area": 13460.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 954,
+   "image_id": 171,
+   "category_id": 4,
+   "bbox": [
+    882.7,
+    2527.8,
+    122.6,
+    123.6
+   ],
+   "area": 15162.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.92
+  },
+  {
+   "id": 955,
+   "image_id": 171,
+   "category_id": 4,
+   "bbox": [
+    738.8,
+    1705.0,
+    114.9,
+    118.8
+   ],
+   "area": 13652.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.96
+  },
+  {
+   "id": 956,
+   "image_id": 172,
+   "category_id": 3,
+   "bbox": [
+    2693.4,
+    1417.4,
+    149.2,
+    125.0
+   ],
+   "area": 18648.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 957,
+   "image_id": 172,
+   "category_id": 4,
+   "bbox": [
+    1688.2,
+    1879.0,
+    147.4,
+    249.3
+   ],
+   "area": 36737.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 958,
+   "image_id": 172,
+   "category_id": 2,
+   "bbox": [
+    2635.1,
+    1209.7,
+    99.8,
+    157.7
+   ],
+   "area": 15733.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "front_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 959,
+   "image_id": 172,
+   "category_id": 1,
+   "bbox": [
+    1368.3,
+    415.2,
+    104.3,
+    278.1
+   ],
+   "area": 29009.9,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 960,
+   "image_id": 172,
+   "category_id": 1,
+   "bbox": [
+    2191.1,
+    312.0,
+    286.8,
+    492.3
+   ],
+   "area": 141209.5,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "front_windshield",
+   "auto_part_coverage": 0.83
+  },
+  {
+   "id": 961,
+   "image_id": 173,
+   "category_id": 2,
+   "bbox": [
+    2522.8,
+    1258.6,
+    99.9,
+    152.7
+   ],
+   "area": 15247.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 962,
+   "image_id": 173,
+   "category_id": 3,
+   "bbox": [
+    1515.7,
+    380.2,
+    218.6,
+    119.1
+   ],
+   "area": 26031.8,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 963,
+   "image_id": 173,
+   "category_id": 1,
+   "bbox": [
+    1652.8,
+    761.1,
+    321.6,
+    184.3
+   ],
+   "area": 59259.9,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 964,
+   "image_id": 173,
+   "category_id": 4,
+   "bbox": [
+    1959.7,
+    1063.6,
+    62.0,
+    45.7
+   ],
+   "area": 2834.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 965,
+   "image_id": 173,
+   "category_id": 4,
+   "bbox": [
+    2474.2,
+    1128.8,
+    176.7,
+    147.0
+   ],
+   "area": 25986.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.97
+  },
+  {
+   "id": 966,
+   "image_id": 173,
+   "category_id": 2,
+   "bbox": [
+    1647.3,
+    1460.7,
+    159.4,
+    185.5
+   ],
+   "area": 29570.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 967,
+   "image_id": 174,
+   "category_id": 3,
+   "bbox": [
+    1754.6,
+    1890.8,
+    119.4,
+    119.4
+   ],
+   "area": 14246.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 968,
+   "image_id": 174,
+   "category_id": 4,
+   "bbox": [
+    1300.7,
+    2282.0,
+    134.6,
+    157.0
+   ],
+   "area": 21134.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.99
+  },
+  {
+   "id": 969,
+   "image_id": 174,
+   "category_id": 3,
+   "bbox": [
+    1852.1,
+    1444.4,
+    71.5,
+    101.7
+   ],
+   "area": 7275.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 970,
+   "image_id": 174,
+   "category_id": 2,
+   "bbox": [
+    1142.4,
+    1816.1,
+    170.1,
+    186.1
+   ],
+   "area": 31668.3,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 971,
+   "image_id": 174,
+   "category_id": 1,
+   "bbox": [
+    1505.1,
+    862.1,
+    279.1,
+    158.4
+   ],
+   "area": 44203.1,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 972,
+   "image_id": 174,
+   "category_id": 4,
+   "bbox": [
+    1791.2,
+    1520.2,
+    61.0,
+    37.5
+   ],
+   "area": 2285.2,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 973,
+   "image_id": 174,
+   "category_id": 4,
+   "bbox": [
+    580.9,
+    1494.6,
+    124.7,
+    120.0
+   ],
+   "area": 14975.1,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "right_rear_quarter_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 974,
+   "image_id": 175,
+   "category_id": 3,
+   "bbox": [
+    858.7,
+    2307.4,
+    148.3,
+    170.1
+   ],
+   "area": 25238.1,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.98
+  },
+  {
+   "id": 975,
+   "image_id": 175,
+   "category_id": 2,
+   "bbox": [
+    355.3,
+    1371.8,
+    107.3,
+    105.6
+   ],
+   "area": 11325.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 976,
+   "image_id": 175,
+   "category_id": 2,
+   "bbox": [
+    448.2,
+    1754.7,
+    224.7,
+    196.4
+   ],
+   "area": 44135.7,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 977,
+   "image_id": 175,
+   "category_id": 4,
+   "bbox": [
+    1648.0,
+    2025.1,
+    168.2,
+    131.0
+   ],
+   "area": 22022.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 978,
+   "image_id": 176,
+   "category_id": 4,
+   "bbox": [
+    2017.7,
+    1398.0,
+    210.8,
+    166.9
+   ],
+   "area": 35178.6,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 979,
+   "image_id": 176,
+   "category_id": 2,
+   "bbox": [
+    726.2,
+    1133.7,
+    117.4,
+    109.1
+   ],
+   "area": 12804.8,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 980,
+   "image_id": 176,
+   "category_id": 1,
+   "bbox": [
+    2136.1,
+    612.9,
+    203.4,
+    192.9
+   ],
+   "area": 39243.7,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 981,
+   "image_id": 176,
+   "category_id": 1,
+   "bbox": [
+    1741.9,
+    781.8,
+    207.6,
+    152.3
+   ],
+   "area": 31608.9,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 982,
+   "image_id": 176,
+   "category_id": 3,
+   "bbox": [
+    946.7,
+    1154.1,
+    57.3,
+    112.3
+   ],
+   "area": 6427.5,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 983,
+   "image_id": 176,
+   "category_id": 1,
+   "bbox": [
+    865.7,
+    770.4,
+    145.0,
+    112.6
+   ],
+   "area": 16333.1,
+   "iscrowd": 0,
+   "auto_part": "windshield",
+   "auto_part_source": "rear_windshield",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 984,
+   "image_id": 176,
+   "category_id": 3,
+   "bbox": [
+    2534.6,
+    1769.5,
+    133.3,
+    161.5
+   ],
+   "area": 21525.0,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 985,
+   "image_id": 177,
+   "category_id": 4,
+   "bbox": [
+    1590.1,
+    1703.9,
+    193.5,
+    272.3
+   ],
+   "area": 52700.8,
+   "iscrowd": 0,
+   "auto_part": "fender",
+   "auto_part_source": "left_rear_quarter_panel",
+   "auto_part_coverage": 0.95
+  },
+  {
+   "id": 986,
+   "image_id": 177,
+   "category_id": 1,
+   "bbox": [
+    1841.2,
+    757.3,
+    195.6,
+    210.9
+   ],
+   "area": 41252.1,
+   "iscrowd": 0,
+   "auto_part": "window",
+   "auto_part_source": "left_side_window",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 987,
+   "image_id": 177,
+   "category_id": 2,
+   "bbox": [
+    966.7,
+    2053.2,
+    184.3,
+    216.7
+   ],
+   "area": 39936.9,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 1.0
+  },
+  {
+   "id": 988,
+   "image_id": 177,
+   "category_id": 2,
+   "bbox": [
+    156.7,
+    1434.7,
+    60.1,
+    87.5
+   ],
+   "area": 5264.4,
+   "iscrowd": 0,
+   "auto_part": "bumper",
+   "auto_part_source": "rear_panel",
+   "auto_part_coverage": 0.84
+  },
+  {
+   "id": 989,
+   "image_id": 177,
+   "category_id": 3,
+   "bbox": [
+    1862.1,
+    1987.4,
+    84.2,
+    127.3
+   ],
+   "area": 10715.2,
+   "iscrowd": 0,
+   "auto_part": "door",
+   "auto_part_source": "left_door",
+   "auto_part_coverage": 0.89
+  }
+ ],
+ "categories": [
+  {
+   "id": 1,
+   "name": "glass_shatter"
+  },
+  {
+   "id": 2,
+   "name": "lamp_broken"
+  },
+  {
+   "id": 3,
+   "name": "crack"
+  },
+  {
+   "id": 4,
+   "name": "scratch"
+  }
+ ],
+ "info": {
+  "source": "SYNDCAR, https://data.mendeley.com/datasets/hzpj48krdt/1, CC BY 4.0",
+  "converted_by": "scripts/convert_syndcar.py",
+  "seed": 42,
+  "group_by": "date"
+ }
+}

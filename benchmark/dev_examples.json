@@ -1,0 +1,82 @@
+[
+  {
+    "image_id": 149,
+    "file_name": "ID1_20240918_162456.png",
+    "class_selected_for": "glass_shatter"
+  },
+  {
+    "image_id": 152,
+    "file_name": "ID1_20240918_162512.png",
+    "class_selected_for": "glass_shatter"
+  },
+  {
+    "image_id": 168,
+    "file_name": "ID1_20240918_163355.png",
+    "class_selected_for": "glass_shatter"
+  },
+  {
+    "image_id": 140,
+    "file_name": "ID1_20240918_161253.png",
+    "class_selected_for": "glass_shatter"
+  },
+  {
+    "image_id": 141,
+    "file_name": "ID1_20240918_161301.png",
+    "class_selected_for": "lamp_broken"
+  },
+  {
+    "image_id": 133,
+    "file_name": "ID1_20240918_161209.png",
+    "class_selected_for": "lamp_broken"
+  },
+  {
+    "image_id": 160,
+    "file_name": "ID1_20240918_162556.png",
+    "class_selected_for": "lamp_broken"
+  },
+  {
+    "image_id": 130,
+    "file_name": "ID1_20240918_161134.png",
+    "class_selected_for": "lamp_broken"
+  },
+  {
+    "image_id": 144,
+    "file_name": "ID1_20240918_161319.png",
+    "class_selected_for": "crack"
+  },
+  {
+    "image_id": 131,
+    "file_name": "ID1_20240918_161203.png",
+    "class_selected_for": "crack"
+  },
+  {
+    "image_id": 161,
+    "file_name": "ID1_20240918_162602.png",
+    "class_selected_for": "crack"
+  },
+  {
+    "image_id": 171,
+    "file_name": "ID1_20240918_163413.png",
+    "class_selected_for": "crack"
+  },
+  {
+    "image_id": 169,
+    "file_name": "ID1_20240918_163402.png",
+    "class_selected_for": "scratch"
+  },
+  {
+    "image_id": 143,
+    "file_name": "ID1_20240918_161312.png",
+    "class_selected_for": "scratch"
+  },
+  {
+    "image_id": 146,
+    "file_name": "ID1_20240918_162445.png",
+    "class_selected_for": "scratch"
+  },
+  {
+    "image_id": 150,
+    "file_name": "ID1_20240918_162503.png",
+    "class_selected_for": "scratch"
+  }
+]
