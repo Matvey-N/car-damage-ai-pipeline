@@ -8,10 +8,5 @@ target/
 __pycache__/
 *.pyc
 .env
-# CarDD images and annotations must not be committed (license)
+# Dataset images (large; SYNDCAR is downloaded separately, see README)
 data/
-# Files that contain CarDD annotations (boxes) are part of the dataset:
-# keep them out of the repository (share privately with the supervisor if needed).
-benchmark/labels_*.csv
-benchmark/disagreements_*.csv
-benchmark/ground_truth_*.json
