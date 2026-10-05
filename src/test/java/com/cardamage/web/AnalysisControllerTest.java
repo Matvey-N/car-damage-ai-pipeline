@@ -32,7 +32,7 @@ class AnalysisControllerTest {
         mvc.perform(multipart("/api/v1/analyze").file(jpeg("image")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("success"))
-                .andExpect(jsonPath("$.damages[0].damage_type").value("dent"))
+                .andExpect(jsonPath("$.damages[0].damage_type").value("scratch"))
                 .andExpect(jsonPath("$.damages[0].bounding_box.length()").value(4))
                 .andExpect(jsonPath("$.attempts").value(1));
     }
@@ -64,6 +64,6 @@ class AnalysisControllerTest {
         mvc.perform(get("/api/v1/info"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.model_client").value("stub"))
-                .andExpect(jsonPath("$.prompt_version").value("v1"));
+                .andExpect(jsonPath("$.prompt_version").value("v2"));
     }
 }

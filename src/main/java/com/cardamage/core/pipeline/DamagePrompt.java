@@ -11,7 +11,7 @@ import java.util.List;
  */
 public final class DamagePrompt {
 
-    public static final String VERSION = "v1";
+    public static final String VERSION = "v2";
 
     public static final String BASE = """
             You are inspecting a single photo of a car for VISIBLE exterior damage.
@@ -21,8 +21,8 @@ public final class DamagePrompt {
             {
               "damages": [
                 {
-                  "damage_type": "dent" | "scratch" | "crack" | "glass_shatter" | "tire_flat" | "lamp_broken",
-                  "part": "bumper" | "door" | "headlight" | "window" | "hood" | "fender" | "mirror" | "wheel" | "windshield" | "other",
+                  "damage_type": "glass_shatter" | "lamp_broken" | "crack" | "scratch",
+                  "part": "bumper" | "door" | "light" | "window" | "windshield" | "hood" | "fender" | "mirror" | "wheel" | "other",
                   "severity": "minor" | "moderate" | "severe",
                   "action": "repair" | "replacement",
                   "confidence": number from 0 to 1,
@@ -32,6 +32,18 @@ public final class DamagePrompt {
               ],
               "overall_score": number from 0 to 100
             }
+
+            Damage types:
+            - glass_shatter: broken or shattered glass of a window or windshield.
+            - lamp_broken: broken or cracked headlight or tail light (lens or housing).
+            - crack: a crack line in a part that is otherwise still in one piece (body panel,
+              bumper, or glass that is cracked but not shattered).
+            - scratch: a scratch or scrape in the paint or surface.
+            Report only these four types.
+
+            Parts: "light" means a headlight or tail light; "fender" includes quarter panels;
+            "bumper" includes the front and rear panels; use "other" for roof, rocker panel,
+            license plate or anything else.
 
             Rules:
             - One entry per separate damage region. Do not list the same region twice.

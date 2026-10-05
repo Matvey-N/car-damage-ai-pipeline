@@ -35,10 +35,18 @@ public class SingleImageAnalyzer {
     private final int maxAttempts;
     private final long backoffMillis;
     private final Sleeper sleeper;
+    private final ImagePreprocessor preprocessor;
 
     public SingleImageAnalyzer(VisionModelClient client, ResponseParser parser,
                                ResponseFormatValidator validator,
                                int maxAttempts, long backoffMillis, Sleeper sleeper) {
+        this(client, parser, validator, maxAttempts, backoffMillis, sleeper, ImagePreprocessor.NONE);
+    }
+
+    public SingleImageAnalyzer(VisionModelClient client, ResponseParser parser,
+                               ResponseFormatValidator validator,
+                               int maxAttempts, long backoffMillis, Sleeper sleeper,
+                               ImagePreprocessor preprocessor) {
         if (maxAttempts < 1) {
             throw new IllegalArgumentException("maxAttempts must be >= 1");
         }
@@ -48,6 +56,7 @@ public class SingleImageAnalyzer {
         this.maxAttempts = maxAttempts;
         this.backoffMillis = backoffMillis;
         this.sleeper = sleeper;
+        this.preprocessor = preprocessor;
     }
 
     /**
@@ -64,6 +73,8 @@ public class SingleImageAnalyzer {
                     + " (supported: " + SUPPORTED_MEDIA_TYPES + ")");
         }
 
+        PreparedImage prepared = preprocessor.prepare(image, mediaType);
+
         List<String> failureLog = new ArrayList<>();
         List<String> lastViolations = List.of();
 
@@ -72,7 +83,8 @@ public class SingleImageAnalyzer {
                 pause(attempt);
             }
             try {
-                String raw = client.analyze(image, mediaType, DamagePrompt.forAttempt(attempt, lastViolations));
+                String raw = client.analyze(prepared.bytes(), prepared.mediaType(),
+                        DamagePrompt.forAttempt(attempt, lastViolations));
                 DamageAssessment parsed = parser.parse(raw);
                 List<String> violations = validator.validate(parsed);
                 if (violations.isEmpty()) {

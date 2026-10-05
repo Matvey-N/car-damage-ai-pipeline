@@ -19,12 +19,12 @@ public class StubVisionModelClient implements VisionModelClient {
             {
               "damages": [
                 {
-                  "damage_type": "dent",
+                  "damage_type": "scratch",
                   "part": "door",
                   "severity": "moderate",
                   "action": "repair",
                   "confidence": 0.85,
-                  "description": "STUB: dent on front door",
+                  "description": "STUB: scratch on front door",
                   "bounding_box": [0.30, 0.40, 0.20, 0.15]
                 }
               ],

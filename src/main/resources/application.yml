@@ -3,8 +3,8 @@ spring:
     name: car-damage-ai-pipeline
   servlet:
     multipart:
-      max-file-size: 5MB      # per image (Anthropic API image size limit)
-      max-request-size: 55MB  # demo scenario: up to 10 images
+      max-file-size: 20MB      # per uploaded image; larger photos are downscaled before the API call
+      max-request-size: 200MB  # demo scenario: up to 10 images
 
 pipeline:
   # stub      - canned answers, no API key needed (default: development, tests)
@@ -12,6 +12,11 @@ pipeline:
   model-client: ${PIPELINE_MODEL_CLIENT:stub}
   max-attempts: 3
   retry-backoff-ms: 1000
+  image:
+    # Images with a longer side above max-side, or larger than max-bytes, are
+    # scaled down and re-encoded as JPEG before being sent (API limit: 5 MB).
+    max-side: 1568
+    max-bytes: 4500000
 
 anthropic:
   api-key: ${ANTHROPIC_API_KEY:}

@@ -14,7 +14,7 @@ class ResponseParserTest {
     void parsesPlainJson() {
         DamageAssessment a = parser.parse(StubVisionModelClient.DEFAULT_ANSWER);
         assertEquals(1, a.getDamages().size());
-        assertEquals("dent", a.getDamages().get(0).getDamageType());
+        assertEquals("scratch", a.getDamages().get(0).getDamageType());
         assertEquals(35.0, a.getOverallScore());
         assertNull(a.getStatus(), "status is set by the pipeline, not taken from the model");
     }

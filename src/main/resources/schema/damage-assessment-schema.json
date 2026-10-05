@@ -15,8 +15,8 @@
         "type": "object",
         "required": ["damage_type", "part", "severity", "action", "confidence", "bounding_box"],
         "properties": {
-          "damage_type": { "enum": ["dent", "scratch", "crack", "glass_shatter", "tire_flat", "lamp_broken"] },
-          "part": { "enum": ["bumper", "door", "headlight", "window", "hood", "fender", "mirror", "wheel", "windshield", "other"] },
+          "damage_type": { "enum": ["glass_shatter", "lamp_broken", "crack", "scratch"] },
+          "part": { "enum": ["bumper", "door", "light", "window", "windshield", "hood", "fender", "mirror", "wheel", "other"] },
           "severity": { "enum": ["minor", "moderate", "severe"] },
           "action": { "enum": ["repair", "replacement"] },
           "confidence": { "type": "number", "minimum": 0, "maximum": 1 },

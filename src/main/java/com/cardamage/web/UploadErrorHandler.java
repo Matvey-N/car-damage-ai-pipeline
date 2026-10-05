@@ -14,7 +14,7 @@ public class UploadErrorHandler {
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<DamageAssessment> tooLarge(MaxUploadSizeExceededException e) {
-        return ResponseEntity.badRequest().body(DamageAssessment.error("image too large (max 5MB per image)", 0));
+        return ResponseEntity.badRequest().body(DamageAssessment.error("image too large (max 20MB per image)", 0));
     }
 
     @ExceptionHandler({MissingServletRequestPartException.class, MultipartException.class})

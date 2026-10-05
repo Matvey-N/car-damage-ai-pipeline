@@ -15,7 +15,7 @@ class ResponseFormatValidatorTest {
     private final ResponseFormatValidator validator = new ResponseFormatValidator();
 
     private static Damage validDamage() {
-        return new Damage("dent", "door", "moderate", "repair", 0.8, List.of(0.1, 0.2, 0.3, 0.2));
+        return new Damage("crack", "door", "moderate", "repair", 0.8, List.of(0.1, 0.2, 0.3, 0.2));
     }
 
     private static DamageAssessment answerWith(Damage d) {

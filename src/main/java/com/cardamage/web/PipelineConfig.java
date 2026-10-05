@@ -1,6 +1,7 @@
 package com.cardamage.web;
 
 import com.cardamage.core.demo.DamageMergeService;
+import com.cardamage.core.pipeline.DownscalingImagePreprocessor;
 import com.cardamage.core.pipeline.ResponseFormatValidator;
 import com.cardamage.core.pipeline.ResponseParser;
 import com.cardamage.core.pipeline.SingleImageAnalyzer;
@@ -44,9 +45,12 @@ public class PipelineConfig {
             VisionModelClient client,
             ObjectMapper objectMapper,
             @Value("${pipeline.max-attempts}") int maxAttempts,
-            @Value("${pipeline.retry-backoff-ms}") long backoffMs) {
+            @Value("${pipeline.retry-backoff-ms}") long backoffMs,
+            @Value("${pipeline.image.max-side}") int maxSide,
+            @Value("${pipeline.image.max-bytes}") long maxBytes) {
         return new SingleImageAnalyzer(client, new ResponseParser(objectMapper),
-                new ResponseFormatValidator(), maxAttempts, backoffMs, Thread::sleep);
+                new ResponseFormatValidator(), maxAttempts, backoffMs, Thread::sleep,
+                new DownscalingImagePreprocessor(maxSide, maxBytes, 0.9f));
     }
 
     @Bean

@@ -18,12 +18,13 @@ import java.util.Set;
  */
 public class ResponseFormatValidator {
 
+    /** Damage types of the SYNDCAR dataset (broken glass, broken lights, cracks, scratches). */
     public static final Set<String> DAMAGE_TYPES =
-            Set.of("dent", "scratch", "crack", "glass_shatter", "tire_flat", "lamp_broken");
+            Set.of("glass_shatter", "lamp_broken", "crack", "scratch");
 
     public static final Set<String> PARTS =
-            Set.of("bumper", "door", "headlight", "window", "hood",
-                    "fender", "mirror", "wheel", "windshield", "other");
+            Set.of("bumper", "door", "light", "window", "windshield", "hood",
+                    "fender", "mirror", "wheel", "other");
 
     public static final Set<String> SEVERITIES = Set.of("minor", "moderate", "severe");
 

@@ -20,7 +20,7 @@ class DamageMergeServiceTest {
     @Test
     void sameDamageOnTwoPhotosBecomesOne() {
         DamageAssessment r = merge.merge(List.of(
-                photo("bumper", "dent", "moderate", 0.9), photo("bumper", "dent", "moderate", 0.7)));
+                photo("bumper", "crack", "moderate", 0.9), photo("bumper", "crack", "moderate", 0.7)));
         assertEquals(1, r.getDamages().size());
         assertEquals(0.8, r.getDamages().get(0).getConfidence(), 1e-9);
         assertNull(r.getDamages().get(0).getBoundingBox());
@@ -29,7 +29,7 @@ class DamageMergeServiceTest {
     @Test
     void differentDamagesAreKept() {
         DamageAssessment r = merge.merge(List.of(
-                photo("bumper", "dent", "moderate", 0.9), photo("headlight", "lamp_broken", "severe", 0.9)));
+                photo("bumper", "crack", "moderate", 0.9), photo("light", "lamp_broken", "severe", 0.9)));
         assertEquals(2, r.getDamages().size());
     }
 
@@ -43,7 +43,7 @@ class DamageMergeServiceTest {
     @Test
     void failedPhotosAreSkipped() {
         DamageAssessment r = merge.merge(List.of(
-                photo("door", "dent", "minor", 0.9), DamageAssessment.error("failed", 3)));
+                photo("door", "scratch", "minor", 0.9), DamageAssessment.error("failed", 3)));
         assertTrue(r.isSuccess());
         assertEquals(1, r.getDamages().size());
     }
