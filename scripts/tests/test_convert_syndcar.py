@@ -200,3 +200,38 @@ class RealSyndcarNamesTest(unittest.TestCase):
                     "  2: Scratches\n  3: Broken_Lights")
         self.assertEqual(cs.read_yaml_names(path),
                          {0: "Broken_Glass", 1: "Cracks", 2: "Scratches", 3: "Broken_Lights"})
+
+
+class SessionSplitTest(unittest.TestCase):
+    def images(self, names):
+        return [{"id": i + 1, "file_name": n} for i, n in enumerate(names)]
+
+    def test_session_key(self):
+        self.assertEqual(cs.session_key("ID1_20240917_150956.png", "date"), "date:20240917")
+        self.assertEqual(cs.session_key("ID3_20240917_160000.jpg", "date"), "date:20240917")
+        self.assertEqual(cs.session_key("photo.png", "date"), "file:photo")
+        self.assertEqual(cs.session_key("ID1_20240917_150956.png", "none"), "file:ID1_20240917_150956")
+
+    def test_same_day_never_split_across_pools_even_across_devices(self):
+        names = []
+        for day in ["20240901", "20240902", "20240903", "20240904", "20240905", "20240906"]:
+            for device in (1, 2, 3):
+                for t in ("100000", "100005", "100010"):
+                    names.append(f"ID{device}_{day}_{t}.png")
+        imgs = self.images(names)
+        dev, groups = cs.split_groups(imgs, "date", seed=42)
+        for key, ids in groups.items():
+            inside = {i in dev for i in ids}
+            self.assertEqual(len(inside), 1, f"group {key} was split between pools")
+        self.assertEqual(len(dev), 27)  # 6 days x 9 images, balanced to half
+
+    def test_split_is_reproducible(self):
+        imgs = self.images([f"ID1_202409{d:02d}_120000.png" for d in range(1, 21)])
+        self.assertEqual(cs.split_groups(imgs, "date", 7)[0], cs.split_groups(imgs, "date", 7)[0])
+
+    def test_convert_report_lists_groups(self):
+        root = tempfile.mkdtemp()
+        make_syndcar(root, YAML_BLOCK_LIST)
+        _, _, report = cs.convert(root)
+        self.assertEqual(report["group_by"], "date")
+        self.assertTrue(all(k.startswith("file:") for k in report["groups"]))  # synthetic names: no date pattern

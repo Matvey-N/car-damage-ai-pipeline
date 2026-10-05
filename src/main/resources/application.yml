@@ -3,8 +3,8 @@ spring:
     name: car-damage-ai-pipeline
   servlet:
     multipart:
-      max-file-size: 20MB      # per uploaded image; larger photos are downscaled before the API call
-      max-request-size: 200MB  # demo scenario: up to 10 images
+      max-file-size: 40MB      # per uploaded image (SYNDCAR PNGs reach ~32 MB); downscaled before the API call
+      max-request-size: 400MB  # demo scenario: up to 10 images
 
 pipeline:
   # stub      - canned answers, no API key needed (default: development, tests)

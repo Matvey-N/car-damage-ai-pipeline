@@ -17,7 +17,10 @@ What the script does:
      covers the largest share of the box -> "auto_part". The labeling sheet
      shows it pre-filled, the annotator only checks it.
   3. Splits the images into a dev pool and a test pool (fixed seed,
-     disjoint). SYNDCAR has no official split.
+     disjoint). SYNDCAR has no official split. Whole shooting sessions are
+     kept together (see session_key): consecutive shots of the same car,
+     possibly by several devices, must not end up in both pools, otherwise
+     the test result would be inflated by near-duplicate scenes.
   4. Reports image sizes, files over 5 MB and EXIF rotation, which matter
      for sending images to the model.
 
@@ -213,6 +216,48 @@ def coverage(polygon, box):
     return polygon_area(clipped) / box_area if len(clipped) >= 3 else 0.0
 
 
+# ------------------------------------------------------------------ split
+
+SESSION_PATTERN = re.compile(r"^ID\d+_(\d{8})_\d{6}$")
+
+
+def session_key(file_name, group_by):
+    """
+    SYNDCAR file names look like ID1_20240917_150956.png (device, date, time).
+    group_by="date": all images of one day form one group, across devices
+    (several devices may have photographed the same car the same day).
+    group_by="none": every image is its own group.
+    Names that do not match the pattern always form their own group.
+    """
+    stem = os.path.splitext(file_name)[0]
+    m = SESSION_PATTERN.match(stem)
+    if group_by == "none" or not m:
+        return "file:" + stem
+    return "date:" + m.group(1)
+
+
+def split_groups(images, group_by, seed, dev_share=0.5):
+    """
+    Assigns whole groups to the dev or the test pool so that the dev pool
+    gets as close as possible to dev_share of the images. Groups are taken
+    in a seeded random order; each goes to the pool that is further below
+    its target. Returns (dev_image_ids, groups) where groups maps
+    group key -> list of image ids.
+    """
+    groups = defaultdict(list)
+    for img in images:
+        groups[session_key(img["file_name"], group_by)].append(img["id"])
+    keys = sorted(groups)
+    random.Random(seed).shuffle(keys)
+    total = len(images)
+    dev, test = set(), set()
+    for key in keys:
+        dev_gap = dev_share * total - len(dev)
+        test_gap = (1 - dev_share) * total - len(test)
+        (dev if dev_gap >= test_gap else test).update(groups[key])
+    return dev, dict(groups)
+
+
 # ------------------------------------------------------------------ conversion
 
 def read_label_lines(path):
@@ -227,7 +272,7 @@ def read_label_lines(path):
     return rows
 
 
-def convert(syndcar_dir, seed=42, dev_share=0.5):
+def convert(syndcar_dir, seed=42, dev_share=0.5, group_by="date"):
     damage_names = read_yaml_names(os.path.join(syndcar_dir, "data_damage.yaml"))
     part_names = read_yaml_names(os.path.join(syndcar_dir, "data_parts.yaml"))
 
@@ -299,16 +344,15 @@ def convert(syndcar_dir, seed=42, dev_share=0.5):
     categories = [{"id": i + 1, "name": t} for i, t in enumerate(DAMAGE_TYPES)]
 
     # fixed, disjoint split of images into dev and test pools
-    ids = [img["id"] for img in images]
-    random.Random(seed).shuffle(ids)
-    dev_ids = set(ids[:round(len(ids) * dev_share)])
+    dev_ids, groups = split_groups(images, group_by, seed, dev_share)
 
     def pool(selected):
         return {"images": [img for img in images if img["id"] in selected],
                 "annotations": [a for a in annotations if a["image_id"] in selected],
                 "categories": categories,
                 "info": {"source": "SYNDCAR, https://data.mendeley.com/datasets/hzpj48krdt/1, CC BY 4.0",
-                         "converted_by": "scripts/convert_syndcar.py", "seed": seed}}
+                         "converted_by": "scripts/convert_syndcar.py", "seed": seed,
+                         "group_by": group_by}}
 
     report = {
         "damage_class_mapping": {damage_names[i]: damage_map[i] for i in damage_names},
@@ -321,6 +365,9 @@ def convert(syndcar_dir, seed=42, dev_share=0.5):
         "images_over_5mb": len(oversized),
         "images_with_exif_rotation": rotated,
         "image_sizes": Counter(f"{img['width']}x{img['height']}" for img in images).most_common(5),
+        "group_by": group_by,
+        "groups": {k: {"images": len(v), "pool": "dev" if v[0] in dev_ids else "test"}
+                   for k, v in sorted(groups.items())},
     }
     all_ids = set(img["id"] for img in images)
     return pool(dev_ids), pool(all_ids - dev_ids), report
@@ -339,10 +386,12 @@ def main(argv=None):
     parser.add_argument("--syndcar", required=True, help="SYNDCAR folder (contains images/, labels_damage/, ...)")
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--seed", type=int, default=42, help="seed of the dev/test split; do not change later")
+    parser.add_argument("--group-by", choices=["date", "none"], default="date",
+                        help="keep whole shooting days together in one pool (default) or split single images")
     args = parser.parse_args(argv)
 
     try:
-        dev, test, report = convert(args.syndcar, args.seed)
+        dev, test, report = convert(args.syndcar, args.seed, group_by=args.group_by)
     except (OSError, ValueError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 1
@@ -361,6 +410,9 @@ def main(argv=None):
     print(f"skipped: {report['skipped']}, images without damage label file: {report['images_without_damage_label_file']}")
     print(f"images over 5 MB: {report['images_over_5mb']}, with EXIF rotation: {len(report['images_with_exif_rotation'])}")
     print(f"most common sizes: {report['image_sizes']}")
+    print(f"split by {report['group_by']}: {len(report['groups'])} groups")
+    for key, g in report["groups"].items():
+        print(f"   {key}: {g['images']} images -> {g['pool']}")
     print(f"dev pool: {len(dev['images'])} images, images per type: {per_class_images(dev)}")
     print(f"test pool: {len(test['images'])} images, images per type: {per_class_images(test)}")
     print(f"written to {args.out_dir}")

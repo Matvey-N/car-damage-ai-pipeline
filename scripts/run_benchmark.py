@@ -8,7 +8,7 @@ Safety checks:
   * Refuses to run against the stub model unless --allow-stub is given,
     so stub answers cannot end up in a real benchmark by mistake.
   * Checks all image files before sending anything (exist, JPEG/PNG,
-    <= 20 MB; the service scales large photos down before the API call).
+    <= 40 MB; the service scales large photos down before the API call).
   * Saves after every image. Re-running with the same --out continues
     where it stopped (images that already have an answer are skipped),
     but only if the model and prompt version are the same as before.
@@ -30,7 +30,7 @@ from datetime import datetime, timezone
 
 from labels_io import load_json, write_json
 
-MAX_IMAGE_BYTES = 20 * 1024 * 1024  # service upload limit; it downscales before the API call
+MAX_IMAGE_BYTES = 40 * 1024 * 1024  # service upload limit; it downscales before the API call
 MEDIA_TYPES = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png"}
 
 
@@ -75,7 +75,7 @@ def check_images(examples, images_dir):
         elif media_type is None:
             problems.append(f"{image_id}: not a JPEG/PNG file: {path}")
         elif os.path.getsize(path) > MAX_IMAGE_BYTES:
-            problems.append(f"{image_id}: larger than 20 MB: {path}")
+            problems.append(f"{image_id}: larger than 40 MB: {path}")
         else:
             plan.append((image_id, path, media_type))
     return plan, problems
