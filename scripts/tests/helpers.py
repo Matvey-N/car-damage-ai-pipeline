@@ -5,7 +5,9 @@ import random
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-CLASSES = ["dent", "scratch", "crack", "glass_shatter", "tire_flat", "lamp_broken"]
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from schema_values import DAMAGE_TYPES as CLASSES  # noqa: E402
 
 
 def fake_coco(n_images, seed, width=1000, height=800):
@@ -40,7 +42,7 @@ class FakeService:
     def __init__(self, model_client="anthropic", answer=None, fail_after=None):
         self.model_client = model_client
         self.answer = answer or {"status": "success", "overall_score": 30, "attempts": 1, "damages": [
-            {"damage_type": "dent", "part": "door", "severity": "moderate", "action": "repair",
+            {"damage_type": "scratch", "part": "door", "severity": "moderate", "action": "repair",
              "confidence": 0.8, "bounding_box": [0.1, 0.25, 0.2, 0.1875]}]}
         self.fail_after = fail_after
         self.analyze_calls = 0

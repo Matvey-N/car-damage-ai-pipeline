@@ -13,7 +13,7 @@ from labels_io import read_sheet, write_sheet  # noqa: E402
 
 
 def examples_for(ids):
-    return [{"image_id": i, "file_name": f"{i:06d}.jpg", "class_selected_for": "dent"} for i in ids]
+    return [{"image_id": i, "file_name": f"{i:06d}.jpg", "class_selected_for": "crack"} for i in ids]
 
 
 def filled(rows, part="door", severity="moderate", action="repair"):
@@ -84,7 +84,7 @@ class BuildGroundTruthTest(unittest.TestCase):
 
     def test_edited_damage_type_is_rejected(self):
         rows = filled(self.rows)
-        rows[0]["damage_type"] = "scratch" if rows[0]["damage_type"] != "scratch" else "dent"
+        rows[0]["damage_type"] = "scratch" if rows[0]["damage_type"] != "scratch" else "crack"
         _, errors = bgt.build(self.coco, self.examples, rows)
         self.assertTrue(any("must not be edited" in e for e in errors))
 
@@ -99,7 +99,7 @@ class BuildGroundTruthTest(unittest.TestCase):
 
 class CompareLabelsTest(unittest.TestCase):
     def test_full_agreement(self):
-        rows = [{"image_id": "1", "file_name": "x", "annotation_id": str(i), "damage_type": "dent",
+        rows = [{"image_id": "1", "file_name": "x", "annotation_id": str(i), "damage_type": "crack",
                  "part": p, "severity": "minor", "action": "repair"}
                 for i, p in enumerate(["door", "hood", "door", "bumper"])]
         stats, dis, _, _ = cmp.compare(rows, [dict(r) for r in rows])
@@ -108,7 +108,7 @@ class CompareLabelsTest(unittest.TestCase):
         self.assertEqual(dis, [])
 
     def test_disagreement_is_listed(self):
-        a = [{"image_id": "1", "file_name": "x", "annotation_id": "1", "damage_type": "dent",
+        a = [{"image_id": "1", "file_name": "x", "annotation_id": "1", "damage_type": "crack",
               "part": "door", "severity": "minor", "action": "repair"}]
         b = [dict(a[0], severity="severe")]
         stats, dis, _, _ = cmp.compare(a, b)

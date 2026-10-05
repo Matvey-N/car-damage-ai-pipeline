@@ -7,7 +7,8 @@ import tempfile
 import unittest
 
 SCRIPT = os.path.join(os.path.dirname(__file__), "..", "select_benchmark_samples.py")
-CLASSES = ["dent", "scratch", "crack", "glass_shatter", "tire_flat", "lamp_broken"]
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from schema_values import DAMAGE_TYPES as CLASSES  # noqa: E402
 
 
 def fake_coco(n_images, seed):
@@ -44,15 +45,15 @@ class SelectSamplesTest(unittest.TestCase):
 
     def test_sizes_and_stratification(self):
         dev, test = self.run_script(os.path.join(self.tmp, "a"))
-        self.assertEqual(len(dev), 18)
+        self.assertEqual(len(dev), 16)
         self.assertEqual(len(test), 24)
         for cls in CLASSES:
-            self.assertEqual(sum(1 for e in dev if e["class_selected_for"] == cls), 3)
-            self.assertEqual(sum(1 for e in test if e["class_selected_for"] == cls), 4)
+            self.assertEqual(sum(1 for e in dev if e["class_selected_for"] == cls), 4)
+            self.assertEqual(sum(1 for e in test if e["class_selected_for"] == cls), 6)
 
     def test_no_image_selected_twice_within_a_split(self):
         dev, test = self.run_script(os.path.join(self.tmp, "b"))
-        self.assertEqual(len({e["image_id"] for e in dev}), 18)
+        self.assertEqual(len({e["image_id"] for e in dev}), 16)
         self.assertEqual(len({e["image_id"] for e in test}), 24)
 
     def test_same_seed_gives_same_selection(self):

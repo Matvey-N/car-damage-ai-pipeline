@@ -2,15 +2,15 @@
   "meta": {"model": "stub", "prompt_version": "v1", "note": "SYNTHETIC predictions for development and tests"},
   "predictions": {
     "syn_001": {"status": "success", "overall_score": 35, "attempts": 1, "damages": [
-      {"damage_type": "dent", "part": "door", "severity": "moderate", "action": "repair", "confidence": 0.85,
+      {"damage_type": "crack", "part": "door", "severity": "moderate", "action": "repair", "confidence": 0.85,
        "bounding_box": [0.30, 0.40, 0.20, 0.15]}
     ]},
     "syn_002": {"status": "success", "overall_score": 60, "attempts": 2, "damages": [
-      {"damage_type": "lamp_broken", "part": "headlight", "severity": "moderate", "action": "replacement", "confidence": 0.9,
+      {"damage_type": "lamp_broken", "part": "light", "severity": "moderate", "action": "replacement", "confidence": 0.9,
        "bounding_box": [0.09, 0.23, 0.19, 0.19]},
-      {"damage_type": "lamp_broken", "part": "headlight", "severity": "severe", "action": "replacement", "confidence": 0.6,
+      {"damage_type": "lamp_broken", "part": "light", "severity": "severe", "action": "replacement", "confidence": 0.6,
        "bounding_box": [0.10, 0.22, 0.20, 0.20]},
-      {"damage_type": "dent", "part": "bumper", "severity": "minor", "action": "repair", "confidence": 0.55,
+      {"damage_type": "crack", "part": "bumper", "severity": "minor", "action": "repair", "confidence": 0.55,
        "bounding_box": [0.50, 0.55, 0.25, 0.07]}
     ]},
     "syn_003": {"status": "error", "overall_score": 0, "attempts": 3, "damages": [],

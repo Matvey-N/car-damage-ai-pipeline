@@ -60,7 +60,7 @@ class EndToEndTest(unittest.TestCase):
         self.assertEqual(bgt.main(["--annotations", os.path.join(tmp, "val.json"), "--examples", dev,
                                    "--labels", os.path.join(tmp, "A.csv"), "--out", gt_path]), 0)
         gt = load_json(gt_path)
-        self.assertEqual(len(gt["images"]), 18)
+        self.assertEqual(len(gt["images"]), 16)
 
         # 5. run the sample through a fake service
         images = os.path.join(tmp, "images")
@@ -75,12 +75,12 @@ class EndToEndTest(unittest.TestCase):
 
         # 6. evaluate
         report = ev.evaluate(gt, load_json(pred_path))
-        self.assertEqual(report["images_total"], 18)
+        self.assertEqual(report["images_total"], 16)
         self.assertEqual(report["images_pipeline_error_or_missing"], 0)
         total_gt = sum(len(img["damages"]) for img in gt["images"])
         d = report["detection"]
         self.assertEqual(d["tp"] + d["fn"], total_gt)
-        self.assertEqual(d["tp"] + d["fp"], 18)  # the fake service returns one damage per image
+        self.assertEqual(d["tp"] + d["fp"], 16)  # the fake service returns one damage per image
 
 
 if __name__ == "__main__":

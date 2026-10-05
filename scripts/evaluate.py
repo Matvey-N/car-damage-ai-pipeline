@@ -15,7 +15,7 @@ Matching rule (TZ section 7), fixed before any experiment:
   * Severity, part, action and confidence are evaluated ONLY on matched
     pairs.
 
-Boxes: ground truth uses CarDD/COCO pixel boxes [x, y, w, h]; they are
+Boxes: ground truth uses COCO pixel boxes [x, y, w, h]; they are
 normalized by the image width/height. Predictions are already
 normalized [x, y, w, h] in [0, 1] (see DamagePrompt / the JSON schema).
 
@@ -32,8 +32,7 @@ from collections import defaultdict
 
 IOU_THRESHOLD = 0.5
 
-DAMAGE_TYPES = ["dent", "scratch", "crack", "glass_shatter", "tire_flat", "lamp_broken"]
-SEVERITIES = ["minor", "moderate", "severe"]
+from schema_values import DAMAGE_TYPES, SEVERITIES
 CALIBRATION_BINS = [(0.0, 0.5), (0.5, 0.7), (0.7, 0.9), (0.9, 1.0)]
 
 

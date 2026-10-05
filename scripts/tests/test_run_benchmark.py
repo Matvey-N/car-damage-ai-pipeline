@@ -17,7 +17,7 @@ class RunBenchmarkTest(unittest.TestCase):
         self.images = os.path.join(self.tmp, "images")
         write_fake_images(self.images, self.coco)
         self.examples = os.path.join(self.tmp, "examples.json")
-        write(self.examples, [{"image_id": i, "file_name": f"{i:06d}.jpg", "class_selected_for": "dent"}
+        write(self.examples, [{"image_id": i, "file_name": f"{i:06d}.jpg", "class_selected_for": "crack"}
                               for i in range(5)])
         self.out = os.path.join(self.tmp, "pred.json")
         self.service = None

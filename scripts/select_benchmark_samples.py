@@ -43,9 +43,7 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-CARDD_CLASSES = [
-    "dent", "scratch", "crack", "glass_shatter", "tire_flat", "lamp_broken",
-]
+from schema_values import DAMAGE_TYPES as CARDD_CLASSES  # damage types of the project
 
 
 def load_coco_annotations(path: Path) -> dict:
@@ -153,13 +151,13 @@ def write_outputs(out_dir: Path, split_name: str, selection: dict,
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--val-annotations", required=True, type=Path,
-                         help="CarDD validation-split COCO annotations JSON (source for dev set)")
+                         help="COCO annotations of the dev pool (SYNDCAR: dev_pool.json from convert_syndcar.py)")
     parser.add_argument("--test-annotations", required=True, type=Path,
-                         help="CarDD test-split COCO annotations JSON (source for test set)")
-    parser.add_argument("--dev-per-class", type=int, default=3,
-                         help="Images per damage class for the dev set (default 3 -> 18 total)")
-    parser.add_argument("--test-per-class", type=int, default=4,
-                         help="Images per damage class for the test set (default 4 -> 24 total)")
+                         help="COCO annotations of the test pool (SYNDCAR: test_pool.json from convert_syndcar.py)")
+    parser.add_argument("--dev-per-class", type=int, default=4,
+                         help="Images per damage class for the dev set (default 4 -> 16 total)")
+    parser.add_argument("--test-per-class", type=int, default=6,
+                         help="Images per damage class for the test set (default 6 -> 24 total)")
     parser.add_argument("--seed", type=int, default=42,
                          help="Random seed, for reproducibility. Do not change after labeling starts.")
     parser.add_argument("--out-dir", type=Path, default=Path(__file__).parent.parent / "benchmark",

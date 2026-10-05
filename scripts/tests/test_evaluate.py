@@ -10,11 +10,11 @@ def gt_image(image_id, damages, width=100, height=100):
     return {"image_id": image_id, "width": width, "height": height, "damages": damages}
 
 
-def gt_damage(bbox_px, damage_type="dent", part="door", severity="moderate", action="repair"):
+def gt_damage(bbox_px, damage_type="crack", part="door", severity="moderate", action="repair"):
     return {"bbox": bbox_px, "damage_type": damage_type, "part": part, "severity": severity, "action": action}
 
 
-def pred(box, conf=0.9, damage_type="dent", part="door", severity="moderate", action="repair"):
+def pred(box, conf=0.9, damage_type="crack", part="door", severity="moderate", action="repair"):
     return {"bounding_box": box, "confidence": conf, "damage_type": damage_type,
             "part": part, "severity": severity, "action": action}
 
@@ -85,11 +85,11 @@ class EvaluateTest(unittest.TestCase):
         self.assertEqual(r["confidence"]["brier_score"], 0.0)
 
     def test_wrong_type_is_detection_tp_but_type_error(self):
-        gt = {"images": [gt_image("a", [gt_damage([10, 10, 20, 20], damage_type="dent")])]}
+        gt = {"images": [gt_image("a", [gt_damage([10, 10, 20, 20], damage_type="crack")])]}
         pr = {"predictions": {"a": ok([pred([0.1, 0.1, 0.2, 0.2], damage_type="scratch", conf=0.8)])}}
         r = ev.evaluate(gt, pr)
         self.assertEqual(r["detection"]["tp"], 1)
-        self.assertEqual(r["damage_type"]["per_class"]["dent"]["fn"], 1)
+        self.assertEqual(r["damage_type"]["per_class"]["crack"]["fn"], 1)
         self.assertEqual(r["damage_type"]["per_class"]["scratch"]["fp"], 1)
         self.assertEqual(r["matched_pairs"]["damage_type_accuracy"], 0.0)
         self.assertAlmostEqual(r["confidence"]["brier_score"], 0.64)  # (0.8 - 0)^2

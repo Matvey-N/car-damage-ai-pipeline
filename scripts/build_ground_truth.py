@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Builds the ground-truth file for evaluate.py from:
-  - the CarDD COCO annotations (boxes, damage types, image sizes),
+  - the COCO annotations of the pool (boxes, damage types, image sizes),
   - the fixed sample (dev_examples.json / test_examples.json),
   - the final agreed labeling sheet (part, severity, action).
 
@@ -10,7 +10,7 @@ a value outside the allowed lists, a damage_type or box edited in the
 sheet, or a row that does not belong to the sample.
 
 Usage:
-  python build_ground_truth.py --annotations CarDD_val_annotations.json \
+  python build_ground_truth.py --annotations ../benchmark/syndcar_coco/dev_pool.json \
       --examples ../benchmark/dev_examples.json \
       --labels ../benchmark/labels_dev_final.csv \
       --out ../benchmark/ground_truth_dev.json
@@ -55,7 +55,7 @@ def build(coco, examples, label_rows):
             line, row = labels[ann["id"]]
             coco_type = categories[ann["category_id"]]
             if row.get("damage_type") != coco_type:
-                errors.append(f"row {line}: damage_type '{row.get('damage_type')}' differs from CarDD "
+                errors.append(f"row {line}: damage_type '{row.get('damage_type')}' differs from the dataset "
                               f"('{coco_type}'); it must not be edited")
             for field, allowed in LABEL_FIELDS.items():
                 if row.get(field) not in allowed:
