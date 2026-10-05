@@ -164,3 +164,39 @@ class ConvertTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RealSyndcarNamesTest(unittest.TestCase):
+    """Class names exactly as in SYNDCAR v1 (data_damage.yaml, data_parts.yaml)."""
+
+    DAMAGE = {"Broken_Glass": "glass_shatter", "Cracks": "crack",
+              "Scratches": "scratch", "Broken_Lights": "lamp_broken"}
+    PARTS = {
+        "left_side_window": "window", "right_side_window": "window", "left_door": "door",
+        "right_door": "door", "right_rear_quarter_panel": "fender", "left_rear_quarter_panel": "fender",
+        "right_front_quarter_panel": "fender", "left_rear_side_window": "window",
+        "right_rear_side_window": "window", "left_front_side_window": "window",
+        "right_front_side_window": "window", "roof": "other", "left_rear_wheel": "wheel",
+        "right_rear_wheel": "wheel", "left_front_wheel": "wheel", "right_front_wheel": "wheel",
+        "front_windshield": "windshield", "rear_windshield": "windshield", "left_mirror": "mirror",
+        "right_mirror": "mirror", "license_plate": "other", "rear_lights": "light",
+        "front_lights": "light", "front_panel": "bumper", "rear_panel": "bumper",
+        "left_front_quarter_panel": "fender", "left_rocker_panel": "other", "right_rocker_panel": "other",
+    }
+
+    def test_damage_classes(self):
+        for name, target in self.DAMAGE.items():
+            self.assertEqual(cs.map_name(name, cs.DAMAGE_RULES), target, name)
+
+    def test_all_28_parts(self):
+        self.assertEqual(len(self.PARTS), 28)
+        for name, target in self.PARTS.items():
+            self.assertEqual(cs.map_name(name, cs.PART_RULES) or "other", target, name)
+
+    def test_yaml_with_numbered_names(self):
+        path = os.path.join(tempfile.mkdtemp(), "data_damage.yaml")
+        with open(path, "w") as f:
+            f.write("path: .\ntrain: ./images/\n\nnc: 4\nnames:\n  0: Broken_Glass\n  1: Cracks\n"
+                    "  2: Scratches\n  3: Broken_Lights")
+        self.assertEqual(cs.read_yaml_names(path),
+                         {0: "Broken_Glass", 1: "Cracks", 2: "Scratches", 3: "Broken_Lights"})

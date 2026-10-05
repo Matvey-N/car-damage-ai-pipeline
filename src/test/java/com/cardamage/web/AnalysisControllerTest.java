@@ -7,6 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -23,8 +27,20 @@ class AnalysisControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    private static MockMultipartFile jpeg(String param) {
-        return new MockMultipartFile(param, "car.jpg", "image/jpeg", new byte[]{1, 2, 3});
+    /** A real (tiny) JPEG: the service decodes uploads before sending them to the model. */
+    private static MockMultipartFile jpeg(String param) throws Exception {
+        BufferedImage image = new BufferedImage(64, 48, BufferedImage.TYPE_INT_RGB);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", out);
+        return new MockMultipartFile(param, "car.jpg", "image/jpeg", out.toByteArray());
+    }
+
+    @Test
+    void unreadableImageIs400() throws Exception {
+        MockMultipartFile broken = new MockMultipartFile("image", "car.jpg", "image/jpeg", new byte[]{1, 2, 3});
+        mvc.perform(multipart("/api/v1/analyze").file(broken))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value("error"));
     }
 
     @Test
