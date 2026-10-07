@@ -117,9 +117,14 @@ class ConvertTest(unittest.TestCase):
         self.assertEqual(report["damage_boxes"], 16)
         central = [a for a in anns if a["bbox"] == [400.0, 360.0, 200.0, 80.0]]
         self.assertEqual(len(central), 8)
-        self.assertTrue(all(a["auto_part"] == "door" for a in central))
-        self.assertTrue(all(a["auto_part_source"] == "left door" for a in central))
-        self.assertAlmostEqual(central[0]["auto_part_coverage"], 0.5, places=2)
+        lamp_id = cs.DAMAGE_TYPES.index("lamp_broken") + 1
+        lamps = [a for a in central if a["category_id"] == lamp_id]
+        others = [a for a in central if a["category_id"] != lamp_id]
+        self.assertEqual(len(lamps), 2)
+        self.assertTrue(all(a["auto_part"] == "light" for a in lamps), "a broken lamp is on a light by definition")
+        self.assertTrue(all(a["auto_part"] == "door" for a in others))
+        self.assertTrue(all(a["auto_part_source"] == "left door" for a in others))
+        self.assertAlmostEqual(others[0]["auto_part_coverage"], 0.5, places=2)
         corner = [a for a in anns if a not in central]
         self.assertTrue(all(a["auto_part"] == "" for a in corner), "no part there -> annotator fills in")
         self.assertEqual(report["no_auto_part"], 8)
@@ -158,7 +163,7 @@ class ConvertTest(unittest.TestCase):
         rows = mls.build_rows(dev, examples)
         prefilled = [r for r in rows if r["part"]]
         self.assertTrue(prefilled)
-        self.assertTrue(all("left door" in r["comment"] for r in prefilled))
+        self.assertTrue(all("left door" in r["comment"] or r["part"] == "light" for r in prefilled))
         self.assertTrue(any(r["part"] == "" for r in rows))
 
 

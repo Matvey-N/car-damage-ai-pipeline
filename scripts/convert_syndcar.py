@@ -68,6 +68,10 @@ PART_RULES = [
     ("bumper", "bumper"),
 ]
 
+# Damage types that name their part: a broken lamp is always on a light.
+# Without this rule the surrounding panel ("bumper") wins by coverage.
+PART_BY_DAMAGE_TYPE = {"lamp_broken": "light"}
+
 # A part is assigned automatically only if it covers at least this share
 # of the damage box; otherwise the annotator fills the part in by hand.
 MIN_PART_COVERAGE = 0.10
@@ -342,6 +346,9 @@ def convert(syndcar_dir, seed=42, dev_share=0.5, group_by="date"):
 
             damage_type = damage_map[cls]
             stats[damage_type] += 1
+            if damage_type in PART_BY_DAMAGE_TYPE:
+                # the panel polygon contains the lamp and would win by coverage
+                best_part, best_source, best_cov = PART_BY_DAMAGE_TYPE[damage_type], "damage type " + damage_type, 1.0
             annotations.append({
                 "id": ann_id, "image_id": image_id,
                 "category_id": DAMAGE_TYPES.index(damage_type) + 1,

@@ -1214,8 +1214,8 @@
    ],
    "area": 31604.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1230,8 +1230,8 @@
    ],
    "area": 7743.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1294,8 +1294,8 @@
    ],
    "area": 7685.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1326,8 +1326,8 @@
    ],
    "area": 29302.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1470,8 +1470,8 @@
    ],
    "area": 25353.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1534,8 +1534,8 @@
    ],
    "area": 25421.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1550,8 +1550,8 @@
    ],
    "area": 9378.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1582,8 +1582,8 @@
    ],
    "area": 7725.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1678,8 +1678,8 @@
    ],
    "area": 20153.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1694,8 +1694,8 @@
    ],
    "area": 8292.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1726,8 +1726,8 @@
    ],
    "area": 7735.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1774,8 +1774,8 @@
    ],
    "area": 8749.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1854,8 +1854,8 @@
    ],
    "area": 8050.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -1870,9 +1870,9 @@
    ],
    "area": 2791.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
-   "auto_part_coverage": 0.9
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
+   "auto_part_coverage": 1.0
   },
   {
    "id": 49,
@@ -1918,8 +1918,8 @@
    ],
    "area": 30374.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2014,8 +2014,8 @@
    ],
    "area": 31367.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2030,8 +2030,8 @@
    ],
    "area": 7803.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2094,8 +2094,8 @@
    ],
    "area": 28970.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2190,8 +2190,8 @@
    ],
    "area": 31422.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2238,8 +2238,8 @@
    ],
    "area": 7877.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2526,8 +2526,8 @@
    ],
    "area": 9657.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2702,8 +2702,8 @@
    ],
    "area": 13063.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2734,8 +2734,8 @@
    ],
    "area": 6137.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2846,8 +2846,8 @@
    ],
    "area": 15510.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2942,8 +2942,8 @@
    ],
    "area": 27296.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2958,8 +2958,8 @@
    ],
    "area": 7376.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -2990,8 +2990,8 @@
    ],
    "area": 6906.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3118,8 +3118,8 @@
    ],
    "area": 27246.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3166,8 +3166,8 @@
    ],
    "area": 27371.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3198,8 +3198,8 @@
    ],
    "area": 8781.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3246,8 +3246,8 @@
    ],
    "area": 22948.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3294,8 +3294,8 @@
    ],
    "area": 21786.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3390,8 +3390,8 @@
    ],
    "area": 9656.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3534,8 +3534,8 @@
    ],
    "area": 6134.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3614,8 +3614,8 @@
    ],
    "area": 12721.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3646,8 +3646,8 @@
    ],
    "area": 6365.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3662,8 +3662,8 @@
    ],
    "area": 12580.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3694,8 +3694,8 @@
    ],
    "area": 3940.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3822,8 +3822,8 @@
    ],
    "area": 24813.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3838,8 +3838,8 @@
    ],
    "area": 24801.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3870,8 +3870,8 @@
    ],
    "area": 6019.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -3934,8 +3934,8 @@
    ],
    "area": 25406.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4014,8 +4014,8 @@
    ],
    "area": 7847.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4030,8 +4030,8 @@
    ],
    "area": 24896.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4078,8 +4078,8 @@
    ],
    "area": 7235.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4110,9 +4110,9 @@
    ],
    "area": 3072.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
-   "auto_part_coverage": 0.97
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
+   "auto_part_coverage": 1.0
   },
   {
    "id": 189,
@@ -4126,8 +4126,8 @@
    ],
    "area": 9425.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4142,8 +4142,8 @@
    ],
    "area": 21011.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4606,8 +4606,8 @@
    ],
    "area": 5704.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4622,8 +4622,8 @@
    ],
    "area": 20558.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4654,8 +4654,8 @@
    ],
    "area": 5266.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4750,8 +4750,8 @@
    ],
    "area": 22651.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4766,8 +4766,8 @@
    ],
    "area": 5294.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -4798,8 +4798,8 @@
    ],
    "area": 5351.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5038,8 +5038,8 @@
    ],
    "area": 14310.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5134,8 +5134,8 @@
    ],
    "area": 7604.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5262,8 +5262,8 @@
    ],
    "area": 14820.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5310,8 +5310,8 @@
    ],
    "area": 6559.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5374,9 +5374,9 @@
    ],
    "area": 3656.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
-   "auto_part_coverage": 0.96
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
+   "auto_part_coverage": 1.0
   },
   {
    "id": 268,
@@ -5390,8 +5390,8 @@
    ],
    "area": 20378.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5470,8 +5470,8 @@
    ],
    "area": 8786.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5486,8 +5486,8 @@
    ],
    "area": 24469.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5518,8 +5518,8 @@
    ],
    "area": 32048.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5534,8 +5534,8 @@
    ],
    "area": 9780.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5598,8 +5598,8 @@
    ],
    "area": 9326.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5630,8 +5630,8 @@
    ],
    "area": 30677.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5646,8 +5646,8 @@
    ],
    "area": 31004.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5790,8 +5790,8 @@
    ],
    "area": 32493.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5838,8 +5838,8 @@
    ],
    "area": 8312.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5854,8 +5854,8 @@
    ],
    "area": 27935.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5886,8 +5886,8 @@
    ],
    "area": 8998.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5934,8 +5934,8 @@
    ],
    "area": 30257.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -5998,8 +5998,8 @@
    ],
    "area": 13788.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6030,8 +6030,8 @@
    ],
    "area": 36012.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6318,8 +6318,8 @@
    ],
    "area": 36826.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6334,8 +6334,8 @@
    ],
    "area": 7367.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6366,8 +6366,8 @@
    ],
    "area": 9978.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6398,8 +6398,8 @@
    ],
    "area": 29284.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6430,8 +6430,8 @@
    ],
    "area": 6875.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6446,8 +6446,8 @@
    ],
    "area": 30269.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6542,8 +6542,8 @@
    ],
    "area": 7391.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6558,8 +6558,8 @@
    ],
    "area": 25459.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6894,8 +6894,8 @@
    ],
    "area": 27947.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6926,8 +6926,8 @@
    ],
    "area": 6690.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -6990,8 +6990,8 @@
    ],
    "area": 29360.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7022,8 +7022,8 @@
    ],
    "area": 7801.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7118,8 +7118,8 @@
    ],
    "area": 21563.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7134,8 +7134,8 @@
    ],
    "area": 10127.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7262,8 +7262,8 @@
    ],
    "area": 10108.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7294,8 +7294,8 @@
    ],
    "area": 3115.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7358,8 +7358,8 @@
    ],
    "area": 13501.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7406,8 +7406,8 @@
    ],
    "area": 7929.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7534,8 +7534,8 @@
    ],
    "area": 13807.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7582,8 +7582,8 @@
    ],
    "area": 34791.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7614,8 +7614,8 @@
    ],
    "area": 11307.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7646,8 +7646,8 @@
    ],
    "area": 37704.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7678,9 +7678,9 @@
    ],
    "area": 3319.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
-   "auto_part_coverage": 0.95
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
+   "auto_part_coverage": 1.0
   },
   {
    "id": 412,
@@ -7742,8 +7742,8 @@
    ],
    "area": 7926.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7758,8 +7758,8 @@
    ],
    "area": 19872.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7806,8 +7806,8 @@
    ],
    "area": 8426.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7854,8 +7854,8 @@
    ],
    "area": 26481.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7918,8 +7918,8 @@
    ],
    "area": 29255.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7966,8 +7966,8 @@
    ],
    "area": 28753.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -7982,8 +7982,8 @@
    ],
    "area": 8725.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8094,8 +8094,8 @@
    ],
    "area": 10640.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8350,8 +8350,8 @@
    ],
    "area": 7825.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8430,8 +8430,8 @@
    ],
    "area": 23309.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8462,8 +8462,8 @@
    ],
    "area": 28311.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8478,8 +8478,8 @@
    ],
    "area": 28799.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8542,8 +8542,8 @@
    ],
    "area": 13466.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8590,8 +8590,8 @@
    ],
    "area": 34494.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8894,8 +8894,8 @@
    ],
    "area": 19563.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -8910,8 +8910,8 @@
    ],
    "area": 8511.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9006,8 +9006,8 @@
    ],
    "area": 31746.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9086,8 +9086,8 @@
    ],
    "area": 5358.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9150,8 +9150,8 @@
    ],
    "area": 23308.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9214,8 +9214,8 @@
    ],
    "area": 5715.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9230,8 +9230,8 @@
    ],
    "area": 19684.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9246,8 +9246,8 @@
    ],
    "area": 13626.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9342,8 +9342,8 @@
    ],
    "area": 18908.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9358,8 +9358,8 @@
    ],
    "area": 6119.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9486,8 +9486,8 @@
    ],
    "area": 6537.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9566,8 +9566,8 @@
    ],
    "area": 22676.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9678,8 +9678,8 @@
    ],
    "area": 24829.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9790,8 +9790,8 @@
    ],
    "area": 22447.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9806,8 +9806,8 @@
    ],
    "area": 7500.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9870,8 +9870,8 @@
    ],
    "area": 12260.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9934,8 +9934,8 @@
    ],
    "area": 14680.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9966,8 +9966,8 @@
    ],
    "area": 14387.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -9982,8 +9982,8 @@
    ],
    "area": 25287.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10014,8 +10014,8 @@
    ],
    "area": 3885.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10062,8 +10062,8 @@
    ],
    "area": 27323.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10078,8 +10078,8 @@
    ],
    "area": 7397.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10142,8 +10142,8 @@
    ],
    "area": 25665.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10238,8 +10238,8 @@
    ],
    "area": 13534.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10254,8 +10254,8 @@
    ],
    "area": 5883.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10382,8 +10382,8 @@
    ],
    "area": 3938.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10414,8 +10414,8 @@
    ],
    "area": 30602.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10430,8 +10430,8 @@
    ],
    "area": 8076.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10478,8 +10478,8 @@
    ],
    "area": 8202.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10510,8 +10510,8 @@
    ],
    "area": 31665.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10526,8 +10526,8 @@
    ],
    "area": 8485.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10574,8 +10574,8 @@
    ],
    "area": 15437.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10638,8 +10638,8 @@
    ],
    "area": 9475.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10654,8 +10654,8 @@
    ],
    "area": 8781.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10750,8 +10750,8 @@
    ],
    "area": 7536.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10830,8 +10830,8 @@
    ],
    "area": 17913.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10846,8 +10846,8 @@
    ],
    "area": 14269.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -10990,8 +10990,8 @@
    ],
    "area": 21587.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11022,8 +11022,8 @@
    ],
    "area": 7825.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11070,8 +11070,8 @@
    ],
    "area": 24172.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11134,8 +11134,8 @@
    ],
    "area": 6441.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11150,8 +11150,8 @@
    ],
    "area": 5774.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11182,8 +11182,8 @@
    ],
    "area": 7808.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11342,8 +11342,8 @@
    ],
    "area": 26158.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11358,8 +11358,8 @@
    ],
    "area": 15211.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11422,8 +11422,8 @@
    ],
    "area": 16218.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11614,8 +11614,8 @@
    ],
    "area": 17569.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11726,8 +11726,8 @@
    ],
    "area": 25795.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11918,8 +11918,8 @@
    ],
    "area": 18984.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -11950,8 +11950,8 @@
    ],
    "area": 29258.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12046,8 +12046,8 @@
    ],
    "area": 30211.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12302,8 +12302,8 @@
    ],
    "area": 9279.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12350,8 +12350,8 @@
    ],
    "area": 20658.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12446,8 +12446,8 @@
    ],
    "area": 8099.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12478,8 +12478,8 @@
    ],
    "area": 10840.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12494,8 +12494,8 @@
    ],
    "area": 36871.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12638,8 +12638,8 @@
    ],
    "area": 18866.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12718,8 +12718,8 @@
    ],
    "area": 6778.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12750,8 +12750,8 @@
    ],
    "area": 7016.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12814,8 +12814,8 @@
    ],
    "area": 18303.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -12894,8 +12894,8 @@
    ],
    "area": 14639.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13150,8 +13150,8 @@
    ],
    "area": 17654.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13230,8 +13230,8 @@
    ],
    "area": 7664.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13278,8 +13278,8 @@
    ],
    "area": 17640.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13294,8 +13294,8 @@
    ],
    "area": 5902.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13422,8 +13422,8 @@
    ],
    "area": 7859.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13438,8 +13438,8 @@
    ],
    "area": 31344.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13486,8 +13486,8 @@
    ],
    "area": 7484.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13518,8 +13518,8 @@
    ],
    "area": 33120.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13646,8 +13646,8 @@
    ],
    "area": 9162.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13694,8 +13694,8 @@
    ],
    "area": 13747.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13710,9 +13710,9 @@
    ],
    "area": 4344.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
-   "auto_part_coverage": 0.9
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
+   "auto_part_coverage": 1.0
   },
   {
    "id": 1063,
@@ -13742,8 +13742,8 @@
    ],
    "area": 21542.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13790,8 +13790,8 @@
    ],
    "area": 9040.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13886,8 +13886,8 @@
    ],
    "area": 21201.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -13950,9 +13950,9 @@
    ],
    "area": 3860.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
-   "auto_part_coverage": 0.81
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
+   "auto_part_coverage": 1.0
   },
   {
    "id": 1078,
@@ -13966,8 +13966,8 @@
    ],
    "area": 8513.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14030,8 +14030,8 @@
    ],
    "area": 32109.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14126,8 +14126,8 @@
    ],
    "area": 31913.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14190,8 +14190,8 @@
    ],
    "area": 8381.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14206,8 +14206,8 @@
    ],
    "area": 7572.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14222,8 +14222,8 @@
    ],
    "area": 32317.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14318,8 +14318,8 @@
    ],
    "area": 20371.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14382,8 +14382,8 @@
    ],
    "area": 9125.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14430,8 +14430,8 @@
    ],
    "area": 6521.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14446,8 +14446,8 @@
    ],
    "area": 6400.4,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14526,8 +14526,8 @@
    ],
    "area": 17090.1,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14830,8 +14830,8 @@
    ],
    "area": 8329.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14846,8 +14846,8 @@
    ],
    "area": 32689.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14894,8 +14894,8 @@
    ],
    "area": 8672.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14942,8 +14942,8 @@
    ],
    "area": 32788.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -14974,8 +14974,8 @@
    ],
    "area": 8866.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15070,8 +15070,8 @@
    ],
    "area": 3762.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15118,8 +15118,8 @@
    ],
    "area": 8062.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15134,8 +15134,8 @@
    ],
    "area": 23368.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15214,8 +15214,8 @@
    ],
    "area": 9734.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15230,8 +15230,8 @@
    ],
    "area": 22655.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15390,8 +15390,8 @@
    ],
    "area": 26153.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15470,8 +15470,8 @@
    ],
    "area": 36179.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15518,8 +15518,8 @@
    ],
    "area": 9959.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15566,8 +15566,8 @@
    ],
    "area": 7087.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15614,8 +15614,8 @@
    ],
    "area": 14978.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15710,8 +15710,8 @@
    ],
    "area": 5899.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15790,8 +15790,8 @@
    ],
    "area": 12156.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15854,8 +15854,8 @@
    ],
    "area": 6986.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15982,8 +15982,8 @@
    ],
    "area": 25826.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -15998,8 +15998,8 @@
    ],
    "area": 31026.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16078,8 +16078,8 @@
    ],
    "area": 6864.2,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16126,8 +16126,8 @@
    ],
    "area": 21091.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16158,8 +16158,8 @@
    ],
    "area": 19667.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16254,8 +16254,8 @@
    ],
    "area": 35611.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16398,8 +16398,8 @@
    ],
    "area": 16598.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "rear_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16430,8 +16430,8 @@
    ],
    "area": 19763.6,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16446,8 +16446,8 @@
    ],
    "area": 7663.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16590,8 +16590,8 @@
    ],
    "area": 10702.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16606,8 +16606,8 @@
    ],
    "area": 35132.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16638,8 +16638,8 @@
    ],
    "area": 16726.7,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16718,8 +16718,8 @@
    ],
    "area": 41296.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16734,8 +16734,8 @@
    ],
    "area": 40799.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16750,8 +16750,8 @@
    ],
    "area": 10027.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16814,8 +16814,8 @@
    ],
    "area": 10318.5,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16862,8 +16862,8 @@
    ],
    "area": 15611.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -16878,8 +16878,8 @@
    ],
    "area": 64087.9,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -17150,8 +17150,8 @@
    ],
    "area": 8751.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -17182,8 +17182,8 @@
    ],
    "area": 12666.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -17262,8 +17262,8 @@
    ],
    "area": 13639.3,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -17422,8 +17422,8 @@
    ],
    "area": 50664.8,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   },
   {
@@ -17438,8 +17438,8 @@
    ],
    "area": 17847.0,
    "iscrowd": 0,
-   "auto_part": "bumper",
-   "auto_part_source": "front_panel",
+   "auto_part": "light",
+   "auto_part_source": "damage type lamp_broken",
    "auto_part_coverage": 1.0
   }
  ],
