@@ -20,7 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Starts the full Spring context with the stub model client
  * (pipeline.model-client=stub is the default) and calls the endpoints.
  */
-@SpringBootTest
+// Always the stub here, whatever the environment says: with PIPELINE_MODEL_CLIENT=anthropic set
+// (as for a benchmark run) the tests would otherwise call the real, paid API.
+@SpringBootTest(properties = {"pipeline.model-client=stub", "anthropic.api-key="})
 @AutoConfigureMockMvc
 class AnalysisControllerTest {
 
