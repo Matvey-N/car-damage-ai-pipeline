@@ -1,0 +1,32 @@
+{
+  "part": {
+    "pairs": 56,
+    "correct_vs_a": 48,
+    "correct_vs_b": 48,
+    "a_b_agree": 56,
+    "correct_where_agree": 48,
+    "accuracy_vs_a": 0.8571428571428571,
+    "accuracy_vs_b": 0.8571428571428571,
+    "accuracy_where_agree": 0.8571428571428571
+  },
+  "severity": {
+    "pairs": 56,
+    "correct_vs_a": 26,
+    "correct_vs_b": 30,
+    "a_b_agree": 44,
+    "correct_where_agree": 22,
+    "accuracy_vs_a": 0.4642857142857143,
+    "accuracy_vs_b": 0.5357142857142857,
+    "accuracy_where_agree": 0.5
+  },
+  "action": {
+    "pairs": 56,
+    "correct_vs_a": 42,
+    "correct_vs_b": 45,
+    "a_b_agree": 45,
+    "correct_where_agree": 38,
+    "accuracy_vs_a": 0.75,
+    "accuracy_vs_b": 0.8035714285714286,
+    "accuracy_where_agree": 0.8444444444444444
+  }
+}
