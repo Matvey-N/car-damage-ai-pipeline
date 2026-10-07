@@ -1,0 +1,293 @@
+{
+  "iou_threshold": 0.5,
+  "matching": "one-to-one, greedy by confidence, class-agnostic",
+  "images_total": 24,
+  "images_pipeline_error_or_missing": 0,
+  "predictions_for_unknown_images": [],
+  "detection": {
+    "tp": 56,
+    "fp": 37,
+    "fn": 86,
+    "precision": 0.6021505376344086,
+    "recall": 0.39436619718309857
+  },
+  "damage_type": {
+    "macro_f1": 0.44656187072804104,
+    "per_class": {
+      "glass_shatter": {
+        "tp": 16,
+        "fp": 10,
+        "fn": 18,
+        "precision": 0.6153846153846154,
+        "recall": 0.47058823529411764,
+        "f1": 0.5333333333333333
+      },
+      "lamp_broken": {
+        "tp": 8,
+        "fp": 1,
+        "fn": 29,
+        "precision": 0.8888888888888888,
+        "recall": 0.21621621621621623,
+        "f1": 0.34782608695652173
+      },
+      "crack": {
+        "tp": 10,
+        "fp": 11,
+        "fn": 25,
+        "precision": 0.47619047619047616,
+        "recall": 0.2857142857142857,
+        "f1": 0.3571428571428571
+      },
+      "scratch": {
+        "tp": 20,
+        "fp": 17,
+        "fn": 16,
+        "precision": 0.5405405405405406,
+        "recall": 0.5555555555555556,
+        "f1": 0.547945205479452
+      }
+    }
+  },
+  "matched_pairs": {
+    "count": 56,
+    "damage_type_accuracy": 0.9642857142857143,
+    "severity_accuracy_exact": 0.4642857142857143,
+    "severity_confusion_gt_rows_pred_cols": {
+      "minor": {
+        "minor": 2,
+        "moderate": 0,
+        "severe": 0
+      },
+      "moderate": {
+        "minor": 10,
+        "moderate": 15,
+        "severe": 14
+      },
+      "severe": {
+        "minor": 1,
+        "moderate": 5,
+        "severe": 9
+      }
+    },
+    "part_accuracy": 0.8571428571428571,
+    "action_accuracy": 0.75
+  },
+  "confidence": {
+    "definition": "matched pairs only; outcome = predicted damage_type is correct",
+    "brier_score": 0.12901607142857144,
+    "calibration_table": [
+      {
+        "confidence_range": "0.0-0.5",
+        "count": 10,
+        "empirical_accuracy": 1.0,
+        "mean_confidence": 0.375
+      },
+      {
+        "confidence_range": "0.5-0.7",
+        "count": 8,
+        "empirical_accuracy": 0.75,
+        "mean_confidence": 0.59375
+      },
+      {
+        "confidence_range": "0.7-0.9",
+        "count": 32,
+        "empirical_accuracy": 1.0,
+        "mean_confidence": 0.7906250000000001
+      },
+      {
+        "confidence_range": "0.9-1.0",
+        "count": 6,
+        "empirical_accuracy": 1.0,
+        "mean_confidence": 0.9216666666666667
+      }
+    ],
+    "pearson_auxiliary": 0.10797398625992478
+  },
+  "image_level_auxiliary": {
+    "note": "class presence per image, no localization; NOT a detection metric",
+    "tp": 61,
+    "fp": 0,
+    "fn": 26,
+    "precision": 1.0,
+    "recall": 0.7011494252873564
+  },
+  "per_image": [
+    {
+      "image_id": "203",
+      "status": "success",
+      "tp": 2,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image_id": "220",
+      "status": "success",
+      "tp": 4,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image_id": "81",
+      "status": "success",
+      "tp": 2,
+      "fp": 4,
+      "fn": 4
+    },
+    {
+      "image_id": "185",
+      "status": "success",
+      "tp": 3,
+      "fp": 1,
+      "fn": 5
+    },
+    {
+      "image_id": "54",
+      "status": "success",
+      "tp": 2,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image_id": "14",
+      "status": "success",
+      "tp": 2,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image_id": "33",
+      "status": "success",
+      "tp": 1,
+      "fp": 3,
+      "fn": 7
+    },
+    {
+      "image_id": "43",
+      "status": "success",
+      "tp": 3,
+      "fp": 3,
+      "fn": 7
+    },
+    {
+      "image_id": "129",
+      "status": "success",
+      "tp": 0,
+      "fp": 4,
+      "fn": 6
+    },
+    {
+      "image_id": "229",
+      "status": "success",
+      "tp": 2,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image_id": "181",
+      "status": "success",
+      "tp": 1,
+      "fp": 0,
+      "fn": 4
+    },
+    {
+      "image_id": "39",
+      "status": "success",
+      "tp": 3,
+      "fp": 1,
+      "fn": 5
+    },
+    {
+      "image_id": "96",
+      "status": "success",
+      "tp": 2,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "image_id": "186",
+      "status": "success",
+      "tp": 2,
+      "fp": 2,
+      "fn": 6
+    },
+    {
+      "image_id": "65",
+      "status": "success",
+      "tp": 3,
+      "fp": 2,
+      "fn": 4
+    },
+    {
+      "image_id": "30",
+      "status": "success",
+      "tp": 3,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image_id": "26",
+      "status": "success",
+      "tp": 4,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "image_id": "72",
+      "status": "success",
+      "tp": 3,
+      "fp": 1,
+      "fn": 1
+    },
+    {
+      "image_id": "37",
+      "status": "success",
+      "tp": 1,
+      "fp": 2,
+      "fn": 2
+    },
+    {
+      "image_id": "86",
+      "status": "success",
+      "tp": 4,
+      "fp": 1,
+      "fn": 1
+    },
+    {
+      "image_id": "29",
+      "status": "success",
+      "tp": 3,
+      "fp": 0,
+      "fn": 5
+    },
+    {
+      "image_id": "189",
+      "status": "success",
+      "tp": 1,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image_id": "188",
+      "status": "success",
+      "tp": 1,
+      "fp": 3,
+      "fn": 5
+    },
+    {
+      "image_id": "219",
+      "status": "success",
+      "tp": 4,
+      "fp": 1,
+      "fn": 2
+    }
+  ],
+  "meta": {
+    "model": "claude-opus-5-5",
+    "model_client": "anthropic",
+    "prompt_version": "v3",
+    "max_attempts": 3,
+    "examples": "..\\benchmark\\test_examples.json",
+    "started": "2026-10-07T18:20:51+00:00",
+    "updated": "2026-10-07T18:25:01+00:00"
+  }
+}
