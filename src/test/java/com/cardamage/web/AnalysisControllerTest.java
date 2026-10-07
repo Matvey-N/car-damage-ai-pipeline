@@ -82,6 +82,6 @@ class AnalysisControllerTest {
         mvc.perform(get("/api/v1/info"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.model_client").value("stub"))
-                .andExpect(jsonPath("$.prompt_version").value("v2"));
+                .andExpect(jsonPath("$.prompt_version").value("v3"));
     }
 }

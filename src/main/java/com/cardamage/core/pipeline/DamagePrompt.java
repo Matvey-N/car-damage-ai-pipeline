@@ -11,7 +11,7 @@ import java.util.List;
  */
 public final class DamagePrompt {
 
-    public static final String VERSION = "v2";
+    public static final String VERSION = "v3";
 
     public static final String BASE = """
             You are inspecting a single photo of a car for VISIBLE exterior damage.
@@ -34,10 +34,11 @@ public final class DamagePrompt {
             }
 
             Damage types:
-            - glass_shatter: broken or shattered glass of a window or windshield.
+            - glass_shatter: any breakage of window or windshield glass: an impact point,
+              a star-shaped or radiating crack pattern, or shattered glass. Damage to glass
+              is glass_shatter, not crack.
             - lamp_broken: broken or cracked headlight or tail light (lens or housing).
-            - crack: a crack line in a part that is otherwise still in one piece (body panel,
-              bumper, or glass that is cracked but not shattered).
+            - crack: a crack line in a body panel, bumper or other non-glass part.
             - scratch: a scratch or scrape in the paint or surface.
             Report only these four types.
 
@@ -46,14 +47,23 @@ public final class DamagePrompt {
             license plate or anything else.
 
             Rules:
-            - One entry per separate damage region. Do not list the same region twice.
-            - bounding_box is the tight box around that damage region, as fractions of the
-              image size: x and y are the top-left corner, w and h the width and height,
-              all between 0 and 1 (e.g. [0.25, 0.4, 0.2, 0.1]).
+            - Inspect the whole car systematically, part by part, and report EVERY separate
+              damage, including small ones. A photo often shows five or more.
+            - One entry per separate damage region. Do not list the same region twice, and do
+              not merge separate damages into one entry, even if they are on the same part.
+            - bounding_box encloses the full extent of that damage region (for a crack pattern,
+              all of its lines to their ends, not only the centre), without extra margin.
+              It is given as fractions of the image size: x and y are the top-left corner,
+              w and h the width and height, all between 0 and 1 (e.g. [0.25, 0.4, 0.2, 0.1]).
             - confidence is your probability that this entry is a real damage of the stated type.
-            - severity: minor = cosmetic only; moderate = clearly visible, needs repair;
-              severe = broken, deformed or safety-relevant.
-            - action: replacement if the part is broken/shattered or beyond repair, otherwise repair.
+            - severity:
+              minor = small scratch or scuff (under about 5 cm), or a short crack that does not spread;
+              moderate = long or deep scratch with paint damage, or a crack in a part that is
+              still in one piece;
+              severe = shattered or broken glass, a broken light, or a crack that threatens
+              the part or safety.
+            - action: repair for scratches and for cracks in a part that is not broken;
+              replacement for broken glass, broken lights and heavily damaged parts.
             - Only report damage you can actually see. If there is none, return "damages": [].
             """;
 
