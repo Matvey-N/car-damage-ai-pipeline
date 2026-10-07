@@ -1,0 +1,237 @@
+{
+  "iou_threshold": 0.5,
+  "matching": "one-to-one, greedy by confidence, class-agnostic",
+  "images_total": 16,
+  "images_pipeline_error_or_missing": 0,
+  "predictions_for_unknown_images": [],
+  "detection": {
+    "tp": 45,
+    "fp": 30,
+    "fn": 53,
+    "precision": 0.6,
+    "recall": 0.45918367346938777
+  },
+  "damage_type": {
+    "macro_f1": 0.4935839685839686,
+    "per_class": {
+      "glass_shatter": {
+        "tp": 13,
+        "fp": 12,
+        "fn": 14,
+        "precision": 0.52,
+        "recall": 0.48148148148148145,
+        "f1": 0.5
+      },
+      "lamp_broken": {
+        "tp": 15,
+        "fp": 1,
+        "fn": 8,
+        "precision": 0.9375,
+        "recall": 0.6521739130434783,
+        "f1": 0.7692307692307693
+      },
+      "crack": {
+        "tp": 4,
+        "fp": 9,
+        "fn": 20,
+        "precision": 0.3076923076923077,
+        "recall": 0.16666666666666666,
+        "f1": 0.21621621621621623
+      },
+      "scratch": {
+        "tp": 11,
+        "fp": 10,
+        "fn": 13,
+        "precision": 0.5238095238095238,
+        "recall": 0.4583333333333333,
+        "f1": 0.4888888888888889
+      }
+    }
+  },
+  "matched_pairs": {
+    "count": 45,
+    "damage_type_accuracy": 0.9555555555555556,
+    "severity_accuracy_exact": 0.7333333333333333,
+    "severity_confusion_gt_rows_pred_cols": {
+      "minor": {
+        "minor": 0,
+        "moderate": 0,
+        "severe": 0
+      },
+      "moderate": {
+        "minor": 4,
+        "moderate": 14,
+        "severe": 6
+      },
+      "severe": {
+        "minor": 0,
+        "moderate": 2,
+        "severe": 19
+      }
+    },
+    "part_accuracy": 0.8444444444444444,
+    "action_accuracy": 0.9333333333333333
+  },
+  "confidence": {
+    "definition": "matched pairs only; outcome = predicted damage_type is correct",
+    "brier_score": 0.10508666666666668,
+    "calibration_table": [
+      {
+        "confidence_range": "0.0-0.5",
+        "count": 5,
+        "empirical_accuracy": 0.8,
+        "mean_confidence": 0.42000000000000004
+      },
+      {
+        "confidence_range": "0.5-0.7",
+        "count": 8,
+        "empirical_accuracy": 0.875,
+        "mean_confidence": 0.5437500000000001
+      },
+      {
+        "confidence_range": "0.7-0.9",
+        "count": 24,
+        "empirical_accuracy": 1.0,
+        "mean_confidence": 0.7749999999999999
+      },
+      {
+        "confidence_range": "0.9-1.0",
+        "count": 8,
+        "empirical_accuracy": 1.0,
+        "mean_confidence": 0.9150000000000001
+      }
+    ],
+    "pearson_auxiliary": 0.29160914733443943
+  },
+  "image_level_auxiliary": {
+    "note": "class presence per image, no localization; NOT a detection metric",
+    "tp": 50,
+    "fp": 0,
+    "fn": 12,
+    "precision": 1.0,
+    "recall": 0.8064516129032258
+  },
+  "per_image": [
+    {
+      "image_id": "149",
+      "status": "success",
+      "tp": 2,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image_id": "152",
+      "status": "success",
+      "tp": 1,
+      "fp": 1,
+      "fn": 4
+    },
+    {
+      "image_id": "168",
+      "status": "success",
+      "tp": 3,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image_id": "140",
+      "status": "success",
+      "tp": 2,
+      "fp": 2,
+      "fn": 5
+    },
+    {
+      "image_id": "141",
+      "status": "success",
+      "tp": 4,
+      "fp": 2,
+      "fn": 2
+    },
+    {
+      "image_id": "133",
+      "status": "success",
+      "tp": 3,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image_id": "160",
+      "status": "success",
+      "tp": 4,
+      "fp": 2,
+      "fn": 2
+    },
+    {
+      "image_id": "130",
+      "status": "success",
+      "tp": 1,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image_id": "144",
+      "status": "success",
+      "tp": 1,
+      "fp": 4,
+      "fn": 6
+    },
+    {
+      "image_id": "131",
+      "status": "success",
+      "tp": 4,
+      "fp": 3,
+      "fn": 3
+    },
+    {
+      "image_id": "161",
+      "status": "success",
+      "tp": 2,
+      "fp": 2,
+      "fn": 3
+    },
+    {
+      "image_id": "171",
+      "status": "success",
+      "tp": 5,
+      "fp": 3,
+      "fn": 3
+    },
+    {
+      "image_id": "169",
+      "status": "success",
+      "tp": 1,
+      "fp": 1,
+      "fn": 3
+    },
+    {
+      "image_id": "143",
+      "status": "success",
+      "tp": 5,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "image_id": "146",
+      "status": "success",
+      "tp": 3,
+      "fp": 2,
+      "fn": 2
+    },
+    {
+      "image_id": "150",
+      "status": "success",
+      "tp": 4,
+      "fp": 2,
+      "fn": 5
+    }
+  ],
+  "meta": {
+    "model": "claude-opus-5-5",
+    "model_client": "anthropic",
+    "prompt_version": "v3",
+    "max_attempts": 3,
+    "examples": "..\\benchmark\\dev_examples.json",
+    "started": "2026-10-07T17:50:41+00:00",
+    "updated": "2026-10-07T17:54:15+00:00"
+  }
+}
