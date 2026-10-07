@@ -1,0 +1,1412 @@
+{
+  "images": [
+    {
+      "image_id": "149",
+      "file_name": "ID1_20240918_162456.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 832,
+          "bbox": [
+            1436.8,
+            663.2,
+            445.6,
+            259.1
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 833,
+          "bbox": [
+            986.4,
+            1747.7,
+            278.9,
+            137.0
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 834,
+          "bbox": [
+            2115.4,
+            1402.0,
+            110.5,
+            83.9
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 835,
+          "bbox": [
+            2322.7,
+            1190.1,
+            89.6,
+            90.6
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 836,
+          "bbox": [
+            1000.0,
+            822.1,
+            212.8,
+            210.7
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "152",
+      "file_name": "ID1_20240918_162512.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 851,
+          "bbox": [
+            1155.5,
+            804.1,
+            131.1,
+            162.2
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "minor",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 852,
+          "bbox": [
+            1607.2,
+            1433.5,
+            159.2,
+            183.2
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 853,
+          "bbox": [
+            1350.2,
+            456.3,
+            158.8,
+            152.3
+          ],
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 854,
+          "bbox": [
+            917.9,
+            552.7,
+            175.3,
+            135.5
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 855,
+          "bbox": [
+            2170.9,
+            984.4,
+            281.9,
+            102.6
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "168",
+      "file_name": "ID1_20240918_163355.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 933,
+          "bbox": [
+            1582.8,
+            585.4,
+            226.3,
+            433.7
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 934,
+          "bbox": [
+            1074.8,
+            1419.7,
+            100.9,
+            164.0
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 935,
+          "bbox": [
+            1107.3,
+            1796.8,
+            170.9,
+            255.0
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 936,
+          "bbox": [
+            1927.6,
+            470.7,
+            36.0,
+            43.6
+          ],
+          "damage_type": "crack",
+          "part": "other",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 937,
+          "bbox": [
+            2096.2,
+            468.0,
+            92.7,
+            75.8
+          ],
+          "damage_type": "crack",
+          "part": "other",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 938,
+          "bbox": [
+            1300.7,
+            1176.5,
+            77.0,
+            87.2
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        }
+      ]
+    },
+    {
+      "image_id": "140",
+      "file_name": "ID1_20240918_161253.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 775,
+          "bbox": [
+            150.6,
+            1578.9,
+            132.0,
+            131.2
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 776,
+          "bbox": [
+            1423.9,
+            1370.5,
+            129.4,
+            129.4
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 777,
+          "bbox": [
+            708.3,
+            771.9,
+            178.4,
+            174.4
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 778,
+          "bbox": [
+            180.2,
+            1323.2,
+            77.8,
+            188.3
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 779,
+          "bbox": [
+            273.1,
+            996.0,
+            52.5,
+            92.4
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 780,
+          "bbox": [
+            1744.8,
+            372.2,
+            147.3,
+            181.1
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 781,
+          "bbox": [
+            879.9,
+            1934.7,
+            145.7,
+            165.9
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "141",
+      "file_name": "ID1_20240918_161301.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 782,
+          "bbox": [
+            1118.3,
+            705.3,
+            340.5,
+            229.6
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 783,
+          "bbox": [
+            2127.8,
+            1286.1,
+            145.3,
+            90.3
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 784,
+          "bbox": [
+            1157.2,
+            1108.7,
+            67.5,
+            131.1
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 785,
+          "bbox": [
+            956.5,
+            1324.8,
+            153.7,
+            153.4
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 786,
+          "bbox": [
+            2171.8,
+            1102.6,
+            88.6,
+            88.6
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 787,
+          "bbox": [
+            1389.8,
+            1561.5,
+            273.3,
+            115.8
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "133",
+      "file_name": "ID1_20240918_161209.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 733,
+          "bbox": [
+            1476.6,
+            1091.6,
+            86.9,
+            124.7
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 734,
+          "bbox": [
+            757.9,
+            928.2,
+            196.4,
+            169.8
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 735,
+          "bbox": [
+            284.2,
+            1910.0,
+            65.4,
+            151.5
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 736,
+          "bbox": [
+            991.6,
+            1851.8,
+            133.8,
+            147.5
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 737,
+          "bbox": [
+            998.5,
+            1591.7,
+            221.3,
+            95.9
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 738,
+          "bbox": [
+            1620.9,
+            1641.7,
+            109.1,
+            157.5
+          ],
+          "damage_type": "crack",
+          "part": "door",
+          "severity": "moderate",
+          "action": "replacement"
+        }
+      ]
+    },
+    {
+      "image_id": "160",
+      "file_name": "ID1_20240918_162556.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 892,
+          "bbox": [
+            2128.2,
+            162.7,
+            353.3,
+            465.0
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 893,
+          "bbox": [
+            858.6,
+            1407.2,
+            235.6,
+            219.1
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 894,
+          "bbox": [
+            1034.4,
+            1225.7,
+            109.2,
+            173.5
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 895,
+          "bbox": [
+            2577.5,
+            1416.4,
+            144.3,
+            187.7
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 896,
+          "bbox": [
+            2472.0,
+            890.7,
+            157.8,
+            114.7
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 897,
+          "bbox": [
+            2332.6,
+            1400.9,
+            234.8,
+            221.5
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        }
+      ]
+    },
+    {
+      "image_id": "130",
+      "file_name": "ID1_20240918_161134.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 716,
+          "bbox": [
+            917.9,
+            702.3,
+            193.0,
+            398.4
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 717,
+          "bbox": [
+            775.0,
+            1842.5,
+            193.4,
+            170.0
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 718,
+          "bbox": [
+            2078.4,
+            1605.3,
+            178.3,
+            158.1
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 719,
+          "bbox": [
+            2239.1,
+            1168.2,
+            112.6,
+            91.1
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "144",
+      "file_name": "ID1_20240918_161319.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 801,
+          "bbox": [
+            1398.0,
+            549.6,
+            129.8,
+            156.3
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 802,
+          "bbox": [
+            808.4,
+            1061.0,
+            33.2,
+            25.4
+          ],
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 803,
+          "bbox": [
+            767.4,
+            921.6,
+            94.8,
+            100.8
+          ],
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 804,
+          "bbox": [
+            1972.0,
+            1462.5,
+            155.4,
+            195.2
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 805,
+          "bbox": [
+            2251.2,
+            1265.4,
+            236.1,
+            165.2
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 806,
+          "bbox": [
+            1777.1,
+            578.6,
+            143.1,
+            123.1
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 807,
+          "bbox": [
+            1860.5,
+            783.8,
+            169.0,
+            146.1
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement"
+        }
+      ]
+    },
+    {
+      "image_id": "131",
+      "file_name": "ID1_20240918_161203.png",
+      "width": 3264,
+      "height": 2448,
+      "damages": [
+        {
+          "annotation_id": 720,
+          "bbox": [
+            1978.4,
+            599.5,
+            121.0,
+            293.1
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 721,
+          "bbox": [
+            2465.3,
+            981.8,
+            78.0,
+            137.5
+          ],
+          "damage_type": "scratch",
+          "part": "door",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 722,
+          "bbox": [
+            1711.9,
+            390.8,
+            232.1,
+            262.5
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 723,
+          "bbox": [
+            2438.5,
+            914.7,
+            80.1,
+            51.1
+          ],
+          "damage_type": "scratch",
+          "part": "door",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 724,
+          "bbox": [
+            1442.9,
+            1435.9,
+            148.1,
+            163.6
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 725,
+          "bbox": [
+            1957.2,
+            1340.2,
+            99.9,
+            117.8
+          ],
+          "damage_type": "crack",
+          "part": "fender",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 726,
+          "bbox": [
+            1599.6,
+            1985.1,
+            129.0,
+            87.9
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "161",
+      "file_name": "ID1_20240918_162602.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 898,
+          "bbox": [
+            1320.5,
+            1870.5,
+            161.4,
+            178.9
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 899,
+          "bbox": [
+            520.2,
+            846.9,
+            233.4,
+            230.1
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 900,
+          "bbox": [
+            1194.9,
+            2052.4,
+            193.7,
+            144.5
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 901,
+          "bbox": [
+            697.0,
+            1574.1,
+            242.2,
+            309.9
+          ],
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 902,
+          "bbox": [
+            1047.3,
+            1263.8,
+            285.7,
+            172.2
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement"
+        }
+      ]
+    },
+    {
+      "image_id": "171",
+      "file_name": "ID1_20240918_163413.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 948,
+          "bbox": [
+            719.7,
+            764.5,
+            91.6,
+            132.0
+          ],
+          "damage_type": "crack",
+          "part": "other",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 949,
+          "bbox": [
+            1790.0,
+            1557.1,
+            143.4,
+            103.7
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 950,
+          "bbox": [
+            643.2,
+            1218.0,
+            137.1,
+            287.8
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 951,
+          "bbox": [
+            1467.0,
+            922.5,
+            218.3,
+            157.4
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 952,
+          "bbox": [
+            1153.3,
+            2118.2,
+            198.9,
+            209.4
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 953,
+          "bbox": [
+            931.7,
+            1760.4,
+            118.7,
+            113.4
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 954,
+          "bbox": [
+            882.7,
+            2527.8,
+            122.6,
+            123.6
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 955,
+          "bbox": [
+            738.8,
+            1705.0,
+            114.9,
+            118.8
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "169",
+      "file_name": "ID1_20240918_163402.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 939,
+          "bbox": [
+            932.0,
+            1083.8,
+            465.5,
+            456.8
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 940,
+          "bbox": [
+            1066.2,
+            2364.0,
+            145.5,
+            78.5
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 941,
+          "bbox": [
+            544.4,
+            1903.9,
+            170.0,
+            88.8
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 942,
+          "bbox": [
+            1723.6,
+            2135.7,
+            186.4,
+            155.5
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        }
+      ]
+    },
+    {
+      "image_id": "143",
+      "file_name": "ID1_20240918_161312.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 793,
+          "bbox": [
+            430.2,
+            1431.2,
+            286.4,
+            103.9
+          ],
+          "damage_type": "scratch",
+          "part": "door",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 794,
+          "bbox": [
+            2215.7,
+            1762.8,
+            56.9,
+            103.9
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 795,
+          "bbox": [
+            802.0,
+            1337.5,
+            125.7,
+            49.7
+          ],
+          "damage_type": "crack",
+          "part": "fender",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 796,
+          "bbox": [
+            2360.6,
+            1745.5,
+            65.2,
+            49.4
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 797,
+          "bbox": [
+            2259.2,
+            1545.4,
+            87.0,
+            151.8
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 798,
+          "bbox": [
+            2251.2,
+            1264.2,
+            54.7,
+            79.9
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 799,
+          "bbox": [
+            1211.1,
+            1446.5,
+            101.7,
+            103.5
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 800,
+          "bbox": [
+            860.5,
+            717.0,
+            124.6,
+            309.1
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement"
+        }
+      ]
+    },
+    {
+      "image_id": "146",
+      "file_name": "ID1_20240918_162445.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 815,
+          "bbox": [
+            421.4,
+            1741.4,
+            100.0,
+            58.1
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 816,
+          "bbox": [
+            1753.0,
+            1139.1,
+            153.2,
+            163.5
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 817,
+          "bbox": [
+            1020.5,
+            1237.1,
+            430.6,
+            189.2
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 818,
+          "bbox": [
+            1783.9,
+            1832.1,
+            88.0,
+            146.1
+          ],
+          "damage_type": "crack",
+          "part": "door",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 819,
+          "bbox": [
+            1195.8,
+            1967.8,
+            153.9,
+            162.3
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        }
+      ]
+    },
+    {
+      "image_id": "150",
+      "file_name": "ID1_20240918_162503.png",
+      "width": 2448,
+      "height": 3264,
+      "damages": [
+        {
+          "annotation_id": 837,
+          "bbox": [
+            1120.1,
+            2317.0,
+            113.4,
+            190.4
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 838,
+          "bbox": [
+            2265.7,
+            1922.6,
+            105.1,
+            167.7
+          ],
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 839,
+          "bbox": [
+            783.4,
+            1474.6,
+            105.1,
+            158.7
+          ],
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "moderate",
+          "action": "repair"
+        },
+        {
+          "annotation_id": 840,
+          "bbox": [
+            1901.7,
+            1077.0,
+            151.3,
+            163.4
+          ],
+          "damage_type": "glass_shatter",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 841,
+          "bbox": [
+            835.4,
+            1080.3,
+            149.7,
+            329.2
+          ],
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 842,
+          "bbox": [
+            1283.4,
+            1910.8,
+            161.2,
+            173.9
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 843,
+          "bbox": [
+            2169.0,
+            1754.0,
+            114.0,
+            149.3
+          ],
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 844,
+          "bbox": [
+            1064.3,
+            2200.4,
+            263.7,
+            71.3
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "replacement"
+        },
+        {
+          "annotation_id": 845,
+          "bbox": [
+            1262.2,
+            2468.5,
+            92.6,
+            126.1
+          ],
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "replacement"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "annotations": "..\\benchmark\\syndcar_coco\\dev_pool.json",
+    "examples": "..\\benchmark\\dev_examples.json",
+    "labels": "..\\benchmark\\labels_dev_final.csv",
+    "created": "2026-10-07T17:41:09+00:00"
+  }
+}

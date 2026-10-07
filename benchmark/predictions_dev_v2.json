@@ -1,0 +1,993 @@
+{
+  "meta": {
+    "model": "claude-opus-5-5",
+    "model_client": "anthropic",
+    "prompt_version": "v2",
+    "max_attempts": 3,
+    "examples": "..\\benchmark\\dev_examples.json",
+    "started": "2026-10-07T17:34:48+00:00",
+    "updated": "2026-10-07T17:37:47+00:00"
+  },
+  "predictions": {
+    "149": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.75,
+          "description": "Radiating crack lines in upper center of rear window glass",
+          "bounding_box": [
+            0.5,
+            0.28,
+            0.07,
+            0.09
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.65,
+          "description": "Star-shaped impact crack in lower left of rear window glass",
+          "bounding_box": [
+            0.33,
+            0.37,
+            0.04,
+            0.05
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.7,
+          "description": "Light scrape marks on rear lower panel left of logo",
+          "bounding_box": [
+            0.3,
+            0.71,
+            0.09,
+            0.05
+          ]
+        }
+      ],
+      "overall_score": 65.0,
+      "attempts": 1
+    },
+    "152": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.8,
+          "description": "Rear left tail light lens cracked with fracture lines across the red lens",
+          "bounding_box": [
+            0.493,
+            0.587,
+            0.047,
+            0.068
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.7,
+          "description": "Star-shaped impact crack in left door side window glass",
+          "bounding_box": [
+            0.298,
+            0.232,
+            0.032,
+            0.034
+          ]
+        }
+      ],
+      "overall_score": 68.0,
+      "attempts": 1
+    },
+    "168": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.9,
+          "description": "Front door side window shattered with impact point and radiating cracks",
+          "bounding_box": [
+            0.49,
+            0.24,
+            0.065,
+            0.17
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.65,
+          "description": "Lower round headlight on driver-side front appears to have a cracked or broken lens",
+          "bounding_box": [
+            0.33,
+            0.58,
+            0.032,
+            0.065
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.85,
+          "description": "Scrape marks on lower front bumper corner near the wheel",
+          "bounding_box": [
+            0.34,
+            0.67,
+            0.05,
+            0.12
+          ]
+        }
+      ],
+      "overall_score": 55.0,
+      "attempts": 1
+    },
+    "140": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.7,
+          "description": "Star-shaped impact crack in upper part of side quarter window",
+          "bounding_box": [
+            0.72,
+            0.12,
+            0.045,
+            0.04
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.6,
+          "description": "Crack line in lower center of rear window",
+          "bounding_box": [
+            0.315,
+            0.24,
+            0.03,
+            0.04
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "fender",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.65,
+          "description": "Small crack in rear quarter panel below tail lamp area",
+          "bounding_box": [
+            0.59,
+            0.42,
+            0.035,
+            0.035
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair",
+          "confidence": 0.7,
+          "description": "Crack in rear bumper panel right of license plate",
+          "bounding_box": [
+            0.365,
+            0.595,
+            0.05,
+            0.045
+          ]
+        }
+      ],
+      "overall_score": 60.0,
+      "attempts": 1
+    },
+    "141": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.9,
+          "description": "Impact point with radial spider cracks on rear window, left side",
+          "bounding_box": [
+            0.37,
+            0.29,
+            0.08,
+            0.09
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.8,
+          "description": "Left rear tail light lens cracked/punctured",
+          "bounding_box": [
+            0.295,
+            0.543,
+            0.043,
+            0.058
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.55,
+          "description": "Right rear small round lamp lens appears broken/punctured",
+          "bounding_box": [
+            0.665,
+            0.452,
+            0.028,
+            0.035
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.75,
+          "description": "Horizontal scratches on rear panel below BeNeutral decal",
+          "bounding_box": [
+            0.43,
+            0.64,
+            0.08,
+            0.03
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair",
+          "confidence": 0.6,
+          "description": "Crack line on rear panel above right tail light",
+          "bounding_box": [
+            0.64,
+            0.515,
+            0.055,
+            0.03
+          ]
+        }
+      ],
+      "overall_score": 40.0,
+      "attempts": 1
+    },
+    "133": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.85,
+          "description": "Star-shaped impact crack with radiating lines in upper left area of windshield",
+          "bounding_box": [
+            0.31,
+            0.285,
+            0.08,
+            0.045
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.65,
+          "description": "Scuff/scratch marks on upper front panel next to right daytime running light",
+          "bounding_box": [
+            0.415,
+            0.493,
+            0.08,
+            0.025
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "door",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.45,
+          "description": "Crease/scrape mark on lower front edge of passenger door",
+          "bounding_box": [
+            0.665,
+            0.5,
+            0.055,
+            0.055
+          ]
+        }
+      ],
+      "overall_score": 55.0,
+      "attempts": 1
+    },
+    "160": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.9,
+          "description": "Impact point with radiating cracks in upper right of windshield",
+          "bounding_box": [
+            0.685,
+            0.07,
+            0.065,
+            0.17
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.5,
+          "description": "Possible crack line in upper left of windshield",
+          "bounding_box": [
+            0.31,
+            0.085,
+            0.05,
+            0.06
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.85,
+          "description": "Right headlight lens and reflector broken",
+          "bounding_box": [
+            0.717,
+            0.577,
+            0.064,
+            0.078
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.7,
+          "description": "Left headlight appears broken inside the lens",
+          "bounding_box": [
+            0.267,
+            0.578,
+            0.066,
+            0.079
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.85,
+          "description": "Scratches on front panel next to the right headlight",
+          "bounding_box": [
+            0.788,
+            0.578,
+            0.045,
+            0.045
+          ]
+        }
+      ],
+      "overall_score": 40.0,
+      "attempts": 1
+    },
+    "130": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.85,
+          "description": "Impact point with radiating crack lines on the left side of the windshield",
+          "bounding_box": [
+            0.28,
+            0.335,
+            0.047,
+            0.1
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.5,
+          "description": "Small crack or scuff line on the lower left front bumper panel",
+          "bounding_box": [
+            0.258,
+            0.765,
+            0.035,
+            0.045
+          ]
+        }
+      ],
+      "overall_score": 68.0,
+      "attempts": 1
+    },
+    "144": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.8,
+          "description": "Rear window glass shattered with an impact point and radiating cracks on the left side",
+          "bounding_box": [
+            0.542,
+            0.238,
+            0.07,
+            0.145
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.6,
+          "description": "Impact mark with small spider cracks on the side door window",
+          "bounding_box": [
+            0.402,
+            0.23,
+            0.032,
+            0.051
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.7,
+          "description": "Left rear tail light lens cracked or broken",
+          "bounding_box": [
+            0.605,
+            0.598,
+            0.046,
+            0.075
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair",
+          "confidence": 0.65,
+          "description": "Crack line in the rear panel below the Citroen logo",
+          "bounding_box": [
+            0.733,
+            0.523,
+            0.029,
+            0.06
+          ]
+        }
+      ],
+      "overall_score": 55.0,
+      "attempts": 1
+    },
+    "131": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.8,
+          "description": "Impact point with radiating cracks in the driver-side door window",
+          "bounding_box": [
+            0.6,
+            0.29,
+            0.06,
+            0.07
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.45,
+          "description": "Thin crack lines near the upper right of the windshield",
+          "bounding_box": [
+            0.54,
+            0.16,
+            0.05,
+            0.07
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "fender",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.45,
+          "description": "Small crack line in the front body panel near the wheel arch",
+          "bounding_box": [
+            0.6,
+            0.53,
+            0.025,
+            0.05
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.4,
+          "description": "Small crack or scrape at the lower right corner of the front bumper",
+          "bounding_box": [
+            0.48,
+            0.81,
+            0.04,
+            0.035
+          ]
+        }
+      ],
+      "overall_score": 45.0,
+      "attempts": 1
+    },
+    "161": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.85,
+          "description": "Impact point with spiderweb fracture on the driver-side door window",
+          "bounding_box": [
+            0.24,
+            0.27,
+            0.06,
+            0.05
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.75,
+          "description": "Impact chip with radiating crack lines on the lower left windshield",
+          "bounding_box": [
+            0.43,
+            0.38,
+            0.12,
+            0.06
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.88,
+          "description": "Scrape marks on the front side panel behind the wheel arch",
+          "bounding_box": [
+            0.29,
+            0.48,
+            0.09,
+            0.09
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.6,
+          "description": "Small crack or split in the front bumper panel near the left headlight",
+          "bounding_box": [
+            0.53,
+            0.63,
+            0.03,
+            0.035
+          ]
+        }
+      ],
+      "overall_score": 45.0,
+      "attempts": 1
+    },
+    "171": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "glass_shatter",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.85,
+          "description": "Shattered side door window glass with radiating impact cracks",
+          "bounding_box": [
+            0.268,
+            0.375,
+            0.042,
+            0.085
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.55,
+          "description": "Possible star-shaped impact crack in upper windshield",
+          "bounding_box": [
+            0.62,
+            0.283,
+            0.05,
+            0.032
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.6,
+          "description": "Upper left front lamp lens appears broken/cracked",
+          "bounding_box": [
+            0.38,
+            0.54,
+            0.046,
+            0.032
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.45,
+          "description": "Lower left headlight lens appears cracked",
+          "bounding_box": [
+            0.474,
+            0.648,
+            0.074,
+            0.062
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.65,
+          "description": "Scrape marks on front left fender near upper lamp",
+          "bounding_box": [
+            0.3,
+            0.525,
+            0.046,
+            0.032
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.6,
+          "description": "Scrape marks on lower front fender above wheel",
+          "bounding_box": [
+            0.364,
+            0.775,
+            0.042,
+            0.036
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "other",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.35,
+          "description": "Thin crack line on roof panel edge",
+          "bounding_box": [
+            0.3,
+            0.25,
+            0.04,
+            0.02
+          ]
+        }
+      ],
+      "overall_score": 55.0,
+      "attempts": 1
+    },
+    "169": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "crack",
+          "part": "windshield",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.85,
+          "description": "Impact point with radiating star/spider cracks spreading across the windshield in front of the driver",
+          "bounding_box": [
+            0.408,
+            0.335,
+            0.155,
+            0.125
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.3,
+          "description": "Small dark scratch or crack line on the front panel above the license plate",
+          "bounding_box": [
+            0.44,
+            0.722,
+            0.04,
+            0.012
+          ]
+        }
+      ],
+      "overall_score": 55.0,
+      "attempts": 1
+    },
+    "143": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "scratch",
+          "part": "door",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.8,
+          "description": "Whitish horizontal scrape on the lower door panel below the 'Mob Lab' text",
+          "bounding_box": [
+            0.15,
+            0.44,
+            0.11,
+            0.03
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "door",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.45,
+          "description": "Short crack or scratch line in the door panel near the rear edge, left of the red reflector",
+          "bounding_box": [
+            0.33,
+            0.408,
+            0.045,
+            0.014
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.55,
+          "description": "Round rear lamp on the left of the tailgate bar appears broken, with the lens missing or damaged",
+          "bounding_box": [
+            0.495,
+            0.443,
+            0.04,
+            0.032
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.5,
+          "description": "Small scuffs on the right side of the rear bumper near the 'BeNeutral' lettering",
+          "bounding_box": [
+            0.905,
+            0.54,
+            0.03,
+            0.025
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.3,
+          "description": "Possible crack lines in the rear side window glass, which could instead be reflections",
+          "bounding_box": [
+            0.355,
+            0.22,
+            0.045,
+            0.08
+          ]
+        }
+      ],
+      "overall_score": 72.0,
+      "attempts": 1
+    },
+    "146": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.85,
+          "description": "Impact point on rear window with crack lines radiating outward; glass still in one piece",
+          "bounding_box": [
+            0.44,
+            0.38,
+            0.16,
+            0.06
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.7,
+          "description": "Crack lines from an impact on the right side door window",
+          "bounding_box": [
+            0.71,
+            0.35,
+            0.08,
+            0.06
+          ]
+        },
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.8,
+          "description": "Right rear tail light lens is cracked and chipped",
+          "bounding_box": [
+            0.49,
+            0.6,
+            0.06,
+            0.05
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "fender",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.35,
+          "description": "Possible small scrape or crack line on the right rear quarter panel near the door edge",
+          "bounding_box": [
+            0.72,
+            0.56,
+            0.04,
+            0.04
+          ]
+        }
+      ],
+      "overall_score": 45.0,
+      "attempts": 1
+    },
+    "150": {
+      "status": "success",
+      "damages": [
+        {
+          "damage_type": "lamp_broken",
+          "part": "light",
+          "severity": "moderate",
+          "action": "replacement",
+          "confidence": 0.75,
+          "description": "Left rear tail light lens appears cracked",
+          "bounding_box": [
+            0.525,
+            0.585,
+            0.065,
+            0.052
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "window",
+          "severity": "severe",
+          "action": "replacement",
+          "confidence": 0.8,
+          "description": "Star-shaped impact crack in left rear side window",
+          "bounding_box": [
+            0.35,
+            0.38,
+            0.05,
+            0.065
+          ]
+        },
+        {
+          "damage_type": "crack",
+          "part": "bumper",
+          "severity": "moderate",
+          "action": "repair",
+          "confidence": 0.7,
+          "description": "Crack in rear bumper near left wheel arch",
+          "bounding_box": [
+            0.45,
+            0.7,
+            0.1,
+            0.09
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "door",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.6,
+          "description": "Scuff and scratch marks near rear edge of left door",
+          "bounding_box": [
+            0.32,
+            0.44,
+            0.05,
+            0.065
+          ]
+        },
+        {
+          "damage_type": "scratch",
+          "part": "bumper",
+          "severity": "minor",
+          "action": "repair",
+          "confidence": 0.55,
+          "description": "Scratches on right rear bumper corner",
+          "bounding_box": [
+            0.92,
+            0.58,
+            0.06,
+            0.07
+          ]
+        }
+      ],
+      "overall_score": 45.0,
+      "attempts": 1
+    }
+  }
+}
