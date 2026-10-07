@@ -1,0 +1,143 @@
+﻿image_id;file_name;annotation_id;damage_type;bbox_x;bbox_y;bbox_w;bbox_h;part;severity;action;comment
+203;ID2_20240917_150708.png;1129;crack;949.3;2744.5;137.9;214.1;bumper;severe;replacement;part auto: front_panel (99% of box), check it
+203;ID2_20240917_150708.png;1130;glass_shatter;665.4;1537.7;121.2;337.9;windshield;moderate;replacement;part auto: front_windshield (100% of box), check it
+203;ID2_20240917_150708.png;1131;scratch;1734.5;2145.0;322.3;130.6;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+203;ID2_20240917_150708.png;1132;lamp_broken;523.9;2012.5;90.5;92.1;light;moderate;replacement;part auto: damage type lamp_broken (100% of box), check it
+203;ID2_20240917_150708.png;1133;lamp_broken;609.0;2316.9;187.8;174.0;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+220;ID2_20240917_200641.png;1225;glass_shatter;1745.7;1557.6;63.6;56.5;window;moderate;replacement;part auto: left_side_window (100% of box), check it
+220;ID2_20240917_200641.png;1226;scratch;1414.5;2627.0;135.0;127.2;other;moderate;repair;part auto: left_rocker_panel (80% of box), check it
+220;ID2_20240917_200641.png;1227;crack;1859.8;2232.6;124.9;145.6;door;severe;replacement;part auto: left_door (97% of box), check it
+220;ID2_20240917_200641.png;1228;crack;468.0;2417.6;143.5;135.2;bumper;severe;replacement;part auto: rear_panel (100% of box), check it
+220;ID2_20240917_200641.png;1229;scratch;1136.0;2190.9;137.8;146.3;fender;moderate;repair;part auto: left_rear_quarter_panel (100% of box), check it
+220;ID2_20240917_200641.png;1230;lamp_broken;697.8;2338.8;103.9;159.7;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+220;ID2_20240917_200641.png;1231;glass_shatter;1429.4;1581.2;82.5;136.6;window;moderate;replacement;part auto: left_side_window (100% of box), check it
+81;ID1_20240917_182630.png;470;glass_shatter;2192.7;481.1;187.8;202.1;window;severe;replacement;part auto: right_rear_side_window (100% of box), check it
+81;ID1_20240917_182630.png;471;glass_shatter;1098.9;524.7;131.6;181.4;window;moderate;replacement;part auto: right_side_window (100% of box), check it
+81;ID1_20240917_182630.png;472;scratch;1680.2;1641.4;148.4;111.5;door;minor;repair;part auto: right_door (100% of box), check it
+81;ID1_20240917_182630.png;473;crack;2509.2;451.4;173.6;118.5;windshield;severe;replacement;part auto: rear_windshield (93% of box), check it
+81;ID1_20240917_182630.png;474;scratch;2321.8;991.1;215.2;160.2;fender;moderate;repair;part auto: right_rear_quarter_panel (100% of box), check it
+81;ID1_20240917_182630.png;475;glass_shatter;737.2;757.6;103.8;137.9;window;moderate;repair;part auto: right_front_side_window (100% of box), check it
+185;ID2_20240917_150511.png;1026;scratch;1598.3;937.3;137.6;138.1;door;moderate;repair;part auto: left_door (100% of box), check it
+185;ID2_20240917_150511.png;1027;lamp_broken;2632.3;1271.2;104.9;168.2;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+185;ID2_20240917_150511.png;1028;glass_shatter;2544.5;323.7;273.7;489.1;windshield;severe;replacement;part auto: front_windshield (100% of box), check it
+185;ID2_20240917_150511.png;1029;scratch;2349.3;1171.8;169.5;132.0;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+185;ID2_20240917_150511.png;1030;glass_shatter;1523.6;600.3;92.7;148.0;window;minor;repair;part auto: left_side_window (100% of box), check it
+185;ID2_20240917_150511.png;1031;crack;2560.3;1638.0;111.4;292.9;bumper;severe;replacement;part auto: front_panel (96% of box), check it
+185;ID2_20240917_150511.png;1032;lamp_broken;2417.6;1012.6;80.1;95.7;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+185;ID2_20240917_150511.png;1033;crack;2325.1;925.1;84.4;101.9;bumper;moderate;repair;part auto: front_panel (99% of box), check it
+54;ID1_20240917_160035.png;318;crack;1814.3;1262.5;111.9;97.4;bumper;moderate;repair;part auto: rear_panel (96% of box), check it
+54;ID1_20240917_160035.png;319;scratch;1187.4;1515.2;123.1;53.9;bumper;minor;repair;part auto: rear_panel (100% of box), check it
+54;ID1_20240917_160035.png;320;glass_shatter;632.6;791.2;216.3;406.6;windshield;severe;replacement;part auto: rear_windshield (100% of box), check it
+54;ID1_20240917_160035.png;321;crack;674.8;603.9;118.3;111.9;windshield;moderate;repair;part auto: rear_windshield (100% of box), check it
+54;ID1_20240917_160035.png;322;scratch;660.0;1902.8;96.2;84.6;bumper;minor;repair;part auto: rear_panel (100% of box), check it
+14;ID1_20240917_151134.png;69;glass_shatter;654.4;853.9;160.1;212.6;windshield;severe;replacement;part auto: rear_windshield (100% of box), check it
+14;ID1_20240917_151134.png;70;crack;1845.7;1962.3;190.5;250.9;bumper;severe;replacement;part auto: rear_panel (92% of box), check it
+14;ID1_20240917_151134.png;71;lamp_broken;1907.9;1281.8;90.3;87.2;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+33;ID1_20240917_153845.png;186;lamp_broken;1232.5;1686.5;83.3;86.8;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+33;ID1_20240917_153845.png;187;scratch;1751.0;1698.4;270.1;142.7;door;moderate;repair;part auto: left_door (100% of box), check it
+33;ID1_20240917_153845.png;188;lamp_broken;414.5;1495.6;46.5;66.2;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+33;ID1_20240917_153845.png;189;lamp_broken;359.9;1734.4;70.2;134.3;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+33;ID1_20240917_153845.png;190;lamp_broken;991.8;1946.5;124.8;168.4;light;severe;repair;part auto: damage type lamp_broken (100% of box), check it
+33;ID1_20240917_153845.png;191;crack;1792.4;1943.5;121.5;159.1;door;severe;replacement;part auto: left_door (97% of box), check it
+33;ID1_20240917_153845.png;192;glass_shatter;624.7;1265.5;116.3;143.5;windshield;moderate;replacement;part auto: rear_windshield (100% of box), check it
+33;ID1_20240917_153845.png;193;crack;1324.1;1785.0;120.3;131.8;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+43;ID1_20240917_155905.png;245;glass_shatter;1763.9;858.6;135.7;106.4;windshield;moderate;replacement;part auto: front_windshield (100% of box), check it
+43;ID1_20240917_155905.png;246;lamp_broken;2106.6;1459.5;90.9;157.4;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+43;ID1_20240917_155905.png;247;scratch;1262.5;1743.1;145.3;93.6;other;moderate;repair;part auto: left_rocker_panel (71% of box), check it
+43;ID1_20240917_155905.png;248;glass_shatter;1659.5;516.6;175.0;162.9;windshield;moderate;replacement;part auto: front_windshield (100% of box), check it
+43;ID1_20240917_155905.png;249;crack;1420.1;1357.9;53.7;110.9;fender;moderate;repair;part auto: left_front_quarter_panel (100% of box), check it
+43;ID1_20240917_155905.png;250;crack;2339.1;1486.4;33.4;83.5;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+43;ID1_20240917_155905.png;251;scratch;775.1;914.1;228.3;97.6;door;moderate;repair;part auto: left_door (100% of box), check it
+43;ID1_20240917_155905.png;252;lamp_broken;1900.4;1212.5;80.1;95.0;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+43;ID1_20240917_155905.png;253;scratch;1940.0;1111.8;216.5;76.9;bumper;moderate;repair;part auto: front_panel (99% of box), check it
+43;ID1_20240917_155905.png;254;scratch;681.9;879.7;78.5;60.5;door;moderate;repair;part auto: left_door (100% of box), check it
+129;ID1_20240917_200658.png;710;glass_shatter;1658.4;1125.5;346.3;215.6;windshield;severe;replacement;part auto: front_windshield (100% of box), check it
+129;ID1_20240917_200658.png;711;lamp_broken;2011.0;1472.8;101.7;106.6;light;minor;repair;part auto: damage type lamp_broken (100% of box), check it
+129;ID1_20240917_200658.png;712;lamp_broken;1809.2;1829.7;206.2;178.8;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+129;ID1_20240917_200658.png;713;scratch;510.2;1927.4;306.8;177.7;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+129;ID1_20240917_200658.png;714;crack;1930.1;2076.5;154.2;104.2;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+129;ID1_20240917_200658.png;715;crack;703.5;1678.2;106.4;82.0;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+229;ID3_20240917_144416.png;1279;lamp_broken;2883.2;2731.7;60.7;208.5;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+229;ID3_20240917_144416.png;1280;scratch;2319.5;2350.6;152.7;214.3;bumper;minor;repair;part auto: front_panel (91% of box), check it
+229;ID3_20240917_144416.png;1281;crack;420.7;2413.9;164.0;96.2;fender;severe;replacement;part auto: left_rear_quarter_panel (91% of box), check it
+229;ID3_20240917_144416.png;1282;glass_shatter;938.4;1669.0;295.5;243.2;window;moderate;replacement;part auto: left_side_window (100% of box), check it
+229;ID3_20240917_144416.png;1283;glass_shatter;2204.5;1628.5;348.9;476.6;windshield;severe;replacement;part auto: front_windshield (95% of box), check it
+181;ID2_20240917_150435.png;1009;scratch;1261.5;1879.0;88.8;82.4;fender;minor;repair;part auto: left_rear_quarter_panel (100% of box), check it
+181;ID2_20240917_150435.png;1010;glass_shatter;364.2;1492.4;93.1;235.0;windshield;moderate;replacement;part auto: rear_windshield (82% of box), check it
+181;ID2_20240917_150435.png;1011;lamp_broken;663.4;2225.1;95.0;154.1;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+181;ID2_20240917_150435.png;1012;scratch;280.4;2037.9;132.2;98.3;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+181;ID2_20240917_150435.png;1013;crack;573.0;1988.8;99.0;83.0;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+39;ID1_20240917_153916.png;219;lamp_broken;522.3;1663.9;74.5;76.6;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+39;ID1_20240917_153916.png;220;lamp_broken;1571.0;1959.7;147.6;139.2;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+39;ID1_20240917_153916.png;221;crack;1821.8;2166.0;69.4;143.1;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+39;ID1_20240917_153916.png;222;lamp_broken;1721.9;1693.0;73.6;71.5;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+39;ID1_20240917_153916.png;223;glass_shatter;671.1;1395.0;69.9;83.2;windshield;moderate;repair;part auto: rear_windshield (100% of box), check it
+39;ID1_20240917_153916.png;224;glass_shatter;784.8;1283.7;73.3;91.8;windshield;moderate;repair;part auto: rear_windshield (100% of box), check it
+39;ID1_20240917_153916.png;225;crack;1778.4;1822.0;104.9;61.9;bumper;moderate;repair;part auto: rear_panel (88% of box), check it
+39;ID1_20240917_153916.png;226;scratch;1766.4;2163.9;73.9;136.5;bumper;minor;repair;part auto: rear_panel (100% of box), check it
+96;ID1_20240917_191215.png;554;lamp_broken;272.1;1742.7;102.5;140.3;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+96;ID1_20240917_191215.png;555;lamp_broken;1048.4;1974.9;155.3;162.8;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+96;ID1_20240917_191215.png;556;crack;1558.4;1818.3;90.9;163.6;fender;moderate;repair;part auto: right_front_quarter_panel (53% of box), check it
+96;ID1_20240917_191215.png;557;lamp_broken;307.0;1484.6;54.5;71.2;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+186;ID2_20240917_150514.png;1034;glass_shatter;1807.3;417.5;98.1;122.9;window;moderate;replacement;part auto: left_front_side_window (100% of box), check it
+186;ID2_20240917_150514.png;1035;lamp_broken;2506.6;1306.1;103.9;169.8;light;moderate;replacement;part auto: damage type lamp_broken (100% of box), check it
+186;ID2_20240917_150514.png;1036;lamp_broken;3040.5;1072.4;44.9;131.5;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+186;ID2_20240917_150514.png;1037;scratch;1292.2;1043.0;373.3;190.9;door;moderate;repair;part auto: left_door (100% of box), check it
+186;ID2_20240917_150514.png;1038;glass_shatter;1041.5;426.3;122.1;227.2;window;moderate;replacement;part auto: left_rear_side_window (72% of box), check it
+186;ID2_20240917_150514.png;1039;crack;2695.3;1158.0;199.6;130.9;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+186;ID2_20240917_150514.png;1040;crack;1676.7;1497.9;106.6;127.1;door;moderate;repair;part auto: left_door (97% of box), check it
+186;ID2_20240917_150514.png;1041;crack;1783.5;307.0;55.7;72.0;other;moderate;repair;part auto: roof (100% of box), check it
+65;ID1_20240917_172127.png;376;lamp_broken;733.6;1358.5;106.0;203.4;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+65;ID1_20240917_172127.png;377;lamp_broken;991.1;1059.3;93.5;108.4;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+65;ID1_20240917_172127.png;378;scratch;1399.5;1179.5;161.8;115.4;fender;minor;repair;part auto: left_rear_quarter_panel (100% of box), check it
+65;ID1_20240917_172127.png;379;crack;1582.1;945.5;43.2;105.7;fender;moderate;replacement;part auto: left_rear_quarter_panel (100% of box), check it
+65;ID1_20240917_172127.png;380;glass_shatter;1469.7;454.2;171.2;398.6;window;severe;replacement;part auto: left_rear_side_window (100% of box), check it
+65;ID1_20240917_172127.png;381;crack;631.9;1238.2;96.9;83.6;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+65;ID1_20240917_172127.png;382;crack;537.4;1163.9;45.2;71.8;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+30;ID1_20240917_153834.png;166;crack;2283.9;1088.9;75.8;69.6;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+30;ID1_20240917_153834.png;167;scratch;2257.2;1697.3;161.4;237.8;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+30;ID1_20240917_153834.png;168;crack;984.3;1748.5;36.9;120.2;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+30;ID1_20240917_153834.png;169;glass_shatter;1212.3;666.2;191.1;213.0;windshield;moderate;repair;part auto: rear_windshield (100% of box), check it
+30;ID1_20240917_153834.png;170;lamp_broken;1094.0;1402.3;162.5;152.7;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+30;ID1_20240917_153834.png;171;lamp_broken;2137.3;1433.9;163.6;151.6;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+26;ID1_20240917_153815.png;144;scratch;2138.2;1945.6;206.8;68.1;other;minor;repair;part auto: right_rocker_panel (100% of box), check it
+26;ID1_20240917_153815.png;145;glass_shatter;937.3;682.8;325.7;399.0;window;moderate;replacement;part auto: right_front_side_window (80% of box), check it
+26;ID1_20240917_153815.png;146;scratch;2431.5;1469.7;163.3;187.7;fender;minor;repair;part auto: right_rear_quarter_panel (85% of box), check it
+26;ID1_20240917_153815.png;147;crack;1355.9;1485.6;113.6;408.7;door;severe;replacement;part auto: right_door (100% of box), check it
+26;ID1_20240917_153815.png;148;glass_shatter;2387.0;749.0;247.7;315.7;window;moderate;replacement;part auto: right_rear_side_window (92% of box), check it
+72;ID1_20240917_182440.png;424;crack;694.7;1260.3;194.7;252.0;bumper;severe;replacement;part auto: front_panel (88% of box), check it
+72;ID1_20240917_182440.png;425;glass_shatter;1327.1;731.9;525.3;317.1;windshield;severe;replacement;part auto: front_windshield (100% of box), check it
+72;ID1_20240917_182440.png;426;lamp_broken;2047.3;1490.0;179.4;163.1;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+72;ID1_20240917_182440.png;427;scratch;2210.9;1879.4;214.3;205.0;bumper;moderate;repair;part auto: front_panel (74% of box), check it
+37;ID1_20240917_153908.png;212;glass_shatter;720.0;1477.0;219.2;127.3;window;minor;repair;part auto: right_side_window (100% of box), check it
+37;ID1_20240917_153908.png;213;glass_shatter;1342.0;1231.4;137.9;152.5;window;moderate;replacement;part auto: right_side_window (100% of box), check it
+37;ID1_20240917_153908.png;214;scratch;1340.6;1860.4;233.8;83.8;door;moderate;repair;part auto: right_door (100% of box), check it
+86;ID1_20240917_185132.png;499;lamp_broken;562.0;1496.8;71.7;74.7;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+86;ID1_20240917_185132.png;500;scratch;676.7;1988.7;270.6;94.7;bumper;minor;repair;part auto: rear_panel (100% of box), check it
+86;ID1_20240917_185132.png;501;scratch;1488.7;2203.8;125.0;135.1;bumper;minor;repair;part auto: rear_panel (99% of box), check it
+86;ID1_20240917_185132.png;502;glass_shatter;703.5;1134.2;203.0;223.6;windshield;moderate;replacement;part auto: rear_windshield (100% of box), check it
+86;ID1_20240917_185132.png;503;lamp_broken;1634.0;1784.1;157.5;148.0;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+29;ID1_20240917_153828.png;158;crack;2046.3;1645.3;56.5;197.1;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+29;ID1_20240917_153828.png;159;lamp_broken;1862.8;1255.4;73.0;87.2;light;moderate;repair;part auto: damage type lamp_broken (100% of box), check it
+29;ID1_20240917_153828.png;160;lamp_broken;2062.3;1489.4;78.5;160.2;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+29;ID1_20240917_153828.png;161;scratch;1194.6;1395.2;67.5;76.2;door;minor;repair;part auto: right_door (100% of box), check it
+29;ID1_20240917_153828.png;162;lamp_broken;2486.4;1282.1;35.3;111.5;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+29;ID1_20240917_153828.png;163;glass_shatter;1086.0;706.8;252.1;197.4;window;moderate;replacement;part auto: right_side_window (100% of box), check it
+29;ID1_20240917_153828.png;164;scratch;703.3;1333.1;148.6;31.6;door;minor;repair;part auto: right_door (100% of box), check it
+29;ID1_20240917_153828.png;165;scratch;939.3;1266.4;241.1;101.3;door;moderate;repair;part auto: right_door (100% of box), check it
+189;ID2_20240917_150541.png;1055;crack;2292.7;914.5;95.8;201.0;fender;moderate;repair;part auto: right_front_quarter_panel (100% of box), check it
+189;ID2_20240917_150541.png;1056;scratch;854.2;1317.9;98.7;218.1;bumper;moderate;repair;part auto: front_panel (87% of box), check it
+189;ID2_20240917_150541.png;1057;glass_shatter;2437.0;345.8;226.6;228.4;window;moderate;replacement;part auto: right_side_window (100% of box), check it
+189;ID2_20240917_150541.png;1058;lamp_broken;1948.7;1015.1;93.6;97.9;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+188;ID2_20240917_150528.png;1049;scratch;1571.0;1105.1;209.4;98.6;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+188;ID2_20240917_150528.png;1050;lamp_broken;1358.6;1323.7;187.6;176.6;light;moderate;replacement;part auto: damage type lamp_broken (100% of box), check it
+188;ID2_20240917_150528.png;1051;crack;2716.3;1651.4;125.9;192.1;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+188;ID2_20240917_150528.png;1052;glass_shatter;1456.8;389.5;144.9;125.3;windshield;moderate;replacement;part auto: front_windshield (100% of box), check it
+188;ID2_20240917_150528.png;1053;crack;1212.0;1162.9;120.1;128.7;bumper;moderate;repair;part auto: front_panel (100% of box), check it
+188;ID2_20240917_150528.png;1054;scratch;2584.5;943.9;197.5;72.2;bumper;moderate;repair;part auto: front_panel (97% of box), check it
+219;ID2_20240917_200630.png;1219;scratch;283.6;2325.7;115.3;295.2;bumper;moderate;repair;part auto: rear_panel (100% of box), check it
+219;ID2_20240917_200630.png;1220;scratch;1712.9;1888.0;90.7;99.3;bumper;minor;repair;part auto: rear_panel (100% of box), check it
+219;ID2_20240917_200630.png;1221;lamp_broken;1548.9;1999.4;191.8;185.7;light;severe;replacement;part auto: damage type lamp_broken (100% of box), check it
+219;ID2_20240917_200630.png;1222;glass_shatter;758.6;1136.3;62.1;121.1;windshield;moderate;repair;part auto: rear_windshield (100% of box), check it
+219;ID2_20240917_200630.png;1223;crack;1682.7;2274.7;249.2;241.9;bumper;moderate;repair;part auto: rear_panel (98% of box), check it
+219;ID2_20240917_200630.png;1224;glass_shatter;467.4;1147.5;187.4;225.0;windshield;severe;repair;part auto: rear_windshield (100% of box), check it
