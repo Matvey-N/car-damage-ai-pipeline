@@ -1,0 +1,26 @@
+{
+  "fixed_on": "2026-10-07",
+  "fixed_before_test_run": true,
+  "prompt_version": "v3",
+  "model": "claude-opus-5-5",
+  "basis": "dev set, 16 images, 98 damages, report_dev_v3.json. Thresholds are the dev results rounded down; per TZ section 11 they are not set above what was reached on dev.",
+  "dev_results": {
+    "recall": 0.459,
+    "precision": 0.600,
+    "damage_type_macro_f1": 0.494,
+    "severity_exact_accuracy": 0.733,
+    "brier_score": 0.105
+  },
+  "targets_for_test": {
+    "recall_min": 0.45,
+    "precision_min": 0.60,
+    "damage_type_macro_f1_min": 0.49,
+    "severity_exact_accuracy_min": 0.70,
+    "brier_score_max": 0.12
+  },
+  "notes": [
+    "Pilot sample: with 16 dev and 24 test images the metrics are noisy; a difference of a few points between dev and test is within noise.",
+    "Severity, part and action labels come from one annotator so far; the second independent pass is pending.",
+    "Results below the targets do not by themselves mean failure (TZ section 11); they must be reported and explained."
+  ]
+}
