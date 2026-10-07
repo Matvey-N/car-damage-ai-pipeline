@@ -18,10 +18,13 @@ src/main/java/com/cardamage/
       VisionModelClient     интерфейс вызова модели
       StubVisionModelClient заглушка модели (без API и без данных)
     demo/DamageMergeService объединение серии фото (только демо)
+    demo/PriceEstimator     ориентир стоимости по условному справочнику цен (только демо)
+    bot/DemoBot             логика Telegram-бота: 3–10 фото, затем /report (только демо)
   web/                      тонкий Spring-слой
     AnalysisController      POST /api/v1/analyze, POST /api/v1/demo/analyze, GET /api/v1/info
     AnthropicVisionModelClient  реальный вызов Claude API
     PipelineConfig          выбор stub / anthropic
+    TelegramBotRunner, TelegramHttpApi  запуск бота внутри сервиса (long polling), выключен без токена
 scripts/
   convert_syndcar.py           SYNDCAR (YOLO) -> COCO, автоматическое определение детали, пулы dev/test
   select_benchmark_samples.py  фиксированная стратифицированная выборка dev/test
@@ -74,6 +77,21 @@ python3 -m unittest discover -s tests -v
 python3 evaluate.py --ground-truth ../benchmark/fixtures/ground_truth_synthetic.json \
                     --predictions  ../benchmark/fixtures/predictions_synthetic.json
 ```
+
+## Telegram-бот (демо, вторично)
+
+Бот работает внутри того же сервиса и использует тот же pipeline одного снимка. Хостинг и публичный адрес
+не нужны (long polling): бот отвечает, пока сервис запущен на вашем компьютере.
+
+1. В Telegram у @BotFather: `/newbot`, получить токен.
+2. Запустить сервис с переменными `TELEGRAM_BOT_TOKEN=...`, `PIPELINE_MODEL_CLIENT=anthropic`, `ANTHROPIC_API_KEY=...`.
+   Токен в файлы проекта не записывать.
+3. Написать боту `/start`, прислать 3–10 фото одного автомобиля, затем `/report`.
+
+Бот анализирует каждое фото отдельно, объединяет результаты (одинаковые деталь и тип — одна запись)
+и добавляет ориентир стоимости из `src/main/resources/demo/price_table.json`. Цены в справочнике условные,
+придуманы для демонстрации. Telegram сжимает фотографии; чтобы сохранить качество, отправляйте их как файл.
+Без токена бот выключен и на benchmark и тесты не влияет.
 
 ## Порядок benchmark
 
@@ -173,7 +191,7 @@ Mendeley Data, V1, 2025. DOI: 10.17632/hzpj48krdt.1 — https://data.mendeley.co
 Готово: каркас Spring Boot, обработка одного изображения с уменьшением больших снимков, проверка формата,
 retry/fallback, заглушка модели; конвертер SYNDCAR (разбиение по съёмочным дням, автоматическая деталь),
 зафиксированная выборка 16 dev + 24 test, инструменты разметки, прогон выборки через сервис, оценка
-с правилом сопоставления. Тесты: Java (`mvn test`) — 44, Python — 63.
+с правилом сопоставления. Telegram-бот и демо-расчёт стоимости. Тесты: Java (`mvn test`) — 54, Python — 63.
 
 Benchmark проведён (пилотно): dev с промптами v2 и v3, пороги зафиксированы, test прогнан один раз.
 На test: recall 0,394, precision 0,602, macro-F1 0,447. Результаты, разбор ошибок и ограничения —
@@ -181,4 +199,3 @@ Benchmark проведён (пилотно): dev с промптами v2 и v3,
 
 Не сделано: вторая независимая разметка (метрики серьёзности и действия до неё ненадёжны).
 
-Вторично, позже: Telegram-бот, расчёт стоимости.

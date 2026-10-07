@@ -1,0 +1,16 @@
+{
+  "note": "DEMO reference prices, invented for illustration. Not real repair costs.",
+  "currency": "EUR",
+  "prices": {
+    "bumper":     { "repair": [150, 350], "replacement": [400, 900] },
+    "door":       { "repair": [200, 450], "replacement": [600, 1300] },
+    "light":      { "repair": [60, 150],  "replacement": [150, 600] },
+    "window":     { "repair": [80, 150],  "replacement": [150, 400] },
+    "windshield": { "repair": [80, 150],  "replacement": [300, 800] },
+    "hood":       { "repair": [200, 450], "replacement": [500, 1100] },
+    "fender":     { "repair": [150, 400], "replacement": [350, 800] },
+    "mirror":     { "repair": [50, 120],  "replacement": [120, 400] },
+    "wheel":      { "repair": [60, 150],  "replacement": [150, 500] },
+    "other":      { "repair": [100, 300], "replacement": [300, 800] }
+  }
+}
