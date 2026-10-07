@@ -124,3 +124,39 @@ class CompareLabelsTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class LabelingPageTest(unittest.TestCase):
+    def setUp(self):
+        import make_labeling_page as mlp
+        self.mlp = mlp
+        self.tmp = tempfile.mkdtemp()
+        coco = fake_coco(10, 1)
+        self.sheet = os.path.join(self.tmp, "labels_dev_A.csv")
+        write_sheet(self.sheet, mls.build_rows(coco, examples_for([2, 5])))
+        self.images = os.path.join(self.tmp, "data", "images")
+        os.makedirs(self.images)
+        for i in (2, 5):
+            open(os.path.join(self.images, f"{i:06d}.jpg"), "wb").close()
+        self.out_dir = os.path.join(self.tmp, "benchmark")
+        os.makedirs(self.out_dir)
+
+    def test_page_contains_rows_options_and_relative_image_path(self):
+        out = os.path.join(self.out_dir, "page.html")
+        self.assertEqual(self.mlp.main(["--sheet", self.sheet, "--images-dir", self.images, "--out", out]), 0)
+        html = open(out, encoding="utf-8").read()
+        self.assertIn('"image_base": "../data/images/"', html)
+        self.assertIn('"sheet": "labels_dev_A.csv"', html)
+        self.assertIn('"severity": ["minor", "moderate", "severe"]', html)
+        self.assertNotIn("__DATA__", html)
+
+    def test_missing_image_is_an_error(self):
+        os.remove(os.path.join(self.images, "000005.jpg"))
+        out = os.path.join(self.out_dir, "page.html")
+        self.assertEqual(self.mlp.main(["--sheet", self.sheet, "--images-dir", self.images, "--out", out]), 1)
+
+    def test_script_tag_cannot_be_closed_by_data(self):
+        rows = read_sheet(self.sheet)
+        rows[0]["comment"] = "</script><b>x"
+        html = self.mlp.build_page(rows, "s.csv", "img/")
+        self.assertEqual(html.count("</script>"), 1)
