@@ -19,12 +19,16 @@ src/main/java/com/cardamage/
       StubVisionModelClient заглушка модели (без API и без данных)
     demo/DamageMergeService объединение серии фото (только демо)
     demo/PriceEstimator     ориентир стоимости по условному справочнику цен (только демо)
-    bot/DemoBot             логика Telegram-бота: 3–10 фото, затем /report (только демо)
+    bot/DemoBot             логика Telegram-бота: 3–10 фото, затем /report, /app (только демо)
+    miniapp/                проверка подписи Telegram (initData) и лимит запросов для Mini App
+    pipeline/TiledImageAnalyzer  анализ снимка перекрывающимися фрагментами (?mode=tiled)
+    pipeline/RegionDescriber     гибрид: модель описывает рамки, найденные детектором (/api/v1/describe)
   web/                      тонкий Spring-слой
     AnalysisController      POST /api/v1/analyze, POST /api/v1/demo/analyze, GET /api/v1/info
     AnthropicVisionModelClient  реальный вызов Claude API
     PipelineConfig          выбор stub / anthropic
     TelegramBotRunner, TelegramHttpApi  запуск бота внутри сервиса (long polling), выключен без токена
+    MiniAppController       API для Mini App; страница: src/main/resources/static/miniapp/index.html
 scripts/
   convert_syndcar.py           SYNDCAR (YOLO) -> COCO, автоматическое определение детали, пулы dev/test
   select_benchmark_samples.py  фиксированная стратифицированная выборка dev/test
@@ -32,16 +36,23 @@ scripts/
   make_labeling_page.py        страница в браузере для разметки: снимок с рамками + выпадающие списки
   compare_labels.py            сравнение двух разметчиков: согласие, каппа Коэна, расхождения
   label_sensitivity.py         точность severity/part/action по разметке A, по B и там, где они совпали
+  agreement.py                 согласие 2+ разметчиков (каппа Флейса) и сводная разметка по большинству
+  bootstrap.py                 95% доверительные интервалы метрик и парное сравнение двух методов
+  selective.py                 сколько ответов можно принять автоматически при пороге уверенности
+  make_yolo_dataset.py, train_detector.py, predict_detector.py  базовый детектор YOLO (нужен ultralytics)
+  run_hybrid.py                гибрид: рамки детектора описывает модель
   build_ground_truth.py        сборка эталона из пула COCO + итоговой разметки, с проверками
   run_benchmark.py             прогон выборки через сервис, сохранение предсказаний
   evaluate.py                  сопоставление (IoU >= 0.5, один к одному) и метрики
-  tests/                       тесты Python-скриптов (65), включая прогон всей цепочки
+  tests/                       тесты Python-скриптов (85), включая прогон всей цепочки
 benchmark/
   syndcar_coco/              пулы dev/test в формате COCO и отчёт конвертации
   dev_examples.*, test_examples.*  зафиксированная выборка (16 + 24 снимка)
   prompt_changelog.md        журнал версий промпта
   fixtures/                  синтетические данные для разработки и тестов
 docs/TZ.md                   техническое задание
+docs/experiments.md          продолжение исследования: интервалы, автоматизация, фрагменты, детектор
+docs/severity_scale_v2.md    шкала серьёзности с измеримыми признаками
 docs/benchmark_report.md     отчёт о benchmark: результаты, разбор ошибок, ограничения
 docs/first_test_run.md       результат первого прогона тестов (первая веха)
 ```
@@ -94,6 +105,24 @@ python3 evaluate.py --ground-truth ../benchmark/fixtures/ground_truth_synthetic.
 и добавляет ориентир стоимости из `src/main/resources/demo/price_table.json`. Цены в справочнике условные,
 придуманы для демонстрации. Telegram сжимает фотографии; чтобы сохранить качество, отправляйте их как файл.
 Без токена бот выключен и на benchmark и тесты не влияет.
+
+## Telegram Mini App (демо)
+
+Приложение внутри Telegram: загрузка фото, рамки повреждений поверх снимка, итог с ориентиром цены.
+Страница отдаётся тем же сервисом (`/miniapp/index.html`). Telegram открывает Mini App только по адресу
+**https**, поэтому нужен туннель. Бесплатный вариант — Cloudflare Quick Tunnel (без регистрации):
+
+1. Установить: `winget install --id Cloudflare.cloudflared` (Windows).
+2. Запустить сервис как для бота (`TELEGRAM_BOT_TOKEN`, `PIPELINE_MODEL_CLIENT=anthropic`, `ANTHROPIC_API_KEY`).
+3. В отдельном окне: `cloudflared tunnel --url http://localhost:8080` — в выводе будет адрес вида
+   `https://<слова>.trycloudflare.com`.
+4. Добавить переменную `TELEGRAM_MINIAPP_URL=https://<слова>.trycloudflare.com/miniapp/index.html`
+   и перезапустить сервис. Бот сам поставит кнопку «Осмотр» рядом с полем ввода; команда `/app` присылает кнопку.
+
+Адрес туннеля меняется при каждом запуске `cloudflared` — тогда повторите шаг 4.
+Сервис принимает запросы Mini App только с подписью Telegram (проверка `initData` токеном бота)
+и не больше 30 анализов фото на пользователя в час (`telegram.miniapp.photos-per-hour`): адрес туннеля
+публичный, а каждый анализ тратит ключ API.
 
 ## Порядок benchmark
 
@@ -194,7 +223,10 @@ Mendeley Data, V1, 2025. DOI: 10.17632/hzpj48krdt.1 — https://data.mendeley.co
 Готово: каркас Spring Boot, обработка одного изображения с уменьшением больших снимков, проверка формата,
 retry/fallback, заглушка модели; конвертер SYNDCAR (разбиение по съёмочным дням, автоматическая деталь),
 зафиксированная выборка 16 dev + 24 test, инструменты разметки, прогон выборки через сервис, оценка
-с правилом сопоставления. Telegram-бот и демо-расчёт стоимости. Тесты: Java (`mvn test`) — 54, Python — 65.
+с правилом сопоставления. Telegram-бот, Mini App и демо-расчёт стоимости. Тесты: Java (`mvn test`) — 82, Python — 85.
+
+После практики: доверительные интервалы, анализ автоматизации по уверенности, режим фрагментов, детектор
+и гибрид, шкала серьёзности v2 — см. `docs/experiments.md`.
 
 Benchmark проведён (пилотно): dev с промптами v2 и v3, пороги зафиксированы, test прогнан один раз.
 На test: recall 0,394, precision 0,602, macro-F1 0,447. Результаты, разбор ошибок и ограничения —

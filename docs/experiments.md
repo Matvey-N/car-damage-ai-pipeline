@@ -1,0 +1,164 @@
+# Исследовательские эксперименты (после практики)
+
+Продолжение benchmark из `docs/benchmark_report.md`. Цель — ответить на вопрос:
+**может ли универсальная мультимодальная модель заменить или дополнить специализированный детектор
+при оценке повреждений, и когда её ответу можно доверять без проверки человеком?**
+
+Общие правила, как в основной работе:
+- выборки dev и test не меняются; test используется один раз для каждого метода;
+- всё, что настраивается (параметры фрагментов, порог детектора, промпт), выбирается только на dev
+  и записывается в этот файл **до** прогона test;
+- каждый метод сравнивается с базовым (промпт v3, целый снимок) парным бутстрепом:
+  разница считается значимой, если 95% интервал не содержит 0.
+
+Все команды — из папки `scripts`.
+
+## Э1. Доверительные интервалы (сделано)
+
+Скрипт `bootstrap.py`: снимки пересэмплируются с возвращением (снимок — единица, потому что
+повреждения на одном снимке не независимы), 2000 повторов, seed 42.
+
+Test, промпт v3 (`benchmark/bootstrap_test_v3.json`):
+
+| Метрика | Значение | 95% интервал |
+|---|---|---|
+| Recall | 0,394 | 0,321–0,473 |
+| Precision | 0,602 | 0,500–0,709 |
+| Macro-F1 по типу | 0,447 | 0,364–0,525 |
+| Точность типа | 0,964 | 0,914–1,000 |
+| Точность серьёзности | 0,464 | 0,375–0,552 |
+| Точность детали | 0,857 | 0,767–0,945 |
+| Точность действия | 0,750 | 0,621–0,868 |
+| Brier | 0,129 | 0,083–0,181 |
+
+Эффект настройки промпта v2 → v3 на dev (парный бутстреп, `benchmark/bootstrap_dev_v2_vs_v3.json`):
+
+| Метрика | v2 | v3 | Разница | 95% интервал | Вывод |
+|---|---|---|---|---|---|
+| Recall | 0,408 | 0,459 | +0,051 | −0,019…+0,129 | не доказано |
+| Precision | 0,645 | 0,600 | −0,045 | −0,137…+0,050 | не доказано |
+| Macro-F1 | 0,396 | 0,494 | +0,098 | +0,032…+0,177 | лучше |
+| Точность типа | 0,750 | 0,956 | +0,206 | +0,077…+0,376 | лучше |
+| Точность серьёзности | 0,325 | 0,733 | +0,408 | +0,285…+0,567 | лучше |
+| Brier | 0,212 | 0,105 | −0,107 | −0,187…−0,041 | лучше |
+
+Вывод: уточнение определений в промпте достоверно улучшило классификацию и калибровку, но не поиск
+повреждений. Это подтверждает, что пропуски не лечатся формулировками.
+
+## Э2. Когда ответу можно доверять (сделано)
+
+Скрипт `selective.py`: принимаем автоматически только повреждения с уверенностью модели ≥ t,
+остальное — человеку. Test, промпт v3 (`benchmark/selective_test_v3.json`):
+
+| Порог | Принято автоматически | Precision принятых | Точность типа | Recall |
+|---|---|---|---|---|
+| все | 100% (93) | 0,602 | 0,964 | 0,394 |
+| ≥ 0,5 | 73% | 0,676 | 0,957 | 0,324 |
+| ≥ 0,6 | 58% | 0,815 | 0,977 | 0,310 |
+| ≥ 0,7 | 47% | 0,864 | 1,000 | 0,268 |
+| ≥ 0,8 | 31% | 0,931 | 1,000 | 0,190 |
+
+Выводы:
+- Уверенность модели полезна: при пороге 0,7 почти половина отметок принимается автоматически,
+  и 86% из них — настоящие повреждения с верным типом во всех случаях.
+- Но **ни один снимок** не получил полностью правильный отчёт ни при каком пороге: модель уверена в том,
+  что нашла, но не знает, что пропустила. Отбор по уверенности убирает ложные отметки, но не пропуски.
+  Значит, автоматически закрывать целый случай нельзя; можно автоматически подтверждать отдельные находки.
+
+Порог для практического использования выбирается на dev (`selective_dev_v3.json`): там ≥ 0,7 даёт 59%
+принятых с precision 0,727; на test — 47% и 0,864. Разброс между выборками большой из-за их размера.
+
+## Э3. Анализ по фрагментам: проверка гипотезы о мелких повреждениях
+
+**Гипотеза.** Модель пропускает мелкие повреждения, потому что снимок уменьшается до 1568 px.
+Если анализировать перекрывающиеся фрагменты, recall на мелких повреждениях вырастет.
+
+**Метод** (зафиксирован до прогона): сетка 2×2, перекрытие 20%, плюс целый снимок; тот же промпт v3;
+дубликаты объединяются (тот же тип и IoU ≥ 0,5 или меньшая рамка на 80% внутри большей).
+Это 5 вызовов модели на снимок.
+
+```bash
+# dev: проверка, что режим работает
+python run_benchmark.py --mode tiled --examples ../benchmark/dev_examples.json \
+    --images-dir ../data/hitl/SYNDCAR/images --out ../benchmark/predictions_dev_tiled.json
+python bootstrap.py --ground-truth ../benchmark/ground_truth_dev.json \
+    --predictions ../benchmark/predictions_dev_v3.json --compare ../benchmark/predictions_dev_tiled.json
+# test: один раз
+python run_benchmark.py --mode tiled --examples ../benchmark/test_examples.json \
+    --images-dir ../data/hitl/SYNDCAR/images --out ../benchmark/predictions_test_tiled.json
+python bootstrap.py --ground-truth ../benchmark/ground_truth_test.json \
+    --predictions ../benchmark/predictions_test_v3.json --compare ../benchmark/predictions_test_tiled.json
+```
+
+Ожидаемый результат: recall вырастет, precision может упасть (больше вызовов — больше ложных отметок).
+Стоимость: 5× по API.
+
+## Э4. Специализированный детектор и гибрид
+
+**Вопрос.** Что лучше находит повреждения — универсальная модель или обученный детектор, и даёт ли
+выигрыш их сочетание (детектор ищет, модель описывает и отбраковывает)?
+
+**Ограничение SYNDCAR, важное для выводов:** все снимки — одна машина, поэтому детектор, обученный
+на dev-пуле, видит в test ту же машину. Сравнение будет **в пользу детектора** сильнее, чем на реальных
+данных. На SYNDCAR этот эксперимент проверяет механику; окончательный ответ — на реальных фото.
+
+**Метод:**
+- детектор YOLOv8n, обучение только на dev-пуле: train = 45 снимков dev-пула вне выборки,
+  val = 16 снимков dev-выборки; разрешение 1280, 100 эпох, seed 42;
+- порог уверенности детектора выбирается на dev по macro-F1 и записывается сюда до test;
+- гибрид: рамки детектора рисуются на снимке и передаются модели (`/api/v1/describe`, промпт r1);
+  модель описывает каждую рамку или отвечает «повреждения нет».
+
+```bash
+pip install ultralytics
+python make_yolo_dataset.py --pool ../benchmark/syndcar_coco/dev_pool.json \
+    --examples ../benchmark/dev_examples.json --images-dir ../data/hitl/SYNDCAR/images --out-dir ../data/yolo_dev
+python train_detector.py --data ../data/yolo_dev/data.yaml
+# выбор порога на dev: повторить для --conf 0.1, 0.25, 0.4 и сравнить evaluate.py
+python predict_detector.py --weights ../data/detector_runs/syndcar_dev/weights/best.pt --conf 0.25 \
+    --examples ../benchmark/dev_examples.json --images-dir ../data/hitl/SYNDCAR/images \
+    --out ../benchmark/predictions_dev_detector.json
+python evaluate.py --ground-truth ../benchmark/ground_truth_dev.json --predictions ../benchmark/predictions_dev_detector.json
+# test: один раз с выбранным порогом
+python predict_detector.py --weights ../data/detector_runs/syndcar_dev/weights/best.pt --conf <порог> \
+    --examples ../benchmark/test_examples.json --images-dir ../data/hitl/SYNDCAR/images \
+    --out ../benchmark/predictions_test_detector.json
+python run_hybrid.py --detector ../benchmark/predictions_test_detector.json \
+    --examples ../benchmark/test_examples.json --images-dir ../data/hitl/SYNDCAR/images \
+    --out ../benchmark/predictions_test_hybrid.json
+python bootstrap.py --ground-truth ../benchmark/ground_truth_test.json \
+    --predictions ../benchmark/predictions_test_v3.json --compare ../benchmark/predictions_test_hybrid.json
+```
+
+Таблица для итогов (test):
+
+| Метод | Recall | Precision | Macro-F1 | Точность типа | Серьёзность | Вызовов модели |
+|---|---|---|---|---|---|---|
+| Модель, целый снимок (v3) | 0,394 | 0,602 | 0,447 | 0,964 | 0,464 | 24 |
+| Модель, фрагменты | | | | | | |
+| Детектор | | | | | — | 0 |
+| Гибрид | | | | | | |
+
+## Э5. Шкала серьёзности v2
+
+См. `docs/severity_scale_v2.md`. Гипотеза: измеримые признаки поднимут согласие разметчиков
+по серьёзности с каппы 0,39 (v1, dev) до ≥ 0,7. Проверка: dev размечают минимум два человека
+по шкале v2, затем `agreement.py`. Если гипотеза подтвердится, шкала переносится в промпт
+(новая версия, настройка на dev, затем test).
+
+```bash
+python make_labeling_sheet.py --annotations ../benchmark/syndcar_coco/dev_pool.json \
+    --examples ../benchmark/dev_examples.json --out ../benchmark/labels_dev_v2_A.csv
+python make_labeling_page.py --sheet ../benchmark/labels_dev_v2_A.csv --rules v2 \
+    --images-dir ../data/hitl/SYNDCAR/images --out ../benchmark/labeling_dev_v2_A.html
+# то же для B (и C), затем:
+python agreement.py --sheets ../benchmark/labels_dev_v2_A.csv ../benchmark/labels_dev_v2_B.csv \
+    --majority-out ../benchmark/labels_dev_v2_final.csv
+```
+
+## Отложено
+
+- Реальные фотографии разных машин (CarDD или другой набор) — главное условие переносимости выводов.
+- Несколько моделей на одном benchmark.
+- Несколько фото одной машины: растёт ли recall с числом ракурсов.
+- Устойчивость к сжатию (Telegram), свету и расстоянию.
