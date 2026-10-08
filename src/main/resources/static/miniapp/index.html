@@ -13,79 +13,100 @@
     --card: var(--tg-theme-secondary-bg-color, #ffffff);
     --accent: var(--tg-theme-button-color, #2f6fde);
     --accent-text: var(--tg-theme-button-text-color, #ffffff);
-    --danger: #d64545;
+    --danger: #d0453a; --ok: #2f8a55; --warn: #c27a12;
     --c-glass: #2f8fde; --c-lamp: #e08a1e; --c-crack: #b24bd6; --c-scratch: #2fae6a;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
          font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 16px 16px 96px; }
-  h1 { font-size: 22px; margin: 4px 0 4px; }
+  main { max-width: 720px; margin: 0 auto; padding: 12px 16px 96px; }
+  h1 { font-size: 22px; margin: 4px 0; }
   h2 { font-size: 18px; margin: 0 0 8px; }
+  h3 { font-size: 16px; margin: 0 0 6px; }
+  p { margin: 6px 0; }
   .hint { color: var(--hint); font-size: 14px; }
-  .card { background: var(--card); border-radius: 14px; padding: 14px; margin-top: 14px; }
-  .pick { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
-          border: 2px dashed var(--hint); border-radius: 14px; padding: 18px; color: var(--text);
-          background: transparent; font-size: 16px; cursor: pointer; }
+  .card { background: var(--card); border-radius: 14px; padding: 14px; margin-top: 12px; }
+  .tabs { display: flex; gap: 6px; background: var(--card); padding: 4px; border-radius: 12px; margin-top: 8px; }
+  .tabs button { flex: 1; border: 0; border-radius: 9px; padding: 9px; background: transparent; color: var(--text); font-size: 15px; }
+  .tabs button.on { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+  .choice { display: block; width: 100%; text-align: left; border: 0; background: var(--card); color: var(--text);
+            border-radius: 14px; padding: 14px; margin-top: 10px; font-size: 16px; }
+  .choice b { display: block; margin-bottom: 2px; }
+  .btn { width: 100%; padding: 13px; border: 0; border-radius: 12px; background: var(--accent);
+         color: var(--accent-text); font-size: 16px; font-weight: 600; margin-top: 12px; }
+  .btn.secondary { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn.danger { background: transparent; color: var(--danger); border: 1.5px solid var(--danger); }
+  .btn:disabled { opacity: .5; }
+  .row { display: flex; gap: 10px; }
+  .row > * { flex: 1; }
+  input[type=text], select { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #8884;
+                             background: var(--bg); color: var(--text); font-size: 15px; }
   .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 12px; }
   .thumb { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: #0002; }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .thumb button { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 13px;
-                  border: 0; background: #000a; color: #fff; font-size: 16px; line-height: 26px; padding: 0; }
+  .thumb .x { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 13px;
+              border: 0; background: #000a; color: #fff; font-size: 16px; line-height: 26px; padding: 0; }
+  .thumb .cap { position: absolute; left: 0; right: 0; bottom: 0; background: #000a; color: #fff; font-size: 11px; padding: 2px 5px; }
+  .pick { display: flex; align-items: center; justify-content: center; width: 100%; border: 2px dashed var(--hint);
+          border-radius: 14px; padding: 18px; color: var(--text); background: transparent; font-size: 16px; }
   label.toggle { display: flex; gap: 12px; align-items: flex-start; margin-top: 12px; }
   label.toggle input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); }
-  .btn { width: 100%; padding: 14px; border: 0; border-radius: 12px; background: var(--accent);
-         color: var(--accent-text); font-size: 16px; font-weight: 600; margin-top: 14px; }
-  .btn:disabled { opacity: .5; }
-  .status { margin-top: 12px; }
+  .steps { display: flex; gap: 4px; margin: 8px 0 4px; }
+  .steps span { flex: 1; height: 5px; border-radius: 3px; background: #8883; }
+  .steps span.done { background: var(--accent); }
+  .steps span.cur { background: var(--warn); }
+  .viewpic { display: block; margin: 8px auto; width: 150px; height: 110px; }
+  .preview img { width: 100%; border-radius: 10px; display: block; margin-top: 8px; }
+  .quality { margin-top: 8px; font-size: 14px; }
+  .quality.bad { color: var(--warn); }
+  .quality.good { color: var(--ok); }
+  .status { margin-top: 10px; }
   .error { color: var(--danger); }
-  .total { font-size: 24px; font-weight: 700; margin: 6px 0; }
+  .total { font-size: 24px; font-weight: 700; margin: 4px 0; }
+  .banner { border-radius: 12px; padding: 12px 14px; color: #fff; margin-top: 12px; }
+  .banner.new { background: var(--danger); } .banner.none { background: var(--ok); }
   .dlist { list-style: none; padding: 0; margin: 8px 0 0; }
-  .dlist li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid #8882; }
+  .dlist li { padding: 8px 4px; border-top: 1px solid #8882; }
   .dlist li:first-child { border-top: 0; }
   .dlist li.sel { background: #8881; border-radius: 8px; }
+  .drow { display: flex; gap: 10px; align-items: flex-start; }
+  .drow .body { flex: 1; }
+  .drow .edit { border: 0; background: transparent; color: var(--accent); font-size: 14px; padding: 2px 4px; }
   .num { flex: none; width: 24px; height: 24px; border-radius: 12px; color: #fff; font-size: 13px; font-weight: 700;
          display: flex; align-items: center; justify-content: center; }
   .chip { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; background: #8882; margin-right: 4px; }
-  .photo { position: relative; margin-top: 8px; border-radius: 10px; overflow: hidden; }
+  .chip.new { background: var(--danger); color: #fff; font-weight: 700; }
+  .chip.old { background: #8883; }
+  .editor { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .editor .wide { grid-column: span 2; }
+  .photo { position: relative; margin-top: 8px; border-radius: 10px; overflow: hidden; background: #0001; min-height: 60px; }
   .photo img { display: block; width: 100%; }
   .photo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--hint); margin-top: 8px; }
-  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px;
-                         margin-right: 4px; background: var(--c); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--hint); margin-top: 10px; }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; background: var(--c); }
+  .hist { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+  .badge { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #8882; white-space: nowrap; }
+  .badge.before { background: #2f6fde22; color: var(--accent); } .badge.after { background: #d0453a22; color: var(--danger); }
+  .toast { position: fixed; left: 16px; right: 16px; bottom: 20px; background: #16202ce6; color: #fff; padding: 12px 14px;
+           border-radius: 12px; text-align: center; z-index: 10; }
   [hidden] { display: none !important; }
 </style>
 </head>
 <body>
 <main>
   <h1>Осмотр автомобиля</h1>
-  <p class="hint">Пришлите от 1 до 10 фото одной машины. ИИ отметит видимые повреждения и даст ориентир стоимости.
-    Это исследовательский прототип, а не смета для страховой.</p>
-
-  <p id="outside" class="card error" hidden>Откройте эту страницу из Telegram-бота командой /app — иначе сервис не примет запрос.</p>
-
-  <section class="card" id="input">
-    <input id="file" type="file" accept="image/jpeg,image/png,image/*" multiple hidden>
-    <button class="pick" id="pick" type="button">📷 Добавить фото</button>
-    <div class="thumbs" id="thumbs"></div>
-    <label class="toggle">
-      <input type="checkbox" id="tiled">
-      <span>Подробный анализ<br><span class="hint">Снимок дополнительно разбирается по частям: лучше видны мелкие повреждения,
-        но в несколько раз дольше.</span></span>
-    </label>
-    <button class="btn" id="go" type="button" disabled>Анализировать</button>
-    <div class="status hint" id="status"></div>
-  </section>
-
-  <section id="results" hidden>
-    <div class="card" id="summary"></div>
-    <div id="photos"></div>
-    <button class="btn" id="again" type="button">Новый осмотр</button>
-  </section>
+  <p id="outside" class="card error" hidden>Откройте приложение из Telegram-бота (кнопка «Осмотр» или команда /app) — иначе сервис не примет запрос.</p>
+  <div class="tabs" id="tabs">
+    <button type="button" data-tab="new" class="on">Новый осмотр</button>
+    <button type="button" data-tab="history">Мои осмотры</button>
+  </div>
+  <div id="screen"></div>
+  <div class="toast" id="toast" hidden></div>
 </main>
 
 <script>
 (function () {
+  "use strict";
   const tg = window.Telegram && window.Telegram.WebApp;
   if (tg) { tg.ready(); tg.expand(); }
   const initData = tg ? tg.initData : "";
@@ -94,147 +115,393 @@
   const TYPE = { glass_shatter: ["Разбитое стекло", "var(--c-glass)"], lamp_broken: ["Разбитая фара/фонарь", "var(--c-lamp)"],
                  crack: ["Трещина", "var(--c-crack)"], scratch: ["Царапина", "var(--c-scratch)"] };
   const PART = { bumper: "бампер/панель", door: "дверь", light: "фара/фонарь", window: "боковое стекло",
-                 windshield: "лобовое/заднее стекло", hood: "капот", fender: "крыло", mirror: "зеркало",
-                 wheel: "колесо", other: "другое" };
+                 windshield: "лобовое/заднее стекло", hood: "капот", fender: "крыло", mirror: "зеркало", wheel: "колесо", other: "другое" };
   const SEV = { minor: "лёгкое", moderate: "среднее", severe: "тяжёлое" };
   const ACT = { repair: "ремонт", replacement: "замена" };
-  const MAX_PHOTOS = 10, MAX_SIDE = 2400;
+  const KIND = { single: "Осмотр", before: "При выдаче", after: "При возврате" };
+  const VIEWS = [
+    ["front", "Спереди", "Встаньте прямо перед машиной, чтобы в кадр вошли бампер, фары и капот."],
+    ["front_left", "Спереди слева (угол)", "Передний левый угол: видны фара, крыло и край бампера."],
+    ["left", "Левый бок", "Отойдите так, чтобы в кадр вошёл весь левый бок с дверями."],
+    ["rear_left", "Сзади слева (угол)", "Задний левый угол: фонарь, заднее крыло, край бампера."],
+    ["rear", "Сзади", "Прямо сзади: задний бампер, фонари, крышка багажника."],
+    ["rear_right", "Сзади справа (угол)", "Задний правый угол."],
+    ["right", "Правый бок", "Весь правый бок с дверями."],
+    ["front_right", "Спереди справа (угол)", "Передний правый угол."]];
+  const VIEW_NAME = Object.fromEntries(VIEWS.map(v => [v[0], v[1]]));
+  VIEW_NAME.extra = "Дополнительное фото";
+  const VIEW_ARROW = { front: 0, front_left: 315, left: 270, rear_left: 225, rear: 180, rear_right: 135, right: 90, front_right: 45 };
+  const MAX_PHOTOS = 12, MAX_SIDE = 2400;
 
-  const $ = id => document.getElementById(id);
-  const files = [];   // {blob, url}
+  const $ = s => document.querySelector(s);
+  const screen = $("#screen");
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const haptic = t => { try { tg && tg.HapticFeedback && tg.HapticFeedback.notificationOccurred(t); } catch (e) {} };
+  function toast(text) { const t = $("#toast"); t.textContent = text; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 3000); }
 
-  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+  // ------------------------------------------------------------ API
+  async function api(path, opts = {}) {
+    const headers = Object.assign({ "X-Telegram-Init-Data": initData }, opts.headers || {});
+    const resp = await fetch("/api/v1/miniapp" + path, Object.assign({}, opts, { headers }));
+    if (!resp.ok) {
+      const body = await resp.json().catch(() => ({}));
+      throw new Error(resp.status === 401 ? "Откройте приложение из Telegram-бота (команда /app)."
+                    : resp.status === 429 ? "Достигнут часовой лимит анализов. Попробуйте позже."
+                    : resp.status === 404 ? "Осмотр не найден."
+                    : body.error_message || `Ошибка сервиса (${resp.status}).`);
+    }
+    return resp;
+  }
+  const photoCache = {};
+  async function photoUrl(id, index) {
+    const key = id + "/" + index;
+    if (!photoCache[key]) photoCache[key] = api(`/inspections/${id}/photos/${index}`).then(r => r.blob()).then(b => URL.createObjectURL(b));
+    return photoCache[key];
+  }
 
-  // Phones make 12+ MP photos; the service scales to 1568 px anyway, so send at most 2400 px.
+  // ------------------------------------------------------------ navigation
+  const stack = [];
+  function go(render, push = true) {
+    if (push && go.current) stack.push(go.current);
+    go.current = render;
+    screen.innerHTML = "";
+    render();
+    window.scrollTo(0, 0);
+    if (tg && tg.BackButton) { stack.length ? tg.BackButton.show() : tg.BackButton.hide(); }
+  }
+  function back() { if (stack.length) go(stack.pop(), false); }
+  if (tg && tg.BackButton) tg.BackButton.onClick(back);
+  document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => {
+    document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("on", x === b));
+    stack.length = 0; go.current = null;
+    go(b.dataset.tab === "new" ? home : history);
+  });
+
+  // ------------------------------------------------------------ photos on the phone
   async function shrink(file) {
     try {
       const bmp = await createImageBitmap(file);
       const k = Math.min(1, MAX_SIDE / Math.max(bmp.width, bmp.height));
-      if (k === 1 && file.size < 4e6 && /jpe?g|png/.test(file.type)) return file;
       const c = document.createElement("canvas");
       c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
       c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
-      return await new Promise(r => c.toBlob(r, "image/jpeg", 0.92));
-    } catch (e) { return file; }
+      const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.92));
+      return { blob, quality: quality(c) };
+    } catch (e) { return { blob: file, quality: null }; }
   }
-
-  function renderThumbs() {
-    $("thumbs").innerHTML = "";
-    files.forEach((f, i) => {
-      const d = document.createElement("div"); d.className = "thumb";
-      d.innerHTML = `<img src="${f.url}" alt="фото ${i + 1}"><button type="button" aria-label="Убрать">×</button>`;
-      d.querySelector("button").onclick = () => { URL.revokeObjectURL(f.url); files.splice(i, 1); renderThumbs(); };
-      $("thumbs").append(d);
-    });
-    $("go").disabled = files.length === 0;
-    $("go").textContent = files.length ? `Анализировать (${files.length} фото)` : "Анализировать";
-    $("pick").hidden = files.length >= MAX_PHOTOS;
-  }
-
-  $("pick").onclick = () => $("file").click();
-  $("file").onchange = async e => {
-    const picked = [...e.target.files].slice(0, MAX_PHOTOS - files.length);
-    $("status").textContent = "Готовлю фото…";
-    for (const f of picked) { const blob = await shrink(f); files.push({ blob, url: URL.createObjectURL(blob) }); }
-    $("status").textContent = "";
-    e.target.value = "";
-    renderThumbs();
-  };
-
-  $("go").onclick = async () => {
-    const tiled = $("tiled").checked;
-    const form = new FormData();
-    files.forEach((f, i) => form.append("images", f.blob, `photo${i + 1}.jpg`));
-    form.append("mode", tiled ? "tiled" : "whole");
-    $("go").disabled = true; $("pick").disabled = true;
-    const sec = files.length * (tiled ? 50 : 12);
-    $("status").className = "status hint";
-    $("status").textContent = `Анализ… примерно ${sec < 90 ? sec + " с" : Math.round(sec / 60) + " мин"}. Не закрывайте приложение.`;
-    try {
-      const resp = await fetch("/api/v1/miniapp/analyze", { method: "POST", body: form,
-                                                            headers: { "X-Telegram-Init-Data": initData } });
-      const body = await resp.json().catch(() => ({}));
-      if (!resp.ok) {
-        const msg = resp.status === 401 ? "Откройте приложение из Telegram-бота (команда /app)."
-                  : resp.status === 429 ? "Достигнут часовой лимит анализов. Попробуйте позже."
-                  : body.error_message || `Ошибка сервиса (${resp.status}).`;
-        throw new Error(msg);
-      }
-      if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
-      showResults(body);
-    } catch (e) {
-      $("status").className = "status error";
-      $("status").textContent = e.message || "Нет связи с сервисом.";
-      if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("error");
-    } finally {
-      $("go").disabled = files.length === 0; $("pick").disabled = false;
+  // Brightness and sharpness on a small copy: mean luma, variance of the Laplacian.
+  function quality(src) {
+    const s = Math.min(1, 400 / Math.max(src.width, src.height));
+    const w = Math.max(3, Math.round(src.width * s)), h = Math.max(3, Math.round(src.height * s));
+    const c = document.createElement("canvas"); c.width = w; c.height = h;
+    const ctx = c.getContext("2d"); ctx.drawImage(src, 0, 0, w, h);
+    const d = ctx.getImageData(0, 0, w, h).data;
+    const g = new Float32Array(w * h); let sum = 0;
+    for (let i = 0; i < w * h; i++) { g[i] = 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2]; sum += g[i]; }
+    let n = 0, m = 0, m2 = 0;
+    for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
+      const i = y * w + x, l = 4 * g[i] - g[i - 1] - g[i + 1] - g[i - w] - g[i + w];
+      n++; const dl = l - m; m += dl / n; m2 += dl * (l - m);
     }
-  };
-
-  function damageRow(d, n, price) {
-    const [label, color] = TYPE[d.damage_type] || [d.damage_type, "#888"];
-    const priceText = price && price.min != null ? ` · ${price.min}–${price.max} €` : "";
-    return `<span class="num" style="background:${color}">${n}</span>
-      <span><b>${esc(label)}</b> — ${esc(PART[d.part] || d.part)}<br>
-      <span class="chip">${esc(SEV[d.severity] || d.severity)}</span><span class="chip">${esc(ACT[d.action] || d.action)}</span>
-      <span class="hint">уверенность ${Math.round(d.confidence * 100)}%${priceText}</span></span>`;
+    return { brightness: sum / (w * h), sharpness: n > 1 ? m2 / (n - 1) : 0 };
+  }
+  function qualityText(q) {
+    if (!q) return ["", ""];
+    if (q.brightness < 55) return ["bad", "Снимок слишком тёмный — повреждения могут быть не видны. Лучше переснять при свете."];
+    if (q.brightness > 235) return ["bad", "Снимок пересвечен. Лучше переснять без прямого солнца или вспышки."];
+    if (q.sharpness < 40) return ["bad", "Снимок, похоже, смазан. Держите телефон неподвижно и переснимите."];
+    return ["good", "Качество снимка в порядке."];
   }
 
-  function showResults(body) {
-    $("input").hidden = true; $("results").hidden = false;
-    const s = body.summary;
-    const list = s.damages.map((d, i) => `<li>${damageRow(d, i + 1, s.prices[i])}</li>`).join("");
-    $("summary").innerHTML = `<h2>Итог по ${body.photos.length} фото</h2>` +
-      (s.damages.length
-        ? `<div class="hint">Ориентир стоимости</div><div class="total">${s.total.min}–${s.total.max} ${esc(s.total.currency)}</div>
-           <ul class="dlist">${list}</ul>`
-        : `<p>Видимых повреждений не найдено.</p>`) +
-      `<p class="hint">Цены — условный справочник, не реальная смета. Модель пропускает часть мелких повреждений.</p>`;
-
-    $("photos").innerHTML = "";
-    body.photos.forEach((p, pi) => {
-      const card = document.createElement("div"); card.className = "card";
-      const ok = p.status === "success";
-      card.innerHTML = `<h2>Фото ${pi + 1}</h2>
-        <div class="photo"><img src="${files[pi] ? files[pi].url : ""}" alt="фото ${pi + 1}">
-          <svg aria-hidden="true"></svg></div>` +
-        (ok ? ((p.damages || []).length
-                ? `<ul class="dlist">${p.damages.map((d, i) => `<li data-i="${i}">${damageRow(d, i + 1)}</li>`).join("")}</ul>`
-                : `<p class="hint">На этом фото повреждений не найдено.</p>`)
-            : `<p class="error">Не удалось проанализировать это фото: модель не дала корректный ответ или файл не читается.</p>
-               <p class="hint">${esc(p.error_message || "")}</p>`) +
-        (ok && p.error_message ? `<p class="hint">Часть фрагментов не обработана.</p>` : "");
-      const img = card.querySelector("img"), svg = card.querySelector("svg");
-      const draw = () => {
-        const W = img.naturalWidth || 1000, H = img.naturalHeight || 750, f = Math.max(W, H) / 28;
-        svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-        svg.innerHTML = (p.damages || []).map((d, i) => {
-          const [x, y, w, h] = d.bounding_box || [0, 0, 0, 0];
-          const color = (TYPE[d.damage_type] || [0, "#888"])[1];
-          return `<g data-i="${i}"><rect x="${x * W}" y="${y * H}" width="${w * W}" height="${h * H}" fill="none"
-                     stroke="${color}" style="stroke-width:3px" vector-effect="non-scaling-stroke"/>
-                  <text x="${x * W + f * 0.2}" y="${Math.max(f, y * H - f * 0.2)}" fill="${color}" font-size="${f}"
-                     font-weight="700" stroke="#000" stroke-width="${f / 12}" paint-order="stroke">${i + 1}</text></g>`;
-        }).join("");
-      };
-      if (img.complete && img.naturalWidth) draw(); else img.onload = draw;
-      card.querySelectorAll("li[data-i]").forEach(li => li.onclick = () => {
-        card.querySelectorAll("li").forEach(x => x.classList.toggle("sel", x === li));
-        card.querySelectorAll("svg g").forEach(g => g.style.opacity = g.dataset.i === li.dataset.i ? 1 : 0.25);
-      });
-      $("photos").append(card);
+  // ------------------------------------------------------------ home
+  function home() {
+    screen.innerHTML = `
+      <button class="choice" data-go="quick"><b>📷 Быстрый осмотр</b><span class="hint">1–12 любых фото одной машины</span></button>
+      <button class="choice" data-go="guided"><b>🧭 Пошаговая съёмка</b><span class="hint">Приложение подскажет 8 ракурсов и проверит качество снимков</span></button>
+      <button class="choice" data-go="before"><b>🔑 Аренда: при выдаче</b><span class="hint">Пошаговая съёмка, чтобы потом сравнить с возвратом</span></button>
+      <button class="choice" data-go="after"><b>↩️ Аренда: при возврате</b><span class="hint">Снимите те же ракурсы — приложение покажет только новые повреждения</span></button>
+      <p class="hint" style="margin-top:14px">Это исследовательский прототип: ИИ отмечает видимые повреждения и даёт условный ориентир стоимости. Результат можно исправить вручную.</p>`;
+    screen.querySelectorAll("[data-go]").forEach(b => b.onclick = () => {
+      const k = b.dataset.go;
+      if (k === "quick") go(() => quick());
+      else if (k === "after") go(() => pickBefore());
+      else go(() => guided(k === "before" ? "before" : "single", null));
     });
-    const legend = document.createElement("div"); legend.className = "legend";
-    legend.innerHTML = Object.values(TYPE).map(([l, c]) => `<span style="--c:${c}">${l}</span>`).join("");
-    $("photos").prepend(legend);
-    window.scrollTo(0, 0);
   }
 
-  $("again").onclick = () => {
-    files.splice(0).forEach(f => URL.revokeObjectURL(f.url));
-    renderThumbs();
-    $("results").hidden = true; $("input").hidden = false; $("status").textContent = "";
-  };
+  // ------------------------------------------------------------ quick inspection
+  function quick() {
+    const shots = [];
+    screen.innerHTML = `<div class="card">
+      <h2>Быстрый осмотр</h2>
+      <input id="file" type="file" accept="image/*" multiple hidden>
+      <button class="pick" id="pick" type="button">📷 Добавить фото</button>
+      <div class="thumbs" id="thumbs"></div>
+      ${commonOptions()}
+      <button class="btn" id="go" disabled>Анализировать</button>
+      <div class="status hint" id="status"></div></div>`;
+    const draw = () => {
+      $("#thumbs").innerHTML = shots.map((s, i) => `<div class="thumb"><img src="${s.url}" alt=""><button class="x" data-i="${i}">×</button>
+          ${s.warn ? `<div class="cap">⚠ ${esc(s.warn)}</div>` : ""}</div>`).join("");
+      $("#thumbs").querySelectorAll(".x").forEach(x => x.onclick = () => { shots.splice(+x.dataset.i, 1); draw(); });
+      $("#go").disabled = !shots.length;
+      $("#go").textContent = shots.length ? `Анализировать (${shots.length} фото)` : "Анализировать";
+      $("#pick").hidden = shots.length >= MAX_PHOTOS;
+    };
+    $("#pick").onclick = () => $("#file").click();
+    $("#file").onchange = async e => {
+      $("#status").textContent = "Готовлю фото…";
+      for (const f of [...e.target.files].slice(0, MAX_PHOTOS - shots.length)) {
+        const r = await shrink(f); const [cls, text] = qualityText(r.quality);
+        shots.push({ blob: r.blob, url: URL.createObjectURL(r.blob), view: null, warn: cls === "bad" ? text.split(" —")[0].split(".")[0] : "" });
+      }
+      $("#status").textContent = ""; e.target.value = ""; draw();
+    };
+    $("#go").onclick = () => submit(shots, "single", null);
+  }
+
+  function commonOptions() {
+    return `<input type="text" id="title" maxlength="80" placeholder="Название (необязательно), например «Golf серый»" style="margin-top:12px">
+      <label class="toggle"><input type="checkbox" id="tiled"><span>Подробный анализ<br><span class="hint">Снимок разбирается ещё и по частям:
+      лучше видны мелкие повреждения, но в несколько раз дольше.</span></span></label>`;
+  }
+
+  // ------------------------------------------------------------ guided capture
+  function viewPicture(key) {
+    const a = VIEW_ARROW[key];
+    const r = 42, rad = (a || 0) * Math.PI / 180;
+    const cx = 75 + r * Math.sin(rad), cy = 55 - r * Math.cos(rad);
+    const tx = 75 + 22 * Math.sin(rad), ty = 55 - 30 * Math.cos(rad);
+    return `<svg class="viewpic" viewBox="0 0 150 110" aria-hidden="true">
+      <rect x="57" y="24" width="36" height="62" rx="12" fill="none" stroke="currentColor" stroke-width="3"/>
+      <rect x="62" y="33" width="26" height="10" rx="3" fill="currentColor" opacity=".25"/>
+      <text x="75" y="58" text-anchor="middle" font-size="7" fill="currentColor" opacity=".55">↑ перед</text>
+      ${a === undefined ? "" : `<line x1="${cx}" y1="${cy}" x2="${tx}" y2="${ty}" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="4 3"/>
+        <circle cx="${cx}" cy="${cy}" r="7" fill="var(--accent)"/><circle cx="${cx}" cy="${cy}" r="3" fill="var(--accent-text)"/>`}</svg>`;
+  }
+  function guided(kind, beforeId) {
+    const shots = {};          // view -> {blob, url, quality}
+    const extras = [];
+    let step = 0;
+    const steps = VIEWS.length;
+    const render = () => {
+      if (step >= steps) return review();
+      const [key, name, tip] = VIEWS[step];
+      const shot = shots[key];
+      const [qc, qt] = shot ? qualityText(shot.quality) : ["", ""];
+      screen.innerHTML = `<div class="card">
+        <h2>${kind === "before" ? "При выдаче" : kind === "after" ? "При возврате" : "Пошаговая съёмка"} · ${step + 1} из ${steps}</h2>
+        <div class="steps">${VIEWS.map((v, i) => `<span class="${shots[v[0]] ? "done" : i === step ? "cur" : ""}"></span>`).join("")}</div>
+        ${viewPicture(key)}
+        <h3 style="text-align:center">${esc(name)}</h3><p class="hint" style="text-align:center">${esc(tip)}</p>
+        <input id="cam" type="file" accept="image/*" capture="environment" hidden>
+        ${shot ? `<div class="preview"><img src="${shot.url}" alt=""></div><div class="quality ${qc}">${esc(qt)}</div>` : ""}
+        <button class="btn" id="shoot">${shot ? "Переснять" : "📷 Сделать фото"}</button>
+        <div class="row"><button class="btn secondary" id="skip">${shot ? "Дальше" : "Пропустить"}</button>
+          ${step > 0 ? `<button class="btn secondary" id="prev">Назад</button>` : ""}</div>
+        ${kind === "after" ? `<p class="hint">Снимайте с тех же мест, что при выдаче: сравнение идёт по ракурсам.</p>` : ""}
+      </div>`;
+      $("#shoot").onclick = () => $("#cam").click();
+      $("#cam").onchange = async e => {
+        const f = e.target.files[0]; if (!f) return;
+        const r = await shrink(f);
+        shots[key] = { blob: r.blob, url: URL.createObjectURL(r.blob), quality: r.quality };
+        const [cls] = qualityText(r.quality); haptic(cls === "bad" ? "warning" : "success");
+        render();
+      };
+      $("#skip").onclick = () => { step++; render(); };
+      if ($("#prev")) $("#prev").onclick = () => { step--; render(); };
+    };
+    const review = () => {
+      const list = VIEWS.filter(v => shots[v[0]]).map(v => Object.assign({ view: v[0] }, shots[v[0]]));
+      screen.innerHTML = `<div class="card"><h2>Проверьте снимки</h2>
+        <div class="thumbs">${list.map(s => `<div class="thumb"><img src="${s.url}" alt=""><div class="cap">${esc(VIEW_NAME[s.view])}</div></div>`).join("")}
+          ${extras.map(s => `<div class="thumb"><img src="${s.url}" alt=""><div class="cap">Доп. фото</div></div>`).join("")}</div>
+        ${list.length ? "" : `<p class="error">Не снято ни одного ракурса.</p>`}
+        <input id="extra" type="file" accept="image/*" multiple hidden>
+        <button class="btn secondary" id="addExtra">+ Крупный план повреждения</button>
+        ${commonOptions()}
+        <button class="btn" id="go" ${list.length ? "" : "disabled"}>Анализировать (${list.length + extras.length} фото)</button>
+        <button class="btn secondary" id="redo">Вернуться к съёмке</button>
+        <div class="status hint" id="status"></div></div>`;
+      $("#addExtra").onclick = () => $("#extra").click();
+      $("#extra").onchange = async e => {
+        for (const f of [...e.target.files].slice(0, MAX_PHOTOS - list.length - extras.length)) {
+          const r = await shrink(f); extras.push({ blob: r.blob, url: URL.createObjectURL(r.blob), view: "extra" });
+        }
+        review();
+      };
+      $("#redo").onclick = () => { step = 0; render(); };
+      $("#go").onclick = () => submit(list.concat(extras), kind, beforeId);
+    };
+    render();
+  }
+
+  async function pickBefore() {
+    screen.innerHTML = `<div class="card"><h2>При возврате</h2><p class="hint">Выберите осмотр при выдаче, с которым сравнивать.</p><div id="list">Загрузка…</div></div>`;
+    try {
+      const all = await (await api("/inspections")).json();
+      const befores = all.filter(i => i.kind === "before");
+      $("#list").innerHTML = befores.length ? befores.map(i => `<button class="choice" data-id="${i.id}"><b>${esc(i.title || "Без названия")}</b>
+          <span class="hint">${fmtDate(i.created_at)} · ${i.photos} фото${i.has_return ? " · уже есть возврат" : ""}</span></button>`).join("")
+        : `<p>Сначала сделайте осмотр «Аренда: при выдаче».</p>`;
+      $("#list").querySelectorAll("[data-id]").forEach(b => b.onclick = () => go(() => guided("after", b.dataset.id)));
+    } catch (e) { $("#list").innerHTML = `<p class="error">${esc(e.message)}</p>`; }
+  }
+
+  // ------------------------------------------------------------ submit
+  async function submit(shots, kind, beforeId) {
+    const tiled = $("#tiled").checked;
+    const form = new FormData();
+    shots.forEach((s, i) => { form.append("images", s.blob, `photo${i + 1}.jpg`); if (s.view) form.append("views", s.view); });
+    if (shots.some(s => !s.view) && shots.some(s => s.view)) { form.delete("views"); shots.forEach(s => form.append("views", s.view || "extra")); }
+    form.append("mode", tiled ? "tiled" : "whole");
+    form.append("kind", kind);
+    if (beforeId) form.append("before_id", beforeId);
+    const title = $("#title").value.trim(); if (title) form.append("title", title);
+    $("#go").disabled = true;
+    const sec = shots.length * (tiled ? 50 : 12);
+    $("#status").className = "status hint";
+    $("#status").textContent = `Анализ… примерно ${sec < 90 ? sec + " с" : Math.round(sec / 60) + " мин"}. Не закрывайте приложение.`;
+    try {
+      const inspection = await (await api("/analyze", { method: "POST", body: form })).json();
+      shots.forEach((s, i) => photoCache[inspection.id + "/" + i] = Promise.resolve(s.url));
+      haptic("success");
+      stack.length = 0; go.current = null;
+      go(() => result(inspection));
+    } catch (e) {
+      $("#status").className = "status error"; $("#status").textContent = e.message || "Нет связи с сервисом.";
+      $("#go").disabled = false; haptic("error");
+    }
+  }
+
+  // ------------------------------------------------------------ result
+  function fmtDate(sec) { return new Date(sec * 1000).toLocaleString("ru-RU", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }); }
+  function damageRow(d, n, extra) {
+    const [label, color] = TYPE[d.damage_type] || [d.damage_type, "#888"];
+    return `<div class="drow"><span class="num" style="background:${color}">${n}</span><span class="body">
+      <b>${esc(label)}</b> — ${esc(PART[d.part] || d.part)}<br>
+      <span class="chip">${esc(SEV[d.severity] || d.severity)}</span><span class="chip">${esc(ACT[d.action] || d.action)}</span>
+      ${extra || ""}<span class="hint">${d.confidence != null ? "уверенность " + Math.round(d.confidence * 100) + "%" : ""}</span></span>`;
+  }
+  function select(name, map, value) {
+    return `<select data-f="${name}">${Object.entries(map).map(([k, v]) => `<option value="${k}" ${k === value ? "selected" : ""}>${esc(v)}</option>`).join("")}</select>`;
+  }
+
+  function result(ins) {
+    const s = ins.summary, cmp = ins.comparison;
+    const list = s.damages.map((d, i) => `<li>${damageRow(d, i + 1, s.prices[i] ? `<span class="hint">${s.prices[i].min}–${s.prices[i].max} € · </span>` : "")}</div></li>`).join("");
+    screen.innerHTML = `
+      <div class="card"><div class="hist"><h2 style="margin:0">${esc(ins.title || KIND[ins.kind])}</h2><span class="badge ${ins.kind}">${KIND[ins.kind]}</span></div>
+        <p class="hint">${fmtDate(ins.created_at)} · ${ins.photos.length} фото${ins.mode === "tiled" ? " · подробный анализ" : ""}</p>
+        ${cmp ? (cmp.new ? `<div class="banner new"><b>Новые повреждения: ${cmp.new}</b><br>ориентир стоимости новых: ${cmp.new_total.min}–${cmp.new_total.max} ${esc(cmp.new_total.currency)}</div>`
+                         : `<div class="banner none"><b>Новых повреждений не найдено</b></div>`)
+              + (cmp.not_compared ? `<p class="hint">${cmp.not_compared} повр. на ракурсах, которых не было при выдаче, — не сравнивались.</p>` : "") : ""}
+        ${ins.kind === "after" && !cmp ? `<p class="hint">Осмотр при выдаче удалён — сравнение недоступно.</p>` : ""}
+        <h3 style="margin-top:12px">Итог по всем фото</h3>
+        ${s.damages.length ? `<div class="hint">Ориентир стоимости</div><div class="total">${s.total.min}–${s.total.max} ${esc(s.total.currency)}</div><ul class="dlist">${list}</ul>`
+                           : `<p>Видимых повреждений не найдено.</p>`}
+        <p class="hint">Цены — условный справочник, не смета. Модель пропускает часть мелких повреждений; неверное можно исправить (✎).</p>
+        <button class="btn" id="pdf">📄 Отправить PDF-отчёт в чат</button>
+        ${ins.kind === "before" ? `<button class="btn secondary" id="ret">↩️ Осмотр при возврате</button>` : ""}
+      </div>
+      <div class="legend">${Object.values(TYPE).map(([l, c]) => `<span style="--c:${c}">${l}</span>`).join("")}</div>
+      <div id="photos"></div>
+      <button class="btn danger" id="del">Удалить осмотр</button>`;
+    ins.photos.forEach(p => $("#photos").append(photoCard(ins, p)));
+    $("#pdf").onclick = async () => {
+      $("#pdf").disabled = true;
+      try { await api(`/inspections/${ins.id}/report`, { method: "POST" }); toast("Отчёт отправлен в чат с ботом"); haptic("success"); }
+      catch (e) { toast(e.message); haptic("error"); }
+      $("#pdf").disabled = false;
+    };
+    if ($("#ret")) $("#ret").onclick = () => go(() => guided("after", ins.id));
+    $("#del").onclick = () => {
+      const doDelete = async ok => {
+        if (!ok) return;
+        try { await api(`/inspections/${ins.id}`, { method: "DELETE" }); toast("Осмотр удалён"); stack.length = 0; go.current = null; go(history); }
+        catch (e) { toast(e.message); }
+      };
+      if (tg && tg.showConfirm && initData) tg.showConfirm("Удалить этот осмотр вместе с фото?", doDelete);
+      else doDelete(confirm("Удалить этот осмотр вместе с фото?"));
+    };
+  }
+
+  function photoCard(ins, p) {
+    const card = document.createElement("div"); card.className = "card";
+    const ok = p.status === "success";
+    const marks = p.comparison || [];
+    card.innerHTML = `<div class="hist"><h3 style="margin:0">Фото ${p.index + 1}${p.view ? " · " + esc(p.view_name) : ""}</h3>${p.edited ? `<span class="badge">исправлено</span>` : ""}</div>
+      <div class="photo"><img alt=""><svg aria-hidden="true"></svg></div>
+      ${ok ? (p.damages.length ? `<ul class="dlist">${p.damages.map((d, i) => `<li data-i="${i}">${damageRow(d, i + 1,
+              marks[i] === "new" ? `<span class="chip new">НОВОЕ</span>` : marks[i] === "existing" ? `<span class="chip old">было при выдаче</span>` : "")}
+              <button class="edit" data-e="${i}" aria-label="Исправить">✎</button></div><div class="ed"></div></li>`).join("")}</ul>`
+                                   : `<p class="hint">Повреждений не найдено.</p>`)
+           : `<p class="error">Не удалось проанализировать это фото.</p>`}`;
+    const img = card.querySelector("img"), svg = card.querySelector("svg");
+    const draw = () => {
+      const W = img.naturalWidth || 1000, H = img.naturalHeight || 750, f = Math.max(W, H) / 28;
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      svg.innerHTML = (p.damages || []).map((d, i) => {
+        const [x, y, w, h] = d.bounding_box || [0, 0, 0, 0];
+        const color = marks[i] === "new" ? "var(--danger)" : (TYPE[d.damage_type] || [0, "#888"])[1];
+        return `<g data-i="${i}"><rect x="${x * W}" y="${y * H}" width="${w * W}" height="${h * H}" fill="none" stroke="${color}"
+                  style="stroke-width:${marks[i] === "new" ? 4 : 3}px" vector-effect="non-scaling-stroke"/>
+                <text x="${x * W + f * 0.2}" y="${Math.max(f, y * H - f * 0.2)}" fill="${color}" font-size="${f}" font-weight="700"
+                  stroke="#000" stroke-width="${f / 12}" paint-order="stroke">${i + 1}</text></g>`;
+      }).join("");
+    };
+    img.onload = draw;
+    photoUrl(ins.id, p.index).then(u => { img.src = u; }).catch(() => { card.querySelector(".photo").innerHTML = `<p class="hint" style="padding:12px">Фото недоступно</p>`; });
+    card.querySelectorAll("li[data-i]").forEach(li => li.querySelector(".drow").onclick = e => {
+      if (e.target.closest(".edit")) return;
+      card.querySelectorAll("li").forEach(x => x.classList.toggle("sel", x === li));
+      svg.querySelectorAll("g").forEach(g => g.style.opacity = g.dataset.i === li.dataset.i ? 1 : 0.25);
+    });
+    card.querySelectorAll("[data-e]").forEach(b => b.onclick = () => openEditor(ins, p, +b.dataset.e, b.closest("li").querySelector(".ed")));
+    return card;
+  }
+
+  function openEditor(ins, p, i, box) {
+    if (box.innerHTML) { box.innerHTML = ""; return; }
+    const d = p.damages[i];
+    box.innerHTML = `<div class="editor">
+      ${select("damage_type", Object.fromEntries(Object.entries(TYPE).map(([k, v]) => [k, v[0]])), d.damage_type)}
+      ${select("part", PART, d.part)}${select("severity", SEV, d.severity)}${select("action", ACT, d.action)}
+      <button class="btn" data-a="save" style="margin:0">Сохранить</button><button class="btn danger" data-a="remove" style="margin:0">Это не повреждение</button></div>`;
+    const save = async remove => {
+      const next = p.damages.map(x => Object.assign({}, x));
+      if (remove) next.splice(i, 1);
+      else box.querySelectorAll("select").forEach(s => next[i][s.dataset.f] = s.value);
+      try {
+        const updated = await (await api(`/inspections/${ins.id}/photos/${p.index}/damages`, {
+          method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(next) })).json();
+        toast("Исправлено. Спасибо — это поможет улучшить модель."); haptic("success");
+        go(() => result(updated), false);
+      } catch (e) { toast(e.message); }
+    };
+    box.querySelector("[data-a=save]").onclick = () => save(false);
+    box.querySelector("[data-a=remove]").onclick = () => save(true);
+  }
+
+  // ------------------------------------------------------------ history
+  async function history() {
+    screen.innerHTML = `<div id="hist"><p class="hint" style="margin-top:14px">Загрузка…</p></div>`;
+    try {
+      const all = await (await api("/inspections")).json();
+      $("#hist").innerHTML = all.length ? all.map(i => `<button class="choice" data-id="${i.id}"><div class="hist">
+          <b>${esc(i.title || KIND[i.kind])}</b><span class="badge ${i.kind}">${KIND[i.kind]}</span></div>
+          <span class="hint">${fmtDate(i.created_at)} · ${i.photos} фото · повреждений: ${i.damages}${i.damages ? ` · ${i.total.min}–${i.total.max} €` : ""}
+          ${i.has_return ? " · есть возврат" : ""}</span></button>`).join("")
+        : `<div class="card"><p>Осмотров пока нет.</p><p class="hint">Они появятся здесь после первого анализа.</p></div>`;
+      $("#hist").querySelectorAll("[data-id]").forEach(b => b.onclick = async () => {
+        try { const ins = await (await api(`/inspections/${b.dataset.id}`)).json(); go(() => result(ins)); }
+        catch (e) { toast(e.message); }
+      });
+    } catch (e) { $("#hist").innerHTML = `<p class="card error">${esc(e.message)}</p>`; }
+  }
+
+  go(home, false);
 })();
 </script>
 </body>

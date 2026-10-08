@@ -91,7 +91,8 @@ public class DemoBot {
                 if (miniAppUrl == null) {
                     telegram.sendMessage(chat, "Mini App не настроен на этом сервере. Пришлите фото прямо сюда.");
                 } else {
-                    telegram.sendWebAppButton(chat, "Откройте приложение: фото, рамки повреждений и отчёт на одном экране.",
+                    telegram.sendWebAppButton(chat, "Приложение для осмотра: рамки повреждений на фото, пошаговая съёмка, "
+                            + "сравнение при выдаче и возврате, история и PDF-отчёт.",
                             "Открыть осмотр", miniAppUrl);
                 }
             }
@@ -100,7 +101,8 @@ public class DemoBot {
     }
 
     String help() {
-        return miniAppUrl == null ? HELP : HELP + "\n/app — открыть приложение с рамками повреждений на фото.";
+        return miniAppUrl == null ? HELP : HELP + "\n/app — приложение: рамки повреждений на фото, пошаговая съёмка, "
+                + "осмотр при выдаче и возврате арендной машины, история осмотров и PDF-отчёт.";
     }
 
     private void handlePhoto(long chat, Update update) throws Exception {
