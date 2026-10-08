@@ -70,6 +70,22 @@ class AnalysisControllerTest {
     }
 
     @Test
+    void describeWithoutRegionsCallsNothing() throws Exception {
+        mvc.perform(multipart("/api/v1/describe").file(jpeg("image")).param("regions", "[]"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("success"))
+                .andExpect(jsonPath("$.damages.length()").value(0));
+    }
+
+    @Test
+    void describeWithBrokenRegionsIs400() throws Exception {
+        mvc.perform(multipart("/api/v1/describe").file(jpeg("image")).param("regions", "[[0.1,0.1,2,0.1]]"))
+                .andExpect(status().isBadRequest());
+        mvc.perform(multipart("/api/v1/describe").file(jpeg("image")).param("regions", "not json"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void unsupportedImageTypeIs400() throws Exception {
         MockMultipartFile gif = new MockMultipartFile("image", "car.gif", "image/gif", new byte[]{1});
         mvc.perform(multipart("/api/v1/analyze").file(gif))

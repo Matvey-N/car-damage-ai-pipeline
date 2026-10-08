@@ -1,0 +1,2 @@
+# Only for the baseline detector (make_yolo_dataset.py needs nothing; train/predict need this)
+ultralytics>=8.1

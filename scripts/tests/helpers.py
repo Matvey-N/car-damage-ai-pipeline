@@ -47,6 +47,7 @@ class FakeService:
         self.fail_after = fail_after
         self.analyze_calls = 0
         self.modes = []
+        self.describe_bodies = []
         service = self
 
         class Handler(BaseHTTPRequestHandler):
@@ -66,7 +67,8 @@ class FakeService:
                     self._send(200, {"model_client": service.model_client,
                                      "model": "claude-opus-5-5" if service.model_client != "stub" else "stub",
                                      "prompt_version": "v1", "max_attempts": 3,
-                                     "tiled_mode": "2x2 tiles, overlap 0.2, plus the whole image"})
+                                     "tiled_mode": "2x2 tiles, overlap 0.2, plus the whole image",
+                                     "region_prompt_version": "r1"})
                 else:
                     self._send(404, {})
 
@@ -75,6 +77,11 @@ class FakeService:
                 body = self.rfile.read(length)
                 path, _, query = self.path.partition("?")
                 service.modes.append(query.replace("mode=", "") or "whole")
+                if path == "/api/v1/describe" and b'name="regions"' in body:
+                    service.describe_bodies.append(body)
+                    service.analyze_calls += 1
+                    self._send(200, service.answer)
+                    return
                 if path != "/api/v1/analyze" or b'name="image"' not in body:
                     self._send(400, {"status": "error", "damages": [], "overall_score": 0})
                     return

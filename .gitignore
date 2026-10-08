@@ -10,3 +10,6 @@ __pycache__/
 .env
 # Dataset images (large; SYNDCAR is downloaded separately, see README)
 data/
+
+# detector weights downloaded or trained (yolov8n.pt etc.)
+*.pt
