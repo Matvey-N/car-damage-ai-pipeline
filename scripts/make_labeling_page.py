@@ -35,8 +35,25 @@ light = headlight or tail light; fender includes quarter panels; bumper includes
 windshield = front or rear windshield; other = roof, rocker panel, license plate.
 """
 
+RULES_V2_HTML = """
+<b>Шкала v2</b> (docs/severity_scale_v2.md). Идите по вопросам сверху вниз, первое «да» решает.
+Сомневаетесь — уровень ниже и <i>неясно</i> в комментарии. Мерка: номерной знак 52 см, диск ~40 см, ладонь ~10 см.<br>
+<b>glass_shatter</b>: дыра / нет кусков / сетка трещин на ≥ ¼ стекла → severe, replacement;
+трещины до края или &gt; 10 см → moderate, replacement; иначе → minor, repair.<br>
+<b>lamp_broken</b>: нет куска / дыра / сломан корпус → severe, replacement;
+рассеиватель треснул, но целый → moderate, replacement; иначе → minor, repair.<br>
+<b>crack</b>: порвано / нет куска / края разошлись → severe, replacement; длиннее 10 см → moderate, repair;
+иначе → minor, repair.<br>
+<b>scratch</b>: вмятина под царапиной → severe, repair; виден грунт или металл, или длиннее 30 см → moderate, repair;
+иначе → minor, repair.<br>
+<b>Part</b> — заполнена автоматически, проверьте. light = фара/фонарь; fender = крылья и четверти;
+bumper = передняя и задняя панели; windshield = лобовое или заднее стекло; other = крыша, порог, номер.
+"""
+
+RULES = {"v1": RULES_HTML, "v2": RULES_V2_HTML}
+
 PAGE = """<!DOCTYPE html>
-<html lang="en">
+<html lang="__LANG__">
 <head>
 <meta charset="utf-8">
 <title>Labeling: __TITLE__</title>
@@ -200,10 +217,11 @@ render();
 """
 
 
-def build_page(rows, sheet_name, image_base):
+def build_page(rows, sheet_name, image_base, rules="v1"):
     data = {"sheet": sheet_name, "image_base": image_base, "rows": rows}
     options = {"part": PARTS, "severity": SEVERITIES, "action": ACTIONS}
-    page = PAGE.replace("__TITLE__", sheet_name).replace("__RULES__", RULES_HTML)
+    page = PAGE.replace("__TITLE__", sheet_name).replace("__RULES__", RULES[rules])
+    page = page.replace("__LANG__", "ru" if rules == "v2" else "en")
     page = page.replace("__COLUMNS__", json.dumps(SHEET_COLUMNS))
     page = page.replace("__OPTIONS__", json.dumps(options))
     # "</" must not appear inside the inline script
@@ -220,6 +238,8 @@ def main(argv=None):
     parser.add_argument("--sheet", required=True, help="CSV from make_labeling_sheet.py (or a partly filled one)")
     parser.add_argument("--images-dir", required=True)
     parser.add_argument("--out", required=True, help="HTML page to create")
+    parser.add_argument("--rules", choices=sorted(RULES), default="v1",
+                        help="labeling rules shown on the page: v1 (TZ section 9) or v2 (docs/severity_scale_v2.md)")
     args = parser.parse_args(argv)
 
     rows = read_sheet(args.sheet)
@@ -229,7 +249,7 @@ def main(argv=None):
         print(f"ERROR: {len(missing)} image(s) not found in {args.images_dir}, e.g. {missing[0]}", file=sys.stderr)
         return 1
 
-    page = build_page(rows, os.path.basename(args.sheet), image_base_url(args.out, args.images_dir))
+    page = build_page(rows, os.path.basename(args.sheet), image_base_url(args.out, args.images_dir), args.rules)
     with open(args.out, "w", encoding="utf-8") as f:
         f.write(page)
     print(f"{len(rows)} damages on {len({r['file_name'] for r in rows})} images -> {args.out}")
