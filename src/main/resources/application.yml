@@ -67,5 +67,5 @@ telegram:
     url: ${TELEGRAM_MINIAPP_URL:}
     # protects the API key: model calls per user per hour
     # (a photo costs 1 in quick mode, 2 in careful mode, 5 in detailed mode)
-    photos-per-hour: 60
+    photos-per-hour: 100
   base-url: https://api.telegram.org

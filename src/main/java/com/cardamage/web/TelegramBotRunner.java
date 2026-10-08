@@ -5,7 +5,7 @@ import com.cardamage.core.bot.TelegramApi;
 import com.cardamage.core.demo.DamageMergeService;
 import com.cardamage.core.demo.PriceEstimator;
 import com.cardamage.core.pipeline.AnalysisProfile;
-import com.cardamage.core.pipeline.SingleImageAnalyzer;
+import com.cardamage.core.pipeline.TiledImageAnalyzer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -29,7 +29,7 @@ public class TelegramBotRunner {
     private final String miniAppUrl;
     private final boolean polling;
     private final String baseUrl;
-    private final SingleImageAnalyzer analyzer;
+    private final TiledImageAnalyzer analyzer;
     private final DamageMergeService mergeService;
     private final ObjectMapper mapper;
     private volatile boolean running;
@@ -39,7 +39,7 @@ public class TelegramBotRunner {
                              @Value("${telegram.base-url:https://api.telegram.org}") String baseUrl,
                              @Value("${telegram.miniapp.url:}") String miniAppUrl,
                              @Value("${telegram.polling:true}") boolean polling,
-                             SingleImageAnalyzer analyzer,
+                             TiledImageAnalyzer analyzer,
                              DamageMergeService mergeService,
                              ObjectMapper mapper) {
         this.token = token == null ? "" : token.trim();
