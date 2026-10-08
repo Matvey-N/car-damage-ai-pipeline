@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -62,7 +63,7 @@ class MiniAppControllerTest {
         for (int i = 0; i + 1 < params.length; i += 2) {
             request.param(params[i], params[i + 1]);
         }
-        String body = mvc.perform(request).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        String body = mvc.perform(request).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
         return json.readTree(body);
     }
 
@@ -161,7 +162,7 @@ class MiniAppControllerTest {
                         .param("async", "true").param("mode", "relook").header(H, initData(30)))
                 .andExpect(status().isAccepted())
                 .andExpect(jsonPath("$.total").value(2))
-                .andReturn().getResponse().getContentAsString();
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
         String jobId = json.readTree(body).get("job_id").asText();
 
         // another user does not see the job
@@ -170,7 +171,7 @@ class MiniAppControllerTest {
         JsonNode job = null;
         for (int i = 0; i < 100; i++) {
             job = json.readTree(mvc.perform(get("/api/v1/miniapp/jobs/" + jobId).header(H, initData(30)))
-                    .andExpect(status().isOk()).andReturn().getResponse().getContentAsString());
+                    .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8));
             if (job.get("status").asText().equals("done")) {
                 break;
             }
