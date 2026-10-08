@@ -20,6 +20,10 @@ pipeline:
   # mode=tiled on /api/v1/analyze: the image is also analyzed as a grid of
   # overlapping tiles, so small damages are seen at a higher resolution.
   # Costs (rows x cols + 1) model calls per image.
+  # Mini App inspections: SQLite database and photo files (the data/ folder is not in Git)
+  storage:
+    dir: ${STORAGE_DIR:data/app}
+    inspections-per-user: 50
   tiling:
     rows: 2
     cols: 2

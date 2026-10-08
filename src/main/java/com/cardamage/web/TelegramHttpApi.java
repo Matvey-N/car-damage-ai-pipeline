@@ -86,6 +86,30 @@ public class TelegramHttpApi implements TelegramApi {
     }
 
     @Override
+    public void sendDocument(long chatId, String fileName, byte[] content, String caption) throws Exception {
+        String boundary = "----cardamage" + System.nanoTime();
+        java.io.ByteArrayOutputStream body = new java.io.ByteArrayOutputStream();
+        java.nio.charset.Charset utf8 = java.nio.charset.StandardCharsets.UTF_8;
+        body.write(("--" + boundary + "\r\nContent-Disposition: form-data; name=\"chat_id\"\r\n\r\n" + chatId + "\r\n").getBytes(utf8));
+        body.write(("--" + boundary + "\r\nContent-Disposition: form-data; name=\"caption\"\r\n\r\n" + caption + "\r\n").getBytes(utf8));
+        body.write(("--" + boundary + "\r\nContent-Disposition: form-data; name=\"document\"; filename=\"" + fileName
+                + "\"\r\nContent-Type: application/pdf\r\n\r\n").getBytes(utf8));
+        body.write(content);
+        body.write(("\r\n--" + boundary + "--\r\n").getBytes(utf8));
+        HttpRequest request = HttpRequest.newBuilder(URI.create(apiBase + "sendDocument"))
+                .timeout(Duration.ofSeconds(120))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                .POST(HttpRequest.BodyPublishers.ofByteArray(body.toByteArray()))
+                .build();
+        HttpResponse<String> response = http.send(request, HttpResponse.BodyHandlers.ofString());
+        JsonNode json = mapper.readTree(response.body());
+        if (response.statusCode() != 200 || !json.path("ok").asBoolean(false)) {
+            throw new IllegalStateException("Telegram sendDocument failed: HTTP " + response.statusCode()
+                    + " " + json.path("description").asText(""));
+        }
+    }
+
+    @Override
     public void setMenuButton(String buttonText, String url) throws Exception {
         Map<String, Object> menu = Map.of("type", "web_app", "text", buttonText, "web_app", Map.of("url", url));
         call("setChatMenuButton", Map.of("menu_button", menu), 30);

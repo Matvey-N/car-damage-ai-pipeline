@@ -22,7 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 // Always the stub here, whatever the environment says: with PIPELINE_MODEL_CLIENT=anthropic set
 // (as for a benchmark run) the tests would otherwise call the real, paid API.
-@SpringBootTest(properties = {"pipeline.model-client=stub", "anthropic.api-key=", "telegram.bot-token="})
+@SpringBootTest(properties = {"pipeline.model-client=stub", "anthropic.api-key=", "telegram.bot-token=",
+        "pipeline.storage.dir=target/test-store-${random.uuid}"})
 @AutoConfigureMockMvc
 class AnalysisControllerTest {
 

@@ -1,6 +1,7 @@
 package com.cardamage.web;
 
 import com.cardamage.core.demo.DamageMergeService;
+import com.cardamage.core.inspect.InspectionStore;
 import com.cardamage.core.pipeline.DownscalingImagePreprocessor;
 import com.cardamage.core.pipeline.RegionDescriber;
 import com.cardamage.core.pipeline.ResponseFormatValidator;
@@ -75,6 +76,11 @@ public class PipelineConfig {
             @Value("${pipeline.tiling.include-full-image}") boolean includeFullImage,
             @Value("${pipeline.tiling.merge-iou}") double mergeIou) {
         return new TiledImageAnalyzer(single, rows, cols, overlap, includeFullImage, mergeIou);
+    }
+
+    @Bean
+    public InspectionStore inspectionStore(@Value("${pipeline.storage.dir}") String dir, ObjectMapper objectMapper) {
+        return new InspectionStore(java.nio.file.Path.of(dir), objectMapper);
     }
 
     @Bean

@@ -1,10 +1,13 @@
 package com.cardamage.web;
 
 import com.cardamage.core.miniapp.InitDataValidator;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -14,22 +17,31 @@ import java.io.ByteArrayOutputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /** Mini App backend with a test bot token; polling is off, so nothing is sent to Telegram. */
 @SpringBootTest(properties = {"pipeline.model-client=stub", "anthropic.api-key=",
         "telegram.bot-token=" + MiniAppControllerTest.TOKEN, "telegram.polling=false",
-        "telegram.miniapp.photos-per-hour=4"})
+        "telegram.miniapp.photos-per-hour=20",
+        "pipeline.storage.dir=target/test-store-${random.uuid}"})
 @AutoConfigureMockMvc
 class MiniAppControllerTest {
 
     static final String TOKEN = "123456:test-token";
+    private static final String H = "X-Telegram-Init-Data";
 
     @Autowired
     private MockMvc mvc;
+
+    private final ObjectMapper json = new ObjectMapper();
 
     private static MockMultipartFile jpeg() throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -44,42 +56,109 @@ class MiniAppControllerTest {
         return new InitDataValidator(TOKEN, 3600).sign(f);
     }
 
+    private JsonNode analyze(long user, String... params) throws Exception {
+        var request = multipart("/api/v1/miniapp/analyze").file(jpeg()).file(jpeg()).header(H, initData(user));
+        for (int i = 0; i + 1 < params.length; i += 2) {
+            request.param(params[i], params[i + 1]);
+        }
+        String body = mvc.perform(request).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        return json.readTree(body);
+    }
+
     @Test
-    void configSaysEnabled() throws Exception {
+    void configListsTheViews() throws Exception {
         mvc.perform(get("/api/v1/miniapp/config"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.enabled").value(true))
-                .andExpect(jsonPath("$.max_photos").value(10));
+                .andExpect(jsonPath("$.views.front").value("Спереди"));
     }
 
     @Test
     void requestWithoutTelegramSignatureIs401() throws Exception {
-        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()))
-                .andExpect(status().isUnauthorized());
-        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg())
-                        .header("X-Telegram-Init-Data", initData(1).replace("Test", "Evil")))
+        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg())).andExpect(status().isUnauthorized());
+        mvc.perform(get("/api/v1/miniapp/inspections").header(H, initData(1).replace("Test", "Evil")))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
-    void signedRequestGetsPhotosAndSummaryWithPrice() throws Exception {
-        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()).file(jpeg())
-                        .header("X-Telegram-Init-Data", initData(2)))
+    void analysisIsStoredAndShownInTheHistory() throws Exception {
+        JsonNode inspection = analyze(10, "views", "front", "views", "rear", "title", "Golf");
+        String id = inspection.get("id").asText();
+        assertEquals(2, inspection.get("photos").size());
+        assertEquals("Сзади", inspection.get("photos").get(1).get("view_name").asText());
+        assertEquals(1, inspection.get("summary").get("damages").size());
+
+        mvc.perform(get("/api/v1/miniapp/inspections").header(H, initData(10)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.photos.length()").value(2))
-                .andExpect(jsonPath("$.photos[0].damages[0].bounding_box.length()").value(4))
-                .andExpect(jsonPath("$.summary.damages.length()").value(1))
-                .andExpect(jsonPath("$.summary.total.currency").value("EUR"));
+                .andExpect(jsonPath("$[0].id").value(id))
+                .andExpect(jsonPath("$[0].title").value("Golf"))
+                .andExpect(jsonPath("$[0].photos").value(2));
+        mvc.perform(get("/api/v1/miniapp/inspections/" + id + "/photos/0").header(H, initData(10)))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.IMAGE_JPEG));
+    }
+
+    @Test
+    void anotherUserCannotSeeOrDeleteIt() throws Exception {
+        String id = analyze(11).get("id").asText();
+        mvc.perform(get("/api/v1/miniapp/inspections/" + id).header(H, initData(12))).andExpect(status().isNotFound());
+        mvc.perform(delete("/api/v1/miniapp/inspections/" + id).header(H, initData(12))).andExpect(status().isNotFound());
+        mvc.perform(get("/api/v1/miniapp/inspections").header(H, initData(12)))
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void userCorrectionReplacesTheListAndBadOnesAreRefused() throws Exception {
+        String id = analyze(13).get("id").asText();
+        mvc.perform(put("/api/v1/miniapp/inspections/" + id + "/photos/0/damages").header(H, initData(13))
+                        .contentType(MediaType.APPLICATION_JSON).content("[]"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.photos[0].edited").value(true))
+                .andExpect(jsonPath("$.photos[0].damages.length()").value(0));
+        String bad = "[{\"damage_type\":\"dent\",\"part\":\"door\",\"severity\":\"minor\",\"action\":\"repair\","
+                + "\"confidence\":0.5,\"bounding_box\":[0.1,0.1,0.1,0.1]}]";
+        mvc.perform(put("/api/v1/miniapp/inspections/" + id + "/photos/1/damages").header(H, initData(13))
+                        .contentType(MediaType.APPLICATION_JSON).content(bad))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void returnInspectionIsComparedWithThePickupOne() throws Exception {
+        String before = analyze(14, "kind", "before", "views", "front", "views", "rear").get("id").asText();
+        // the stub sees the same scratch on every photo: nothing is new on the same views
+        JsonNode after = analyze(14, "kind", "after", "before_id", before, "views", "front", "views", "left");
+        assertEquals(0, after.get("comparison").get("new").asInt());
+        assertEquals(1, after.get("comparison").get("not_compared").asInt(), "no pickup photo of the left side");
+        assertEquals("existing", after.get("photos").get(0).get("comparison").get(0).asText());
+
+        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()).header(H, initData(14))
+                        .param("kind", "after").param("before_id", after.get("id").asText()))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void pdfReportIsGenerated() throws Exception {
+        String id = analyze(15).get("id").asText();
+        byte[] pdf = mvc.perform(get("/api/v1/miniapp/inspections/" + id + "/report.pdf").header(H, initData(15)))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_PDF))
+                .andReturn().getResponse().getContentAsByteArray();
+        assertTrue(new String(pdf, 0, 8, java.nio.charset.StandardCharsets.ISO_8859_1).startsWith("%PDF"));
+    }
+
+    @Test
+    void deleteRemovesTheInspection() throws Exception {
+        String id = analyze(16).get("id").asText();
+        mvc.perform(delete("/api/v1/miniapp/inspections/" + id).header(H, initData(16))).andExpect(status().isOk());
+        mvc.perform(get("/api/v1/miniapp/inspections/" + id).header(H, initData(16))).andExpect(status().isNotFound());
     }
 
     @Test
     void limitPerUserIsEnforced() throws Exception {
-        String user = initData(3);
-        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()).file(jpeg()).file(jpeg())
-                        .header("X-Telegram-Init-Data", user))
-                .andExpect(status().isOk());
-        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()).file(jpeg())
-                        .header("X-Telegram-Init-Data", user))
+        for (int i = 0; i < 10; i++) {
+            analyze(17);   // 20 photos = the limit
+        }
+        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()).header(H, initData(17)))
                 .andExpect(status().isTooManyRequests());
     }
 }

@@ -28,6 +28,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- SQLite: inspection history of the Mini App (TZ, section 3) -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.46.1.0</version>
+        </dependency>
+
         <!-- JUnit 5, MockMvc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

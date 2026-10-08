@@ -44,6 +44,11 @@ class DemoBotTest {
         public void setMenuButton(String buttonText, String url) {
         }
 
+        @Override
+        public void sendDocument(long chatId, String fileName, byte[] content, String caption) {
+            sent.add(chatId + ": [file " + fileName + "] " + caption);
+        }
+
         String last() {
             return sent.get(sent.size() - 1);
         }

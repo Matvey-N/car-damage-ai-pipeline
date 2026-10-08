@@ -2,19 +2,30 @@ package com.cardamage.web;
 
 import com.cardamage.core.demo.DamageMergeService;
 import com.cardamage.core.demo.PriceEstimator;
+import com.cardamage.core.inspect.BeforeAfterComparator;
+import com.cardamage.core.inspect.InspectionStore;
+import com.cardamage.core.inspect.InspectionSummary;
+import com.cardamage.core.inspect.Views;
 import com.cardamage.core.miniapp.InitDataValidator;
 import com.cardamage.core.miniapp.RateLimiter;
 import com.cardamage.core.model.Damage;
 import com.cardamage.core.model.DamageAssessment;
+import com.cardamage.core.pipeline.ResponseFormatValidator;
 import com.cardamage.core.pipeline.SingleImageAnalyzer;
 import com.cardamage.core.pipeline.TiledImageAnalyzer;
+import com.cardamage.core.report.ReportRenderer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,135 +33,390 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 /**
- * Backend of the Telegram Mini App (DEMO, secondary). The page itself is
- * static: src/main/resources/static/miniapp/index.html.
+ * Backend of the Telegram Mini App (DEMO, secondary). The page is static:
+ * src/main/resources/static/miniapp/index.html.
  *
- *   GET  /api/v1/miniapp/config   - is the Mini App enabled, limits
- *   POST /api/v1/miniapp/analyze  - 1-10 photos; header X-Telegram-Init-Data
+ *   GET    /api/v1/miniapp/config                                 enabled?, limits, views
+ *   POST   /api/v1/miniapp/analyze                                photos -> stored inspection
+ *   GET    /api/v1/miniapp/inspections                            the user's inspections, newest first
+ *   GET    /api/v1/miniapp/inspections/{id}                       one inspection (+ comparison for a return)
+ *   GET    /api/v1/miniapp/inspections/{id}/photos/{index}        the photo
+ *   PUT    /api/v1/miniapp/inspections/{id}/photos/{index}/damages  the user's correction
+ *   DELETE /api/v1/miniapp/inspections/{id}
+ *   GET    /api/v1/miniapp/inspections/{id}/report.pdf            PDF report
+ *   POST   /api/v1/miniapp/inspections/{id}/report                PDF report sent to the chat with the bot
  *
- * Every request must carry Telegram's signed initData (checked with the bot
- * token), and each user may analyze a limited number of photos per hour, so
- * the API key cannot be spent by someone who only knows the tunnel address.
- * The answer lists every photo with its boxes (for drawing) plus a merged
- * summary with the demo price range.
+ * Every request carries Telegram's signed initData (header X-Telegram-Init-Data);
+ * a user only ever sees his own inspections. Analyses are limited per user and hour.
  */
 @RestController
 @RequestMapping("/api/v1/miniapp")
 public class MiniAppController {
 
-    static final int MAX_PHOTOS = 10;
+    static final int MAX_PHOTOS = 12;
     private static final long INIT_DATA_MAX_AGE_SECONDS = 24 * 3600;
+    private static final Set<String> KINDS = Set.of("single", "before", "after");
+    private static final DateTimeFormatter DATE = DateTimeFormatter.ofPattern("d MMMM yyyy, HH:mm", Locale.forLanguageTag("ru"));
 
     private final SingleImageAnalyzer analyzer;
     private final TiledImageAnalyzer tiledAnalyzer;
     private final DamageMergeService mergeService;
+    private final InspectionStore store;
     private final PriceEstimator prices;
-    private final InitDataValidator validator;   // null = Mini App disabled (no bot token)
+    private final ReportRenderer reports = new ReportRenderer();
+    private final ResponseFormatValidator validator = new ResponseFormatValidator();
+    private final InitDataValidator initData;   // null = Mini App disabled (no bot token)
+    private final TelegramHttpApi telegram;     // null without a token
     private final RateLimiter limiter;
+    private final int keepPerUser;
     private final String clientType;
 
     public MiniAppController(SingleImageAnalyzer analyzer,
                              TiledImageAnalyzer tiledAnalyzer,
                              DamageMergeService mergeService,
+                             InspectionStore store,
                              ObjectMapper mapper,
                              @Value("${telegram.bot-token:}") String botToken,
+                             @Value("${telegram.base-url:https://api.telegram.org}") String telegramUrl,
                              @Value("${telegram.miniapp.photos-per-hour:30}") int photosPerHour,
+                             @Value("${pipeline.storage.inspections-per-user:50}") int keepPerUser,
                              @Value("${pipeline.model-client}") String clientType) {
         this.analyzer = analyzer;
         this.tiledAnalyzer = tiledAnalyzer;
         this.mergeService = mergeService;
+        this.store = store;
         this.prices = PriceEstimator.fromClasspath(mapper);
-        this.validator = botToken == null || botToken.isBlank() ? null
-                : new InitDataValidator(botToken, INIT_DATA_MAX_AGE_SECONDS);
+        boolean enabled = botToken != null && !botToken.isBlank();
+        this.initData = enabled ? new InitDataValidator(botToken, INIT_DATA_MAX_AGE_SECONDS) : null;
+        this.telegram = enabled ? new TelegramHttpApi(telegramUrl, botToken.trim(), mapper) : null;
         this.limiter = new RateLimiter(photosPerHour, 3600);
+        this.keepPerUser = keepPerUser;
         this.clientType = clientType;
     }
+
+    // ------------------------------------------------------------------ endpoints
 
     @GetMapping("/config")
     public Map<String, Object> config() {
         Map<String, Object> c = new LinkedHashMap<>();
-        c.put("enabled", validator != null);
+        c.put("enabled", initData != null);
         c.put("max_photos", MAX_PHOTOS);
         c.put("photos_per_hour", limiter.limit());
         c.put("model_client", clientType);
         c.put("tiled_mode", tiledAnalyzer.describe());
+        c.put("views", Views.NAMES);
         return c;
     }
 
     @PostMapping("/analyze")
     public ResponseEntity<Map<String, Object>> analyze(
-            @RequestHeader(value = "X-Telegram-Init-Data", required = false) String initData,
+            @RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
             @RequestParam("images") MultipartFile[] images,
-            @RequestParam(value = "mode", defaultValue = "whole") String mode) throws IOException {
-        if (validator == null) {
-            return error(HttpStatus.SERVICE_UNAVAILABLE, "Mini App is off: the service has no TELEGRAM_BOT_TOKEN");
-        }
-        long now = System.currentTimeMillis() / 1000;
-        long userId = validator.validate(initData, now);
+            @RequestParam(value = "views", required = false) List<String> views,
+            @RequestParam(value = "mode", defaultValue = "whole") String mode,
+            @RequestParam(value = "kind", defaultValue = "single") String kind,
+            @RequestParam(value = "before_id", required = false) String beforeId,
+            @RequestParam(value = "title", required = false) String title) throws IOException {
+        long user = user(auth);
         if (images.length < 1 || images.length > MAX_PHOTOS) {
             throw new IllegalArgumentException("send 1-" + MAX_PHOTOS + " photos, got " + images.length);
         }
         if (!mode.equals("whole") && !mode.equals("tiled")) {
             throw new IllegalArgumentException("unknown mode '" + mode + "'");
         }
+        if (!KINDS.contains(kind)) {
+            throw new IllegalArgumentException("unknown kind '" + kind + "'");
+        }
+        if (views != null && views.size() != images.length) {
+            throw new IllegalArgumentException("views must list one view per photo");
+        }
+        if (views != null && views.stream().anyMatch(v -> !Views.isKnown(v))) {
+            throw new IllegalArgumentException("unknown view in " + views);
+        }
+        if (kind.equals("after")) {
+            InspectionStore.Inspection before = owned(beforeId, user);
+            if (!before.kind().equals("before")) {
+                throw new IllegalArgumentException("before_id must point to a pickup (before) inspection");
+            }
+        } else {
+            beforeId = null;
+        }
         int units = mode.equals("tiled") ? images.length * 5 : images.length;
-        if (!limiter.tryAcquire(userId, units, now)) {
+        if (!limiter.tryAcquire(user, units, now())) {
             return error(HttpStatus.TOO_MANY_REQUESTS, "Limit reached: " + limiter.limit()
                     + " photo analyses per hour (detailed mode counts 5 per photo). Try again later.");
         }
 
-        List<Map<String, Object>> photos = new ArrayList<>();
-        List<DamageAssessment> results = new ArrayList<>();
-        for (MultipartFile image : images) {
-            Map<String, Object> photo = new LinkedHashMap<>();
-            photo.put("name", image.getOriginalFilename());
+        String cleanTitle = title == null || title.isBlank() ? null : title.strip().substring(0, Math.min(80, title.strip().length()));
+        InspectionStore.Inspection inspection = store.create(user, now(), mode, kind, cleanTitle, beforeId);
+        for (int i = 0; i < images.length; i++) {
+            MultipartFile image = images[i];
+            byte[] bytes = image.getBytes();
+            DamageAssessment result;
             try {
-                DamageAssessment r = mode.equals("tiled")
-                        ? tiledAnalyzer.analyze(image.getBytes(), image.getContentType())
-                        : analyzer.analyze(image.getBytes(), image.getContentType());
-                results.add(r);
-                photo.put("status", r.getStatus());
-                photo.put("damages", r.getDamages());
-                if (r.getErrorMessage() != null) {
-                    photo.put("error_message", r.getErrorMessage());
-                }
+                result = mode.equals("tiled")
+                        ? tiledAnalyzer.analyze(bytes, image.getContentType())
+                        : analyzer.analyze(bytes, image.getContentType());
             } catch (IllegalArgumentException e) {
-                photo.put("status", "error");
-                photo.put("damages", List.of());
-                photo.put("error_message", "not a readable JPEG or PNG");
+                result = DamageAssessment.error("not a readable JPEG or PNG", 0);
             }
-            photos.add(photo);
+            String ext = "image/png".equals(image.getContentType()) ? "png" : "jpg";
+            store.addPhoto(inspection.id(), i, views == null ? null : views.get(i), bytes, ext, result);
         }
+        store.trim(user, keepPerUser);
+        return ResponseEntity.ok(view(inspection));
+    }
 
-        DamageAssessment merged = mergeService.merge(results);
+    @GetMapping("/inspections")
+    public List<Map<String, Object>> list(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth) {
+        long user = user(auth);
+        List<Map<String, Object>> out = new ArrayList<>();
+        List<InspectionStore.Inspection> all = store.list(user);
+        for (InspectionStore.Inspection i : all) {
+            List<InspectionStore.Photo> photos = store.photos(i.id());
+            InspectionSummary s = summary(photos);
+            Map<String, Object> m = header(i);
+            m.put("photos", photos.size());
+            m.put("damages", s.damages().size());
+            m.put("total", total(s.total(), s.currency()));
+            m.put("has_return", all.stream().anyMatch(o -> i.id().equals(o.beforeId())));
+            out.add(m);
+        }
+        return out;
+    }
+
+    @GetMapping("/inspections/{id}")
+    public Map<String, Object> get(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
+                                   @PathVariable String id) {
+        return view(owned(id, user(auth)));
+    }
+
+    @GetMapping("/inspections/{id}/photos/{index}")
+    public ResponseEntity<byte[]> photo(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
+                                        @PathVariable String id, @PathVariable int index) {
+        owned(id, user(auth));
+        byte[] bytes = store.photoBytes(id, index).orElseThrow(() -> new NotFound("no such photo"));
+        boolean png = bytes.length > 3 && (bytes[0] & 0xff) == 0x89 && bytes[1] == 'P';
+        return ResponseEntity.ok().contentType(png ? MediaType.IMAGE_PNG : MediaType.IMAGE_JPEG).body(bytes);
+    }
+
+    /**
+     * The user's correction of one photo: the full list of damages as they should be.
+     * Damages can be removed or their type, part, severity and action changed; the
+     * boxes and confidences come from the model and must stay valid.
+     */
+    @PutMapping("/inspections/{id}/photos/{index}/damages")
+    public Map<String, Object> correct(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
+                                       @PathVariable String id, @PathVariable int index,
+                                       @RequestBody List<Damage> damages) {
+        long user = user(auth);
+        InspectionStore.Inspection inspection = owned(id, user);
+        if (store.photos(id).stream().noneMatch(p -> p.index() == index)) {
+            throw new NotFound("no such photo");
+        }
+        List<String> problems = validator.validate(DamageAssessment.success(damages, 0, 1));
+        if (!problems.isEmpty()) {
+            throw new IllegalArgumentException("invalid correction: " + String.join("; ", problems));
+        }
+        store.correct(id, index, user, now(), damages);
+        return view(inspection);
+    }
+
+    @DeleteMapping("/inspections/{id}")
+    public Map<String, Object> delete(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
+                                      @PathVariable String id) {
+        owned(id, user(auth));
+        store.delete(id);
+        return Map.of("status", "deleted");
+    }
+
+    @GetMapping("/inspections/{id}/report.pdf")
+    public ResponseEntity<byte[]> pdf(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
+                                      @PathVariable String id) {
+        byte[] pdf = reports.pdf(report(owned(id, user(auth))));
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF)
+                .header("Content-Disposition", "attachment; filename=\"" + fileName(id) + "\"").body(pdf);
+    }
+
+    @PostMapping("/inspections/{id}/report")
+    public ResponseEntity<Map<String, Object>> sendReport(
+            @RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth, @PathVariable String id) {
+        long user = user(auth);
+        InspectionStore.Inspection inspection = owned(id, user);
+        byte[] pdf = reports.pdf(report(inspection));
+        try {
+            telegram.sendDocument(user, fileName(id), pdf, "Отчёт об осмотре автомобиля (демо)");
+        } catch (Exception e) {
+            return error(HttpStatus.BAD_GATEWAY, "Could not send the report to the chat: " + e.getMessage());
+        }
+        return ResponseEntity.ok(Map.of("status", "sent"));
+    }
+
+    // ------------------------------------------------------------------ building the answers
+
+    private Map<String, Object> view(InspectionStore.Inspection i) {
+        List<InspectionStore.Photo> photos = store.photos(i.id());
+        Map<String, Object> m = header(i);
+        List<BeforeAfterComparator.Finding> findings = comparison(i, photos);
+
+        List<Map<String, Object>> photoList = new ArrayList<>();
+        for (InspectionStore.Photo p : photos) {
+            Map<String, Object> pm = new LinkedHashMap<>();
+            pm.put("index", p.index());
+            pm.put("view", p.view());
+            pm.put("view_name", Views.name(p.view()));
+            pm.put("status", p.status());
+            if (p.error() != null) {
+                pm.put("error_message", p.error());
+            }
+            pm.put("edited", p.edited());
+            pm.put("damages", p.damages());
+            if (findings != null) {
+                pm.put("comparison", findings.stream().filter(f -> f.afterPhotoIndex() == p.index())
+                        .map(f -> f.status().name().toLowerCase(Locale.ROOT)).toList());
+            }
+            photoList.add(pm);
+        }
+        m.put("photos", photoList);
+
+        InspectionSummary s = summary(photos);
         Map<String, Object> summary = new LinkedHashMap<>();
-        summary.put("status", merged.getStatus());
-        summary.put("damages", merged.getDamages());
-        List<Map<String, Object>> priced = new ArrayList<>();
-        for (Damage d : merged.getDamages()) {
-            PriceEstimator.Range r = prices.priceOf(d);
-            Map<String, Object> p = new LinkedHashMap<>();
-            p.put("min", r == null ? null : r.min());
-            p.put("max", r == null ? null : r.max());
-            priced.add(p);
-        }
-        summary.put("prices", priced);
-        PriceEstimator.Range total = prices.total(merged.getDamages());
-        summary.put("total", Map.of("min", total.min(), "max", total.max(), "currency", prices.currency()));
-        summary.put("note", "Demo: prices come from an invented reference table, not a real estimate. "
-                + "The model misses part of the small damages (see the benchmark report).");
+        summary.put("damages", s.damages());
+        summary.put("prices", s.prices().stream().map(r -> r == null ? null : Map.of("min", r.min(), "max", r.max())).toList());
+        summary.put("total", total(s.total(), s.currency()));
+        m.put("summary", summary);
 
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("mode", mode);
-        body.put("photos", photos);
-        body.put("summary", summary);
-        return ResponseEntity.ok(body);
+        if (findings != null) {
+            List<Damage> fresh = findings.stream().filter(f -> f.status() == BeforeAfterComparator.Status.NEW)
+                    .map(BeforeAfterComparator.Finding::damage).toList();
+            Map<String, Object> c = new LinkedHashMap<>();
+            c.put("before_id", i.beforeId());
+            c.put("new", fresh.size());
+            c.put("not_compared", findings.stream().filter(f -> f.status() == BeforeAfterComparator.Status.NOT_COMPARED).count());
+            c.put("new_total", total(prices.total(fresh), prices.currency()));
+            m.put("comparison", c);
+        }
+        return m;
+    }
+
+    private List<BeforeAfterComparator.Finding> comparison(InspectionStore.Inspection i, List<InspectionStore.Photo> photos) {
+        if (!"after".equals(i.kind()) || i.beforeId() == null) {
+            return null;
+        }
+        return BeforeAfterComparator.compare(store.photos(i.beforeId()), photos);
+    }
+
+    private Map<String, Object> header(InspectionStore.Inspection i) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("id", i.id());
+        m.put("created_at", i.createdAt());
+        m.put("kind", i.kind());
+        m.put("mode", i.mode());
+        m.put("title", i.title());
+        m.put("before_id", i.beforeId());
+        return m;
+    }
+
+    private InspectionSummary summary(List<InspectionStore.Photo> photos) {
+        return InspectionSummary.of(InspectionSummary.allDamages(photos), mergeService, prices);
+    }
+
+    private static Map<String, Object> total(PriceEstimator.Range r, String currency) {
+        return Map.of("min", r.min(), "max", r.max(), "currency", currency);
+    }
+
+    private ReportRenderer.Report report(InspectionStore.Inspection i) {
+        List<InspectionStore.Photo> photos = store.photos(i.id());
+        List<BeforeAfterComparator.Finding> findings = comparison(i, photos);
+        InspectionSummary s = summary(photos);
+        List<ReportRenderer.PhotoPart> parts = new ArrayList<>();
+        for (InspectionStore.Photo p : photos) {
+            List<Boolean> flags = findings == null ? null : findings.stream()
+                    .filter(f -> f.afterPhotoIndex() == p.index())
+                    .map(f -> f.status() == BeforeAfterComparator.Status.NEW).toList();
+            String title = "Фото " + (p.index() + 1) + (p.view() == null ? "" : " · " + Views.name(p.view()))
+                    + ("success".equals(p.status()) ? "" : " · не проанализировано");
+            parts.add(new ReportRenderer.PhotoPart(title, store.photoBytes(i.id(), p.index()).orElse(new byte[0]),
+                    "success".equals(p.status()) ? p.damages() : List.of(), flags));
+        }
+        String kind = switch (i.kind()) {
+            case "before" -> "при выдаче";
+            case "after" -> "при возврате";
+            default -> "осмотр";
+        };
+        String when = DATE.format(Instant.ofEpochSecond(i.createdAt()).atZone(ZoneId.systemDefault()));
+        String subtitle = when + " · " + kind + (i.title() == null ? "" : " · " + i.title());
+        Integer fresh = null;
+        PriceEstimator.Range freshTotal = null;
+        if (findings != null) {
+            List<Damage> d = findings.stream().filter(f -> f.status() == BeforeAfterComparator.Status.NEW)
+                    .map(BeforeAfterComparator.Finding::damage).toList();
+            fresh = d.size();
+            freshTotal = prices.total(d);
+        }
+        return new ReportRenderer.Report("Отчёт об осмотре автомобиля", subtitle, s.damages(), s.prices(),
+                s.total(), s.currency(), fresh, freshTotal, parts);
+    }
+
+    private static String fileName(String id) {
+        return "car-inspection-" + id.substring(0, 8) + ".pdf";
+    }
+
+    // ------------------------------------------------------------------ access
+
+    private long user(String auth) {
+        if (initData == null) {
+            throw new Disabled();
+        }
+        return initData.validate(auth, now());
+    }
+
+    private InspectionStore.Inspection owned(String id, long user) {
+        if (id == null) {
+            throw new NotFound("inspection not found");
+        }
+        InspectionStore.Inspection i = store.find(id).orElseThrow(() -> new NotFound("inspection not found"));
+        if (i.userId() != user) {
+            throw new NotFound("inspection not found");   // same answer as missing: do not reveal other users' ids
+        }
+        return i;
+    }
+
+    private static long now() {
+        return System.currentTimeMillis() / 1000;
+    }
+
+    static class NotFound extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+
+        NotFound(String message) {
+            super(message);
+        }
+    }
+
+    static class Disabled extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+    }
+
+    @ExceptionHandler(Disabled.class)
+    public ResponseEntity<Map<String, Object>> disabled() {
+        return error(HttpStatus.SERVICE_UNAVAILABLE, "Mini App is off: the service has no TELEGRAM_BOT_TOKEN");
+    }
+
+    @ExceptionHandler(NotFound.class)
+    public ResponseEntity<Map<String, Object>> notFound(NotFound e) {
+        return error(HttpStatus.NOT_FOUND, e.getMessage());
     }
 
     @ExceptionHandler(InitDataValidator.InvalidInitDataException.class)
