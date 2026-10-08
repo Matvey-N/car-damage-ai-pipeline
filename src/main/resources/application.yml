@@ -17,6 +17,8 @@ pipeline:
     # scaled down and re-encoded as JPEG before being sent (API limit: 5 MB).
     max-side: 1568
     max-bytes: 4500000
+  # mode=relook on /api/v1/analyze: second look at the photo with the found damages
+  # marked, to find the missed ones (2 model calls per image).
   # mode=tiled on /api/v1/analyze: the image is also analyzed as a grid of
   # overlapping tiles, so small damages are seen at a higher resolution.
   # Costs (rows x cols + 1) model calls per image.
@@ -24,6 +26,17 @@ pipeline:
   storage:
     dir: ${STORAGE_DIR:data/app}
     inspections-per-user: 50
+  # Simultaneous model calls: photos of an inspection and calls of the tiled mode
+  # run in parallel. Lower these if the API answers 429 (rate limit of the account).
+  parallelism:
+    photos: 3
+    tiles: 4
+  # Mini App analyses run in the background (the page polls the progress)
+  jobs:
+    workers: 2        # inspections analyzed at the same time
+    queue: 20         # waiting inspections; more are refused with 429
+    per-user: 1       # unfinished analyses per user
+    keep-minutes: 60  # finished jobs are forgotten after this (the inspections stay)
   tiling:
     rows: 2
     cols: 2
@@ -52,6 +65,7 @@ telegram:
   miniapp:
     # HTTPS address of the Mini App page, e.g. https://xxxx.trycloudflare.com/miniapp/index.html
     url: ${TELEGRAM_MINIAPP_URL:}
-    # protects the API key: photo analyses per user per hour (detailed mode counts 5 per photo)
-    photos-per-hour: 30
+    # protects the API key: model calls per user per hour
+    # (a photo costs 1 in quick mode, 2 in careful mode, 5 in detailed mode)
+    photos-per-hour: 60
   base-url: https://api.telegram.org

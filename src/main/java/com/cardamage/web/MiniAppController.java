@@ -6,10 +6,13 @@ import com.cardamage.core.inspect.BeforeAfterComparator;
 import com.cardamage.core.inspect.InspectionStore;
 import com.cardamage.core.inspect.InspectionSummary;
 import com.cardamage.core.inspect.Views;
+import com.cardamage.core.miniapp.AnalysisJobs;
 import com.cardamage.core.miniapp.InitDataValidator;
 import com.cardamage.core.miniapp.RateLimiter;
 import com.cardamage.core.model.Damage;
 import com.cardamage.core.model.DamageAssessment;
+import com.cardamage.core.pipeline.AnalysisProfile;
+import com.cardamage.core.pipeline.RelookAnalyzer;
 import com.cardamage.core.pipeline.ResponseFormatValidator;
 import com.cardamage.core.pipeline.SingleImageAnalyzer;
 import com.cardamage.core.pipeline.TiledImageAnalyzer;
@@ -42,13 +45,17 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 /**
  * Backend of the Telegram Mini App (DEMO, secondary). The page is static:
  * src/main/resources/static/miniapp/index.html.
  *
  *   GET    /api/v1/miniapp/config                                 enabled?, limits, views
- *   POST   /api/v1/miniapp/analyze                                photos -> stored inspection
+ *   POST   /api/v1/miniapp/analyze                                photos -> stored inspection (async=true: job)
+ *   GET    /api/v1/miniapp/jobs, /jobs/{id}                       background analyses and their progress
  *   GET    /api/v1/miniapp/inspections                            the user's inspections, newest first
  *   GET    /api/v1/miniapp/inspections/{id}                       one inspection (+ comparison for a return)
  *   GET    /api/v1/miniapp/inspections/{id}/photos/{index}        the photo
@@ -67,23 +74,35 @@ public class MiniAppController {
     static final int MAX_PHOTOS = 12;
     private static final long INIT_DATA_MAX_AGE_SECONDS = 24 * 3600;
     private static final Set<String> KINDS = Set.of("single", "before", "after");
+    /** Mini App works with real photos of any car. */
+    static final AnalysisProfile PROFILE = AnalysisProfile.GENERAL;
+    /** Mode -> model calls per photo (counted by the hourly limit). */
+    static final Map<String, Integer> MODE_COST = Map.of("whole", 1, "relook", 2, "tiled", 5);
+    /** No poll for this long = the user has left the page; he gets a chat message when the job ends. */
+    private static final long LEFT_AFTER_SECONDS = 20;
     private static final DateTimeFormatter DATE = DateTimeFormatter.ofPattern("d MMMM yyyy, HH:mm", Locale.forLanguageTag("ru"));
 
     private final SingleImageAnalyzer analyzer;
     private final TiledImageAnalyzer tiledAnalyzer;
+    private final RelookAnalyzer relookAnalyzer;
+    private final ExecutorService photoPool;
+    private final AnalysisJobs jobs;
     private final DamageMergeService mergeService;
     private final InspectionStore store;
     private final PriceEstimator prices;
     private final ReportRenderer reports = new ReportRenderer();
-    private final ResponseFormatValidator validator = new ResponseFormatValidator();
+    private final ResponseFormatValidator validator = ResponseFormatValidator.general();
     private final InitDataValidator initData;   // null = Mini App disabled (no bot token)
     private final TelegramHttpApi telegram;     // null without a token
     private final RateLimiter limiter;
     private final int keepPerUser;
     private final String clientType;
+    private final String miniAppUrl;
 
     public MiniAppController(SingleImageAnalyzer analyzer,
                              TiledImageAnalyzer tiledAnalyzer,
+                             RelookAnalyzer relookAnalyzer,
+                             AnalysisExecutors executors,
                              DamageMergeService mergeService,
                              InspectionStore store,
                              ObjectMapper mapper,
@@ -91,9 +110,17 @@ public class MiniAppController {
                              @Value("${telegram.base-url:https://api.telegram.org}") String telegramUrl,
                              @Value("${telegram.miniapp.photos-per-hour:30}") int photosPerHour,
                              @Value("${pipeline.storage.inspections-per-user:50}") int keepPerUser,
-                             @Value("${pipeline.model-client}") String clientType) {
+                             @Value("${pipeline.model-client}") String clientType,
+                             @Value("${telegram.miniapp.url:}") String miniAppUrl,
+                             @Value("${pipeline.jobs.per-user:1}") int jobsPerUser,
+                             @Value("${pipeline.jobs.keep-minutes:60}") int keepMinutes) {
         this.analyzer = analyzer;
         this.tiledAnalyzer = tiledAnalyzer;
+        this.relookAnalyzer = relookAnalyzer;
+        this.photoPool = executors.photos();
+        this.miniAppUrl = miniAppUrl == null || miniAppUrl.isBlank() ? null : miniAppUrl.trim();
+        this.jobs = new AnalysisJobs(executors.jobs(), jobsPerUser, keepMinutes * 60L,
+                MiniAppController::now, this::notifyIfLeft);
         this.mergeService = mergeService;
         this.store = store;
         this.prices = PriceEstimator.fromClasspath(mapper);
@@ -115,10 +142,17 @@ public class MiniAppController {
         c.put("photos_per_hour", limiter.limit());
         c.put("model_client", clientType);
         c.put("tiled_mode", tiledAnalyzer.describe());
+        c.put("modes", MODE_COST);
+        c.put("profile", PROFILE.name() + " (prompt " + PROFILE.promptVersion() + ")");
         c.put("views", Views.NAMES);
         return c;
     }
 
+    /**
+     * Starts the analysis of 1-12 photos. With async=true (the page uses it) the answer
+     * comes at once: 202 and a job id to follow with GET /jobs/{id}; otherwise the
+     * request waits for the stored inspection. Photos are analyzed in parallel.
+     */
     @PostMapping("/analyze")
     public ResponseEntity<Map<String, Object>> analyze(
             @RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
@@ -127,13 +161,14 @@ public class MiniAppController {
             @RequestParam(value = "mode", defaultValue = "whole") String mode,
             @RequestParam(value = "kind", defaultValue = "single") String kind,
             @RequestParam(value = "before_id", required = false) String beforeId,
-            @RequestParam(value = "title", required = false) String title) throws IOException {
+            @RequestParam(value = "title", required = false) String title,
+            @RequestParam(value = "async", defaultValue = "false") boolean async) throws IOException {
         long user = user(auth);
         if (images.length < 1 || images.length > MAX_PHOTOS) {
             throw new IllegalArgumentException("send 1-" + MAX_PHOTOS + " photos, got " + images.length);
         }
-        if (!mode.equals("whole") && !mode.equals("tiled")) {
-            throw new IllegalArgumentException("unknown mode '" + mode + "'");
+        if (!MODE_COST.containsKey(mode)) {
+            throw new IllegalArgumentException("unknown mode '" + mode + "' (expected " + MODE_COST.keySet() + ")");
         }
         if (!KINDS.contains(kind)) {
             throw new IllegalArgumentException("unknown kind '" + kind + "'");
@@ -152,30 +187,145 @@ public class MiniAppController {
         } else {
             beforeId = null;
         }
-        int units = mode.equals("tiled") ? images.length * 5 : images.length;
+        // the uploaded files are only valid during this request: copy them first
+        List<Input> inputs = new ArrayList<>();
+        for (int i = 0; i < images.length; i++) {
+            inputs.add(new Input(images[i].getBytes(), images[i].getContentType(), views == null ? null : views.get(i)));
+        }
+        int units = images.length * MODE_COST.get(mode);
         if (!limiter.tryAcquire(user, units, now())) {
             return error(HttpStatus.TOO_MANY_REQUESTS, "Limit reached: " + limiter.limit()
-                    + " photo analyses per hour (detailed mode counts 5 per photo). Try again later.");
+                    + " photo analyses per hour (careful mode counts 2 per photo, detailed mode 5). Try again later.");
         }
-
         String cleanTitle = title == null || title.isBlank() ? null : title.strip().substring(0, Math.min(80, title.strip().length()));
-        InspectionStore.Inspection inspection = store.create(user, now(), mode, kind, cleanTitle, beforeId);
-        for (int i = 0; i < images.length; i++) {
-            MultipartFile image = images[i];
-            byte[] bytes = image.getBytes();
-            DamageAssessment result;
+        Plan plan = new Plan(user, inputs, mode, kind, cleanTitle, beforeId);
+
+        if (async) {
+            AnalysisJobs.Job job;
             try {
-                result = mode.equals("tiled")
-                        ? tiledAnalyzer.analyze(bytes, image.getContentType())
-                        : analyzer.analyze(bytes, image.getContentType());
-            } catch (IllegalArgumentException e) {
-                result = DamageAssessment.error("not a readable JPEG or PNG", 0);
+                job = jobs.submit(user, inputs.size(), photoDone -> execute(plan, photoDone));
+            } catch (AnalysisJobs.TooManyJobs e) {
+                limiter.release(user, units);
+                return error(HttpStatus.TOO_MANY_REQUESTS, e.getMessage());
             }
-            String ext = "image/png".equals(image.getContentType()) ? "png" : "jpg";
-            store.addPhoto(inspection.id(), i, views == null ? null : views.get(i), bytes, ext, result);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(jobView(job));
         }
-        store.trim(user, keepPerUser);
-        return ResponseEntity.ok(view(inspection));
+        try {
+            return ResponseEntity.ok(view(owned(execute(plan, () -> { }), user)));
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return error(HttpStatus.SERVICE_UNAVAILABLE, "interrupted");
+        }
+    }
+
+    /** Progress of a background analysis; when done, the whole inspection is included. */
+    @GetMapping("/jobs/{id}")
+    public Map<String, Object> job(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth,
+                                   @PathVariable String id) {
+        long user = user(auth);
+        AnalysisJobs.Job job = jobs.get(id, user).orElseThrow(() -> new NotFound("job not found"));
+        Map<String, Object> m = jobView(job);
+        if (job.state() == AnalysisJobs.State.DONE) {
+            store.find(job.inspectionId()).filter(i -> i.userId() == user).ifPresent(i -> m.put("inspection", view(i)));
+        }
+        return m;
+    }
+
+    /** Unfinished analyses of the user: the page shows them when it is reopened. */
+    @GetMapping("/jobs")
+    public List<Map<String, Object>> activeJobs(@RequestHeader(value = "X-Telegram-Init-Data", required = false) String auth) {
+        return jobs.active(user(auth)).stream().map(MiniAppController::jobView).toList();
+    }
+
+    // ------------------------------------------------------------------ analysis
+
+    private record Input(byte[] bytes, String contentType, String view) {
+    }
+
+    private record Plan(long user, List<Input> inputs, String mode, String kind, String title, String beforeId) {
+    }
+
+    /** Analyzes all photos in parallel, then stores them in their order; returns the inspection id. */
+    private String execute(Plan plan, Runnable photoDone) throws InterruptedException {
+        List<Future<DamageAssessment>> futures = new ArrayList<>();
+        for (Input in : plan.inputs()) {
+            futures.add(photoPool.submit(() -> {
+                try {
+                    return analyzeOne(in, plan.mode());
+                } finally {
+                    photoDone.run();
+                }
+            }));
+        }
+        List<DamageAssessment> results = new ArrayList<>();
+        for (Future<DamageAssessment> f : futures) {
+            try {
+                results.add(f.get());
+            } catch (ExecutionException e) {
+                results.add(DamageAssessment.error("internal error: " + e.getCause().getMessage(), 0));
+            }
+        }
+        InspectionStore.Inspection inspection = store.create(plan.user(), now(), plan.mode(), plan.kind(),
+                plan.title(), plan.beforeId());
+        for (int i = 0; i < results.size(); i++) {
+            Input in = plan.inputs().get(i);
+            String ext = "image/png".equals(in.contentType()) ? "png" : "jpg";
+            store.addPhoto(inspection.id(), i, in.view(), in.bytes(), ext, results.get(i));
+        }
+        store.trim(plan.user(), keepPerUser);
+        return inspection.id();
+    }
+
+    private DamageAssessment analyzeOne(Input in, String mode) {
+        try {
+            return switch (mode) {
+                case "tiled" -> tiledAnalyzer.analyze(in.bytes(), in.contentType(), PROFILE);
+                case "relook" -> relookAnalyzer.analyze(in.bytes(), in.contentType(), PROFILE);
+                default -> analyzer.analyze(in.bytes(), in.contentType(), PROFILE);
+            };
+        } catch (IllegalArgumentException e) {
+            return DamageAssessment.error("not a readable JPEG or PNG", 0);
+        }
+    }
+
+    private static Map<String, Object> jobView(AnalysisJobs.Job job) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("job_id", job.id());
+        m.put("status", job.state().name().toLowerCase(Locale.ROOT));
+        m.put("done", job.done());
+        m.put("total", job.total());
+        m.put("created_at", job.createdAt());
+        if (job.inspectionId() != null) {
+            m.put("inspection_id", job.inspectionId());
+        }
+        if (job.error() != null) {
+            m.put("error_message", job.error());
+        }
+        return m;
+    }
+
+    /** If the user closed the page before the end, the bot tells him in the chat that the result is ready. */
+    private void notifyIfLeft(AnalysisJobs.Job job) {
+        if (telegram == null || now() - job.lastSeenAt() < LEFT_AFTER_SECONDS) {
+            return;
+        }
+        String text;
+        if (job.state() == AnalysisJobs.State.DONE) {
+            int damages = InspectionSummary.allDamages(store.photos(job.inspectionId())).size();
+            text = "Анализ готов: " + job.total() + " фото, отмечено повреждений: " + damages
+                    + ". Осмотр сохранён в «Мои осмотры».";
+        } else {
+            text = "Анализ фото не удался: " + job.error() + ". Попробуйте ещё раз.";
+        }
+        try {
+            if (miniAppUrl != null && job.state() == AnalysisJobs.State.DONE) {
+                telegram.sendWebAppButton(job.userId(), text, "Открыть осмотр", miniAppUrl);
+            } else {
+                telegram.sendMessage(job.userId(), text);
+            }
+        } catch (Exception ignored) {
+            // the result is stored anyway; the notification is only a convenience
+        }
     }
 
     @GetMapping("/inspections")
@@ -279,6 +429,9 @@ public class MiniAppController {
             pm.put("status", p.status());
             if (p.error() != null) {
                 pm.put("error_message", p.error());
+            }
+            if (p.vehicleVisible() != null) {
+                pm.put("vehicle_visible", p.vehicleVisible());
             }
             pm.put("edited", p.edited());
             pm.put("damages", p.damages());

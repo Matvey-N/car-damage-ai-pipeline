@@ -15,6 +15,7 @@
     --accent-text: var(--tg-theme-button-text-color, #ffffff);
     --danger: #d0453a; --ok: #2f8a55; --warn: #c27a12;
     --c-glass: #2f8fde; --c-lamp: #e08a1e; --c-crack: #b24bd6; --c-scratch: #2fae6a;
+    --c-dent: #d6455d; --c-chip: #17a2a2; --c-rust: #9a5b2a; --c-broken: #55606e;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
@@ -89,6 +90,14 @@
   .badge.before { background: #2f6fde22; color: var(--accent); } .badge.after { background: #d0453a22; color: var(--danger); }
   .toast { position: fixed; left: 16px; right: 16px; bottom: 20px; background: #16202ce6; color: #fff; padding: 12px 14px;
            border-radius: 12px; text-align: center; z-index: 10; }
+  .modes { display: grid; gap: 8px; margin-top: 12px; }
+  .modes label { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; border: 1.5px solid #8883; }
+  .modes label.on { border-color: var(--accent); }
+  .modes input { margin-top: 3px; accent-color: var(--accent); }
+  .bar { height: 8px; border-radius: 4px; background: #8883; overflow: hidden; margin-top: 10px; }
+  .bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .4s; }
+  .desc { display: block; font-size: 14px; color: var(--hint); margin: 2px 0; }
+  .running { border: 1.5px solid var(--accent); }
   [hidden] { display: none !important; }
 </style>
 </head>
@@ -112,10 +121,20 @@
   const initData = tg ? tg.initData : "";
   if (!initData) document.getElementById("outside").hidden = false;
 
-  const TYPE = { glass_shatter: ["Разбитое стекло", "var(--c-glass)"], lamp_broken: ["Разбитая фара/фонарь", "var(--c-lamp)"],
-                 crack: ["Трещина", "var(--c-crack)"], scratch: ["Царапина", "var(--c-scratch)"] };
-  const PART = { bumper: "бампер/панель", door: "дверь", light: "фара/фонарь", window: "боковое стекло",
-                 windshield: "лобовое/заднее стекло", hood: "капот", fender: "крыло", mirror: "зеркало", wheel: "колесо", other: "другое" };
+  const TYPE = { scratch: ["Царапина", "var(--c-scratch)"], dent: ["Вмятина", "var(--c-dent)"],
+                 paint_chip: ["Скол/отслоение краски", "var(--c-chip)"], crack: ["Трещина", "var(--c-crack)"],
+                 rust: ["Ржавчина", "var(--c-rust)"], glass_shatter: ["Повреждение стекла", "var(--c-glass)"],
+                 lamp_broken: ["Разбитая фара/фонарь", "var(--c-lamp)"], broken_part: ["Сломанная/оторванная деталь", "var(--c-broken)"] };
+  const PART = { bumper: "бампер", door: "дверь", fender: "крыло", hood: "капот", trunk: "багажник", roof: "крыша",
+                 sill: "порог", grille: "решётка радиатора", light: "фара/фонарь", mirror: "зеркало", window: "боковое стекло",
+                 windshield: "лобовое/заднее стекло", wheel: "колесо/диск", other: "другое" };
+  const MODES = [["whole", "Быстрый", "1 проход — самый быстрый."],
+                 ["relook", "Внимательный", "2 прохода: модель ещё раз ищет то, что пропустила. Рекомендуется."],
+                 ["tiled", "Детальный", "Фото разбирается по частям: лучше видны мелкие повреждения, но дольше."]];
+  const MODE_NAME = { whole: "быстрый анализ", relook: "внимательный анализ", tiled: "детальный анализ" };
+  const PENDING = "pendingJob";
+  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
   const SEV = { minor: "лёгкое", moderate: "среднее", severe: "тяжёлое" };
   const ACT = { repair: "ремонт", replacement: "замена" };
   const KIND = { single: "Осмотр", before: "При выдаче", after: "При возврате" };
@@ -147,7 +166,7 @@
       const body = await resp.json().catch(() => ({}));
       throw new Error(resp.status === 401 ? "Откройте приложение из Telegram-бота (команда /app)."
                     : resp.status === 429 ? "Достигнут часовой лимит анализов. Попробуйте позже."
-                    : resp.status === 404 ? "Осмотр не найден."
+                    : resp.status === 404 ? (path.startsWith("/jobs") ? "Задача не найдена." : "Осмотр не найден.")
                     : body.error_message || `Ошибка сервиса (${resp.status}).`);
     }
     return resp;
@@ -185,7 +204,7 @@
       const c = document.createElement("canvas");
       c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
       c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
-      const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.92));
+      const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.88));
       return { blob, quality: quality(c) };
     } catch (e) { return { blob: file, quality: null }; }
   }
@@ -220,7 +239,14 @@
       <button class="choice" data-go="guided"><b>🧭 Пошаговая съёмка</b><span class="hint">Приложение подскажет 8 ракурсов и проверит качество снимков</span></button>
       <button class="choice" data-go="before"><b>🔑 Аренда: при выдаче</b><span class="hint">Пошаговая съёмка, чтобы потом сравнить с возвратом</span></button>
       <button class="choice" data-go="after"><b>↩️ Аренда: при возврате</b><span class="hint">Снимите те же ракурсы — приложение покажет только новые повреждения</span></button>
-      <p class="hint" style="margin-top:14px">Это исследовательский прототип: ИИ отмечает видимые повреждения и даёт условный ориентир стоимости. Результат можно исправить вручную.</p>`;
+      <div id="running"></div>
+      <p class="hint" style="margin-top:14px">Это исследовательский прототип: ИИ отмечает видимые повреждения (царапины, вмятины, сколы, трещины, ржавчину, повреждения стёкол и фар) и даёт условный ориентир стоимости. Результат можно исправить вручную.</p>`;
+    if (initData) api("/jobs").then(r => r.json()).then(list => {
+      const box = $("#running"); if (!box || !list.length) return;
+      box.innerHTML = list.map(j => `<button class="choice running" data-job="${j.job_id}"><b>⏳ Идёт анализ</b>
+          <span class="hint">готово ${j.done} из ${j.total} фото — нажмите, чтобы следить</span></button>`).join("");
+      box.querySelectorAll("[data-job]").forEach(b => b.onclick = () => go(() => progress(b.dataset.job, [])));
+    }).catch(() => {});
     screen.querySelectorAll("[data-go]").forEach(b => b.onclick = () => {
       const k = b.dataset.go;
       if (k === "quick") go(() => quick());
@@ -261,10 +287,20 @@
   }
 
   function commonOptions() {
+    const saved = store.get("mode") || "relook";
     return `<input type="text" id="title" maxlength="80" placeholder="Название (необязательно), например «Golf серый»" style="margin-top:12px">
-      <label class="toggle"><input type="checkbox" id="tiled"><span>Подробный анализ<br><span class="hint">Снимок разбирается ещё и по частям:
-      лучше видны мелкие повреждения, но в несколько раз дольше.</span></span></label>`;
+      <div class="modes">${MODES.map(([k, n, h]) => `<label class="${k === saved ? "on" : ""}"><input type="radio" name="mode" value="${k}" ${k === saved ? "checked" : ""}>
+        <span><b>${n}</b><br><span class="hint">${h}</span></span></label>`).join("")}</div>`;
   }
+  function chosenMode() {
+    const r = document.querySelector("input[name=mode]:checked");
+    return r ? r.value : "relook";
+  }
+  document.addEventListener("change", e => {
+    if (e.target.name !== "mode") return;
+    document.querySelectorAll(".modes label").forEach(l => l.classList.toggle("on", l.contains(e.target) ));
+    store.set("mode", e.target.value);
+  });
 
   // ------------------------------------------------------------ guided capture
   function viewPicture(key) {
@@ -351,28 +387,72 @@
 
   // ------------------------------------------------------------ submit
   async function submit(shots, kind, beforeId) {
-    const tiled = $("#tiled").checked;
+    const mode = chosenMode();
     const form = new FormData();
     shots.forEach((s, i) => { form.append("images", s.blob, `photo${i + 1}.jpg`); if (s.view) form.append("views", s.view); });
     if (shots.some(s => !s.view) && shots.some(s => s.view)) { form.delete("views"); shots.forEach(s => form.append("views", s.view || "extra")); }
-    form.append("mode", tiled ? "tiled" : "whole");
+    form.append("mode", mode);
     form.append("kind", kind);
+    form.append("async", "true");
     if (beforeId) form.append("before_id", beforeId);
     const title = $("#title").value.trim(); if (title) form.append("title", title);
     $("#go").disabled = true;
-    const sec = shots.length * (tiled ? 50 : 12);
     $("#status").className = "status hint";
-    $("#status").textContent = `Анализ… примерно ${sec < 90 ? sec + " с" : Math.round(sec / 60) + " мин"}. Не закрывайте приложение.`;
+    $("#status").textContent = "Отправляю фото…";
     try {
-      const inspection = await (await api("/analyze", { method: "POST", body: form })).json();
-      shots.forEach((s, i) => photoCache[inspection.id + "/" + i] = Promise.resolve(s.url));
-      haptic("success");
-      stack.length = 0; go.current = null;
-      go(() => result(inspection));
+      const job = await (await api("/analyze", { method: "POST", body: form })).json();
+      store.set(PENDING, job.job_id);
+      go(() => progress(job.job_id, shots.map(s => s.url), job.total), false);
     } catch (e) {
       $("#status").className = "status error"; $("#status").textContent = e.message || "Нет связи с сервисом.";
       $("#go").disabled = false; haptic("error");
     }
+  }
+
+  // Background analysis: the page asks for the progress; the work goes on even if the page is closed.
+  function progress(jobId, urls, total) {
+    screen.innerHTML = `<div class="card"><h2>Анализ фото</h2>
+      <p id="pmsg">Модель осматривает снимки${total ? ` (${total} фото)` : ""}…</p>
+      <div class="bar"><span id="pbar"></span></div>
+      <p class="hint">Можно свернуть или закрыть приложение: анализ продолжится, осмотр появится в «Мои осмотры», а бот напишет в чат, когда всё будет готово.</p>
+      <p class="error" id="perr" hidden></p></div>`;
+    let failures = 0;
+    const token = progress.token = (progress.token || 0) + 1;
+    const tick = async () => {
+      if (progress.token !== token || !$("#pbar")) return;   // the user went to another screen
+      try {
+        const j = await (await api(`/jobs/${jobId}`)).json();
+        failures = 0;
+        const share = j.total ? j.done / j.total : 0;
+        $("#pbar").style.width = Math.max(5, Math.round(share * 100)) + "%";
+        $("#pmsg").textContent = j.status === "queued" ? "В очереди…" : `Готово ${j.done} из ${j.total} фото…`;
+        if (j.status === "done") {
+          store.set(PENDING, null);
+          haptic("success");
+          if (j.inspection) {
+            urls.forEach((u, i) => photoCache[j.inspection.id + "/" + i] = Promise.resolve(u));
+            stack.length = 0; go.current = null;
+            go(() => result(j.inspection));
+          } else { stack.length = 0; go.current = null; go(history); }
+          return;
+        }
+        if (j.status === "failed") {
+          store.set(PENDING, null); haptic("error");
+          $("#perr").hidden = false; $("#perr").textContent = "Анализ не удался: " + (j.error_message || "ошибка сервиса");
+          return;
+        }
+      } catch (e) {
+        if (/не найден/.test(e.message)) {
+          store.set(PENDING, null);
+          $("#perr").hidden = false; $("#perr").textContent = "Задача не найдена (сервис перезапускался?). Загляните в «Мои осмотры».";
+          return;
+        }
+        failures++;
+        if (failures >= 3) { $("#perr").hidden = false; $("#perr").textContent = "Связь с сервисом прерывается — продолжаю попытки. Анализ идёт на сервере."; }
+      }
+      setTimeout(tick, Math.min(1500 * (1 + failures), 8000));
+    };
+    tick();
   }
 
   // ------------------------------------------------------------ result
@@ -380,7 +460,7 @@
   function damageRow(d, n, extra) {
     const [label, color] = TYPE[d.damage_type] || [d.damage_type, "#888"];
     return `<div class="drow"><span class="num" style="background:${color}">${n}</span><span class="body">
-      <b>${esc(label)}</b> — ${esc(PART[d.part] || d.part)}<br>
+      <b>${esc(label)}</b> — ${esc(PART[d.part] || d.part)}<br>${d.description ? `<span class="desc">${esc(d.description)}</span>` : ""}
       <span class="chip">${esc(SEV[d.severity] || d.severity)}</span><span class="chip">${esc(ACT[d.action] || d.action)}</span>
       ${extra || ""}<span class="hint">${d.confidence != null ? "уверенность " + Math.round(d.confidence * 100) + "%" : ""}</span></span>`;
   }
@@ -393,7 +473,7 @@
     const list = s.damages.map((d, i) => `<li>${damageRow(d, i + 1, s.prices[i] ? `<span class="hint">${s.prices[i].min}–${s.prices[i].max} € · </span>` : "")}</div></li>`).join("");
     screen.innerHTML = `
       <div class="card"><div class="hist"><h2 style="margin:0">${esc(ins.title || KIND[ins.kind])}</h2><span class="badge ${ins.kind}">${KIND[ins.kind]}</span></div>
-        <p class="hint">${fmtDate(ins.created_at)} · ${ins.photos.length} фото${ins.mode === "tiled" ? " · подробный анализ" : ""}</p>
+        <p class="hint">${fmtDate(ins.created_at)} · ${ins.photos.length} фото${MODE_NAME[ins.mode] ? " · " + MODE_NAME[ins.mode] : ""}</p>
         ${cmp ? (cmp.new ? `<div class="banner new"><b>Новые повреждения: ${cmp.new}</b><br>ориентир стоимости новых: ${cmp.new_total.min}–${cmp.new_total.max} ${esc(cmp.new_total.currency)}</div>`
                          : `<div class="banner none"><b>Новых повреждений не найдено</b></div>`)
               + (cmp.not_compared ? `<p class="hint">${cmp.not_compared} повр. на ракурсах, которых не было при выдаче, — не сравнивались.</p>` : "") : ""}
@@ -401,11 +481,13 @@
         <h3 style="margin-top:12px">Итог по всем фото</h3>
         ${s.damages.length ? `<div class="hint">Ориентир стоимости</div><div class="total">${s.total.min}–${s.total.max} ${esc(s.total.currency)}</div><ul class="dlist">${list}</ul>`
                            : `<p>Видимых повреждений не найдено.</p>`}
-        <p class="hint">Цены — условный справочник, не смета. Модель пропускает часть мелких повреждений; неверное можно исправить (✎).</p>
+        ${ins.photos.some(p => p.vehicle_visible === false) ? `<p class="hint">⚠ На некоторых фото модель не увидела автомобиль — они не учтены.</p>` : ""}
+        <p class="hint">Цены — условный справочник, не смета. Модель может пропустить мелкие повреждения или принять блик за повреждение; неверное можно исправить (✎).</p>
         <button class="btn" id="pdf">📄 Отправить PDF-отчёт в чат</button>
         ${ins.kind === "before" ? `<button class="btn secondary" id="ret">↩️ Осмотр при возврате</button>` : ""}
       </div>
-      <div class="legend">${Object.values(TYPE).map(([l, c]) => `<span style="--c:${c}">${l}</span>`).join("")}</div>
+      <div class="legend">${Object.entries(TYPE).filter(([k]) => ins.photos.some(p => (p.damages || []).some(d => d.damage_type === k)))
+          .map(([k, [l, c]]) => `<span style="--c:${c}">${l}</span>`).join("")}</div>
       <div id="photos"></div>
       <button class="btn danger" id="del">Удалить осмотр</button>`;
     ins.photos.forEach(p => $("#photos").append(photoCard(ins, p)));
@@ -436,7 +518,7 @@
       ${ok ? (p.damages.length ? `<ul class="dlist">${p.damages.map((d, i) => `<li data-i="${i}">${damageRow(d, i + 1,
               marks[i] === "new" ? `<span class="chip new">НОВОЕ</span>` : marks[i] === "existing" ? `<span class="chip old">было при выдаче</span>` : "")}
               <button class="edit" data-e="${i}" aria-label="Исправить">✎</button></div><div class="ed"></div></li>`).join("")}</ul>`
-                                   : `<p class="hint">Повреждений не найдено.</p>`)
+                                   : `<p class="hint">${p.vehicle_visible === false ? "На этом фото не видно автомобиля." : "Повреждений не найдено."}</p>`)
            : `<p class="error">Не удалось проанализировать это фото.</p>`}`;
     const img = card.querySelector("img"), svg = card.querySelector("svg");
     const draw = () => {

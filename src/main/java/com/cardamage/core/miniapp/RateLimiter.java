@@ -36,6 +36,14 @@ public class RateLimiter {
         return true;
     }
 
+    /** Gives back units taken by tryAcquire when the work was not started after all. */
+    public synchronized void release(long userId, int units) {
+        Deque<Long> times = used.get(userId);
+        for (int i = 0; i < units && times != null && !times.isEmpty(); i++) {
+            times.pollLast();
+        }
+    }
+
     public int limit() {
         return limit;
     }

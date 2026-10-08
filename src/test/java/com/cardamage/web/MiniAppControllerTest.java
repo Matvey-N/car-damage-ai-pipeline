@@ -154,6 +154,54 @@ class MiniAppControllerTest {
     }
 
     @Test
+    void backgroundAnalysisReportsProgressAndEndsWithTheInspection() throws Exception {
+        String body = mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()).file(jpeg())
+                        .param("async", "true").param("mode", "relook").header(H, initData(30)))
+                .andExpect(status().isAccepted())
+                .andExpect(jsonPath("$.total").value(2))
+                .andReturn().getResponse().getContentAsString();
+        String jobId = json.readTree(body).get("job_id").asText();
+
+        // another user does not see the job
+        mvc.perform(get("/api/v1/miniapp/jobs/" + jobId).header(H, initData(31))).andExpect(status().isNotFound());
+
+        JsonNode job = null;
+        for (int i = 0; i < 100; i++) {
+            job = json.readTree(mvc.perform(get("/api/v1/miniapp/jobs/" + jobId).header(H, initData(30)))
+                    .andExpect(status().isOk()).andReturn().getResponse().getContentAsString());
+            if (job.get("status").asText().equals("done")) {
+                break;
+            }
+            Thread.sleep(50);
+        }
+        assertEquals("done", job.get("status").asText());
+        assertEquals(2, job.get("done").asInt());
+        assertEquals("relook", job.get("inspection").get("mode").asText());
+        assertEquals(2, job.get("inspection").get("photos").size());
+        assertEquals(1, job.get("inspection").get("summary").get("damages").size());
+        mvc.perform(get("/api/v1/miniapp/jobs").header(H, initData(30)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    void unknownModeIsRefused() throws Exception {
+        mvc.perform(multipart("/api/v1/miniapp/analyze").file(jpeg()).param("mode", "zoom").header(H, initData(32)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void correctionMayUseTheExtendedTaxonomy() throws Exception {
+        String id = analyze(33).get("id").asText();
+        String dent = "[{\"damage_type\":\"dent\",\"part\":\"trunk\",\"severity\":\"moderate\",\"action\":\"repair\","
+                + "\"confidence\":0.8,\"bounding_box\":[0.1,0.1,0.2,0.2]}]";
+        mvc.perform(put("/api/v1/miniapp/inspections/" + id + "/photos/0/damages").header(H, initData(33))
+                        .contentType(MediaType.APPLICATION_JSON).content(dent))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.photos[0].damages[0].damage_type").value("dent"));
+    }
+
+    @Test
     void limitPerUserIsEnforced() throws Exception {
         for (int i = 0; i < 10; i++) {
             analyze(17);   // 20 photos = the limit

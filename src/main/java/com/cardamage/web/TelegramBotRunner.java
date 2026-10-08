@@ -4,7 +4,8 @@ import com.cardamage.core.bot.DemoBot;
 import com.cardamage.core.bot.TelegramApi;
 import com.cardamage.core.demo.DamageMergeService;
 import com.cardamage.core.demo.PriceEstimator;
-import com.cardamage.core.pipeline.SingleImageAnalyzer;
+import com.cardamage.core.pipeline.AnalysisProfile;
+import com.cardamage.core.pipeline.RelookAnalyzer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -28,7 +29,7 @@ public class TelegramBotRunner {
     private final String miniAppUrl;
     private final boolean polling;
     private final String baseUrl;
-    private final SingleImageAnalyzer analyzer;
+    private final RelookAnalyzer analyzer;
     private final DamageMergeService mergeService;
     private final ObjectMapper mapper;
     private volatile boolean running;
@@ -38,7 +39,7 @@ public class TelegramBotRunner {
                              @Value("${telegram.base-url:https://api.telegram.org}") String baseUrl,
                              @Value("${telegram.miniapp.url:}") String miniAppUrl,
                              @Value("${telegram.polling:true}") boolean polling,
-                             SingleImageAnalyzer analyzer,
+                             RelookAnalyzer analyzer,
                              DamageMergeService mergeService,
                              ObjectMapper mapper) {
         this.token = token == null ? "" : token.trim();
@@ -57,7 +58,8 @@ public class TelegramBotRunner {
             return;
         }
         TelegramApi telegram = new TelegramHttpApi(baseUrl, token, mapper);
-        DemoBot bot = new DemoBot(telegram, analyzer::analyze, mergeService, PriceEstimator.fromClasspath(mapper),
+        DemoBot bot = new DemoBot(telegram,
+                (image, mediaType) -> analyzer.analyze(image, mediaType, AnalysisProfile.GENERAL), mergeService, PriceEstimator.fromClasspath(mapper),
                 miniAppUrl.isEmpty() ? null : miniAppUrl);
         if (!miniAppUrl.isEmpty()) {
             if (!miniAppUrl.startsWith("https://")) {
