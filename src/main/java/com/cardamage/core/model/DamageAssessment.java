@@ -42,6 +42,14 @@ public class DamageAssessment {
     @JsonProperty("error_message")
     private String errorMessage;
 
+    /**
+     * Only in the "general" profile: false if the model sees no car on the photo
+     * (then damages is empty for that reason, not because the car is intact).
+     * Null in the benchmark profile, so benchmark output is unchanged.
+     */
+    @JsonProperty("vehicle_visible")
+    private Boolean vehicleVisible;
+
     /** Number of model calls used to obtain this result (1..maxAttempts). */
     @JsonProperty("attempts")
     private Integer attempts;
@@ -84,6 +92,9 @@ public class DamageAssessment {
 
     public String getErrorMessage() { return errorMessage; }
     public void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
+
+    public Boolean getVehicleVisible() { return vehicleVisible; }
+    public void setVehicleVisible(Boolean vehicleVisible) { this.vehicleVisible = vehicleVisible; }
 
     public Integer getAttempts() { return attempts; }
     public void setAttempts(Integer attempts) { this.attempts = attempts; }

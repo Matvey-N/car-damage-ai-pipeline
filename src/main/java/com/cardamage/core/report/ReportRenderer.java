@@ -2,6 +2,7 @@ package com.cardamage.core.report;
 
 import com.cardamage.core.demo.PriceEstimator;
 import com.cardamage.core.model.Damage;
+import com.cardamage.core.model.Labels;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -40,19 +41,6 @@ public class ReportRenderer {
     private static final Color PAPER = new Color(0xfb, 0xfa, 0xf7);
     private static final Color BAND = new Color(0x14, 0x21, 0x3d);
     private static final Color NEW = new Color(0xc0, 0x39, 0x2b);
-    private static final Map<String, Color> TYPE_COLOR = Map.of(
-            "glass_shatter", new Color(0x2f, 0x8f, 0xde), "lamp_broken", new Color(0xe0, 0x8a, 0x1e),
-            "crack", new Color(0xb2, 0x4b, 0xd6), "scratch", new Color(0x2f, 0xae, 0x6a));
-    private static final Map<String, String> TYPE = Map.of(
-            "glass_shatter", "Разбитое стекло", "lamp_broken", "Разбитая фара/фонарь",
-            "crack", "Трещина", "scratch", "Царапина");
-    private static final Map<String, String> PART = Map.of(
-            "bumper", "бампер/панель", "door", "дверь", "light", "фара/фонарь", "window", "боковое стекло",
-            "windshield", "лобовое/заднее стекло", "hood", "капот", "fender", "крыло", "mirror", "зеркало",
-            "wheel", "колесо", "other", "другое");
-    private static final Map<String, String> SEV = Map.of("minor", "лёгкое", "moderate", "среднее", "severe", "тяжёлое");
-    private static final Map<String, String> ACT = Map.of("repair", "ремонт", "replacement", "замена");
-
     /** One photo in the report. newFlags: null, or per damage whether it is new (return inspection). */
     public record PhotoPart(String title, byte[] image, List<Damage> damages, List<Boolean> newFlags) {
     }
@@ -163,7 +151,7 @@ public class ReportRenderer {
         pages.need(90);
         Graphics2D g = pages.g;
         int y = pages.y;
-        Color c = TYPE_COLOR.getOrDefault(d.getDamageType(), SOFT);
+        Color c = new Color(Labels.color(d.getDamageType()));
         g.setColor(c);
         g.fillOval(M, y - 30, 44, 44);
         g.setColor(Color.WHITE);
@@ -171,8 +159,7 @@ public class ReportRenderer {
         centre(g, String.valueOf(n), M + 22, y);
         g.setColor(INK);
         g.setFont(bold.deriveFont(30f));
-        String head = TYPE.getOrDefault(d.getDamageType(), d.getDamageType()) + " — "
-                + PART.getOrDefault(d.getPart(), d.getPart());
+        String head = Labels.type(d.getDamageType()) + " — " + Labels.part(d.getPart());
         g.drawString(head, M + 64, y);
         if (isNew) {
             int x = M + 64 + g.getFontMetrics().stringWidth(head) + 16;
@@ -184,8 +171,7 @@ public class ReportRenderer {
         }
         g.setColor(SOFT);
         g.setFont(regular.deriveFont(24f));
-        String details = SEV.getOrDefault(d.getSeverity(), d.getSeverity()) + " · "
-                + ACT.getOrDefault(d.getAction(), d.getAction())
+        String details = Labels.severity(d.getSeverity()) + " · " + Labels.action(d.getAction())
                 + (d.getConfidence() == null ? "" : " · уверенность " + Math.round(d.getConfidence() * 100) + "%")
                 + (price == null ? "" : " · " + price.min() + "–" + price.max() + " EUR");
         g.drawString(details, M + 64, y + 36);
@@ -230,7 +216,7 @@ public class ReportRenderer {
                     continue;
                 }
                 boolean isNew = p.newFlags() != null && i < p.newFlags().size() && p.newFlags().get(i);
-                Color c = isNew ? NEW : TYPE_COLOR.getOrDefault(d.getDamageType(), Color.YELLOW);
+                Color c = isNew ? NEW : new Color(Labels.color(d.getDamageType()));
                 int bx = x0 + (int) Math.round(b.get(0) * w);
                 int by = y0 + (int) Math.round(b.get(1) * h);
                 int bw = (int) Math.round(b.get(2) * w);

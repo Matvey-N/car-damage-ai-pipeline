@@ -109,4 +109,31 @@ class InspectionStoreTest {
         assertEquals(BeforeAfterComparator.Status.EXISTING,
                 BeforeAfterComparator.compare(List.of(before), List.of(after)).get(0).status());
     }
+
+    @Test
+    void vehicleVisibilityIsStored() throws Exception {
+        InspectionStore s = store();
+        InspectionStore.Inspection i = s.create(7, 1000, "relook", "single", null, null);
+        DamageAssessment noCar = DamageAssessment.success(List.of(), 0, 1);
+        noCar.setVehicleVisible(false);
+        s.addPhoto(i.id(), 0, null, new byte[]{1}, "jpg", noCar);
+        s.addPhoto(i.id(), 1, null, new byte[]{1}, "jpg", DamageAssessment.success(List.of(), 0, 1));
+        assertEquals(Boolean.FALSE, s.photos(i.id()).get(0).vehicleVisible());
+        assertNull(s.photos(i.id()).get(1).vehicleVisible());
+    }
+
+    @Test
+    void databaseOfTheFirstVersionIsUpgraded() throws Exception {
+        Path dir = Files.createTempDirectory("store");
+        try (java.sql.Connection c = java.sql.DriverManager.getConnection("jdbc:sqlite:" + dir.resolve("inspections.db"));
+             java.sql.Statement st = c.createStatement()) {
+            st.execute("CREATE TABLE photos (inspection_id TEXT NOT NULL, idx INTEGER NOT NULL, view TEXT, "
+                    + "status TEXT NOT NULL, error TEXT, damages_json TEXT NOT NULL, corrected_json TEXT, "
+                    + "PRIMARY KEY (inspection_id, idx))");
+            st.execute("INSERT INTO photos VALUES ('old', 0, NULL, 'success', NULL, '[]', NULL)");
+        }
+        InspectionStore s = new InspectionStore(dir, new ObjectMapper());
+        assertNull(s.photos("old").get(0).vehicleVisible());
+        new InspectionStore(dir, new ObjectMapper());   // opening again must not fail
+    }
 }

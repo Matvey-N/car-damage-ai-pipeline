@@ -30,6 +30,35 @@ public class ResponseFormatValidator {
 
     public static final Set<String> ACTIONS = Set.of("repair", "replacement");
 
+    /**
+     * Extended taxonomy for photos of any car (profile "general", Mini App and bot).
+     * A superset of the benchmark sets: the benchmark keeps its four SYNDCAR types.
+     */
+    public static final Set<String> GENERAL_DAMAGE_TYPES = Set.of(
+            "glass_shatter", "lamp_broken", "crack", "scratch", "dent", "paint_chip", "rust", "broken_part");
+
+    public static final Set<String> GENERAL_PARTS = Set.of(
+            "bumper", "door", "light", "window", "windshield", "hood", "fender", "mirror", "wheel", "other",
+            "trunk", "roof", "grille", "sill");
+
+    private final Set<String> damageTypes;
+    private final Set<String> parts;
+
+    /** The benchmark taxonomy (four SYNDCAR damage types). */
+    public ResponseFormatValidator() {
+        this(DAMAGE_TYPES, PARTS);
+    }
+
+    public ResponseFormatValidator(Set<String> damageTypes, Set<String> parts) {
+        this.damageTypes = Set.copyOf(damageTypes);
+        this.parts = Set.copyOf(parts);
+    }
+
+    /** Validator accepting the extended taxonomy (also accepts every benchmark answer). */
+    public static ResponseFormatValidator general() {
+        return new ResponseFormatValidator(GENERAL_DAMAGE_TYPES, GENERAL_PARTS);
+    }
+
     /** Tolerance for x + w <= 1 and y + h <= 1 (floating point rounding). */
     private static final double BOX_EPS = 1e-3;
 
@@ -64,8 +93,8 @@ public class ResponseFormatValidator {
             violations.add(path + " is null");
             return;
         }
-        checkEnum(d.getDamageType(), DAMAGE_TYPES, path + ".damage_type", violations);
-        checkEnum(d.getPart(), PARTS, path + ".part", violations);
+        checkEnum(d.getDamageType(), damageTypes, path + ".damage_type", violations);
+        checkEnum(d.getPart(), parts, path + ".part", violations);
         checkEnum(d.getSeverity(), SEVERITIES, path + ".severity", violations);
         checkEnum(d.getAction(), ACTIONS, path + ".action", violations);
 

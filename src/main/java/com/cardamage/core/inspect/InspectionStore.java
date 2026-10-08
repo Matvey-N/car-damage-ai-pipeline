@@ -37,8 +37,15 @@ public class InspectionStore {
                              String title, String beforeId) {
     }
 
+    /** vehicleVisible: false if the model saw no car on the photo; null if not asked (older records). */
     public record Photo(String inspectionId, int index, String view, String status, String error,
-                        List<Damage> modelDamages, List<Damage> correctedDamages) {
+                        List<Damage> modelDamages, List<Damage> correctedDamages, Boolean vehicleVisible) {
+
+        public Photo(String inspectionId, int index, String view, String status, String error,
+                     List<Damage> modelDamages, List<Damage> correctedDamages) {
+            this(inspectionId, index, view, status, error, modelDamages, correctedDamages, null);
+        }
+
         /** What the user sees: the corrected list if there is one, else the model's. */
         public List<Damage> damages() {
             return correctedDamages != null ? correctedDamages : modelDamages;
@@ -79,6 +86,16 @@ public class InspectionStore {
                       id INTEGER PRIMARY KEY AUTOINCREMENT, inspection_id TEXT NOT NULL, idx INTEGER NOT NULL,
                       user_id INTEGER NOT NULL, at INTEGER NOT NULL, before_json TEXT NOT NULL, after_json TEXT NOT NULL)""");
             s.execute("CREATE INDEX IF NOT EXISTS inspections_user ON inspections(user_id, created_at)");
+            // added after the first release: databases created earlier get the column here
+            boolean hasVehicleColumn = false;
+            try (ResultSet rs = s.executeQuery("PRAGMA table_info(photos)")) {
+                while (rs.next()) {
+                    hasVehicleColumn |= "vehicle_visible".equals(rs.getString("name"));
+                }
+            }
+            if (!hasVehicleColumn) {
+                s.execute("ALTER TABLE photos ADD COLUMN vehicle_visible INTEGER");
+            }
         } catch (SQLException e) {
             throw new IllegalStateException("cannot open the inspection database: " + e.getMessage(), e);
         }
@@ -116,13 +133,19 @@ public class InspectionStore {
             throw new UncheckedIOException("cannot save photo", e);
         }
         String json = toJson(result.isSuccess() ? result.getDamages() : List.of());
-        sql("INSERT INTO photos (inspection_id, idx, view, status, error, damages_json) VALUES (?,?,?,?,?,?)", ps -> {
+        sql("INSERT INTO photos (inspection_id, idx, view, status, error, damages_json, vehicle_visible) "
+                + "VALUES (?,?,?,?,?,?,?)", ps -> {
             ps.setString(1, inspectionId);
             ps.setInt(2, index);
             ps.setString(3, view);
             ps.setString(4, result.getStatus());
             ps.setString(5, result.getErrorMessage());
             ps.setString(6, json);
+            if (result.getVehicleVisible() == null) {
+                ps.setNull(7, java.sql.Types.INTEGER);
+            } else {
+                ps.setInt(7, result.getVehicleVisible() ? 1 : 0);
+            }
             ps.executeUpdate();
             return null;
         });
@@ -158,9 +181,11 @@ public class InspectionStore {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     String corrected = rs.getString("corrected_json");
+                    int vehicle = rs.getInt("vehicle_visible");
+                    Boolean vehicleVisible = rs.wasNull() ? null : vehicle == 1;
                     out.add(new Photo(inspectionId, rs.getInt("idx"), rs.getString("view"), rs.getString("status"),
                             rs.getString("error"), fromJson(rs.getString("damages_json")),
-                            corrected == null ? null : fromJson(corrected)));
+                            corrected == null ? null : fromJson(corrected), vehicleVisible));
                 }
             }
             return out;

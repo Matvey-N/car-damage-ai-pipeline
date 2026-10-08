@@ -75,10 +75,15 @@ public final class DamagePrompt {
      * format errors are appended so the model can correct them.
      */
     public static String forAttempt(int attempt, List<String> previousViolations) {
+        return withCorrections(BASE, attempt, previousViolations);
+    }
+
+    /** Any base prompt (benchmark, general, second look) plus the previous format errors. */
+    public static String withCorrections(String base, int attempt, List<String> previousViolations) {
         if (attempt <= 1 || previousViolations == null || previousViolations.isEmpty()) {
-            return BASE;
+            return base;
         }
-        return BASE + "\nYour previous answer was rejected for these reasons: "
+        return base + "\nYour previous answer was rejected for these reasons: "
                 + String.join("; ", previousViolations)
                 + "\nReturn a corrected JSON object only.\n";
     }

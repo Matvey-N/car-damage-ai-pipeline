@@ -11,6 +11,10 @@
     "fender":     { "repair": [150, 400], "replacement": [350, 800] },
     "mirror":     { "repair": [50, 120],  "replacement": [120, 400] },
     "wheel":      { "repair": [60, 150],  "replacement": [150, 500] },
+    "trunk":      { "repair": [200, 450], "replacement": [500, 1200] },
+    "roof":       { "repair": [250, 600], "replacement": [900, 2000] },
+    "grille":     { "repair": [50, 120],  "replacement": [100, 400] },
+    "sill":       { "repair": [150, 350], "replacement": [300, 700] },
     "other":      { "repair": [100, 300], "replacement": [300, 800] }
   }
 }

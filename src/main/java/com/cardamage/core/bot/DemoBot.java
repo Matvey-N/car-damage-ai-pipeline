@@ -5,6 +5,7 @@ import com.cardamage.core.demo.DamageMergeService;
 import com.cardamage.core.demo.PriceEstimator;
 import com.cardamage.core.model.Damage;
 import com.cardamage.core.model.DamageAssessment;
+import com.cardamage.core.model.Labels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,17 +35,7 @@ public class DemoBot {
         DamageAssessment analyze(byte[] image, String mediaType);
     }
 
-    private static final Map<String, String> TYPE_RU = Map.of(
-            "glass_shatter", "разбитое стекло", "lamp_broken", "разбитая фара/фонарь",
-            "crack", "трещина", "scratch", "царапина");
-    private static final Map<String, String> PART_RU = Map.of(
-            "bumper", "бампер/панель", "door", "дверь", "light", "фара/фонарь", "window", "боковое стекло",
-            "windshield", "лобовое/заднее стекло", "hood", "капот", "fender", "крыло", "mirror", "зеркало",
-            "wheel", "колесо", "other", "другое");
-    private static final Map<String, String> SEVERITY_RU = Map.of(
-            "minor", "лёгкое", "moderate", "среднее", "severe", "тяжёлое");
-    private static final Map<String, String> ACTION_RU = Map.of(
-            "repair", "ремонт", "replacement", "замена");
+    private static final Locale RU = Locale.forLanguageTag("ru");
 
     static final String HELP = "Это демонстрация исследовательского прототипа, а не оценка для страховой или сервиса.\n\n"
             + "Пришлите от " + MIN_PHOTOS + " до " + MAX_PHOTOS + " фотографий одного автомобиля (по одной или альбомом), "
@@ -125,6 +116,10 @@ public class DemoBot {
                     + "(модель не дала корректный ответ после " + result.getAttempts() + " попыток). Фото не учтено.");
             return;
         }
+        if (Boolean.FALSE.equals(result.getVehicleVisible())) {
+            telegram.sendMessage(chat, "На этом фото не видно автомобиля — фото не учтено.");
+            return;
+        }
         photos.add(result);
         int n = photos.size();
         String next = n < MIN_PHOTOS
@@ -156,10 +151,10 @@ public class DemoBot {
         int i = 1;
         for (Damage d : damages) {
             sb.append(i++).append(". ")
-                    .append(PART_RU.getOrDefault(d.getPart(), d.getPart())).append(": ")
-                    .append(TYPE_RU.getOrDefault(d.getDamageType(), d.getDamageType())).append("\n   ")
-                    .append(SEVERITY_RU.getOrDefault(d.getSeverity(), d.getSeverity())).append(", ")
-                    .append(ACTION_RU.getOrDefault(d.getAction(), d.getAction()))
+                    .append(Labels.part(d.getPart())).append(": ")
+                    .append(Labels.type(d.getDamageType()).toLowerCase(RU)).append("\n   ")
+                    .append(Labels.severity(d.getSeverity())).append(", ")
+                    .append(Labels.action(d.getAction()))
                     .append(", уверенность ").append(Math.round(d.getConfidence() * 100)).append("%");
             PriceEstimator.Range r = prices.priceOf(d);
             if (r != null) {

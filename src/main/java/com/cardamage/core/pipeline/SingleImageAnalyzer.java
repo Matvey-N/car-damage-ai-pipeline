@@ -4,13 +4,16 @@ import com.cardamage.core.model.DamageAssessment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The core of the pipeline: analyzes exactly one image.
  *
- * Used as-is by the benchmark (one CarDD image per call) and once per
- * photo by the demo scenario.
+ * Used as-is by the benchmark (one image per call, profile BENCHMARK) and
+ * once per photo by the Mini App and the bot (profile GENERAL). Stateless
+ * apart from its settings, so it may be called from several threads.
  *
  * Flow per attempt:
  *   model call -> ResponseParser (is it JSON of the right shape?)
@@ -36,6 +39,7 @@ public class SingleImageAnalyzer {
     private final long backoffMillis;
     private final Sleeper sleeper;
     private final ImagePreprocessor preprocessor;
+    private final Map<String, ResponseFormatValidator> validators = new ConcurrentHashMap<>();
 
     public SingleImageAnalyzer(VisionModelClient client, ResponseParser parser,
                                ResponseFormatValidator validator,
@@ -59,12 +63,25 @@ public class SingleImageAnalyzer {
         this.preprocessor = preprocessor;
     }
 
+    /** Benchmark profile (frozen prompt v3). */
+    public DamageAssessment analyze(byte[] image, String mediaType) {
+        return analyze(image, mediaType, AnalysisProfile.BENCHMARK);
+    }
+
     /**
      * @throws IllegalArgumentException for bad input (empty image,
      *         unsupported media type) - that is a caller error, not a
      *         model failure, so it is not retried.
      */
-    public DamageAssessment analyze(byte[] image, String mediaType) {
+    public DamageAssessment analyze(byte[] image, String mediaType, AnalysisProfile profile) {
+        return analyzeWithPrompt(image, mediaType, profile, profile.prompt());
+    }
+
+    /**
+     * Same pipeline with a different base prompt (e.g. the second look of
+     * RelookAnalyzer); values are checked against the profile's taxonomy.
+     */
+    public DamageAssessment analyzeWithPrompt(byte[] image, String mediaType, AnalysisProfile profile, String basePrompt) {
         if (image == null || image.length == 0) {
             throw new IllegalArgumentException("image is empty");
         }
@@ -72,6 +89,8 @@ public class SingleImageAnalyzer {
             throw new IllegalArgumentException("unsupported media type: " + mediaType
                     + " (supported: " + SUPPORTED_MEDIA_TYPES + ")");
         }
+        ResponseFormatValidator check = profile == AnalysisProfile.BENCHMARK ? validator
+                : validators.computeIfAbsent(profile.name(), k -> profile.validator());
 
         PreparedImage prepared = preprocessor.prepare(image, mediaType);
 
@@ -84,11 +103,16 @@ public class SingleImageAnalyzer {
             }
             try {
                 String raw = client.analyze(prepared.bytes(), prepared.mediaType(),
-                        DamagePrompt.forAttempt(attempt, lastViolations));
+                        DamagePrompt.withCorrections(basePrompt, attempt, lastViolations));
                 DamageAssessment parsed = parser.parse(raw);
-                List<String> violations = validator.validate(parsed);
+                if (Boolean.FALSE.equals(parsed.getVehicleVisible()) && parsed.getDamages() == null) {
+                    parsed.setDamages(new ArrayList<>());
+                }
+                List<String> violations = check.validate(parsed);
                 if (violations.isEmpty()) {
-                    return DamageAssessment.success(parsed.getDamages(), parsed.getOverallScore(), attempt);
+                    DamageAssessment ok = DamageAssessment.success(parsed.getDamages(), parsed.getOverallScore(), attempt);
+                    ok.setVehicleVisible(parsed.getVehicleVisible());
+                    return ok;
                 }
                 lastViolations = violations;
                 failureLog.add("attempt " + attempt + ": invalid format: " + String.join("; ", violations));
