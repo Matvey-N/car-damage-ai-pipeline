@@ -46,6 +46,7 @@ class FakeService:
              "confidence": 0.8, "bounding_box": [0.1, 0.25, 0.2, 0.1875]}]}
         self.fail_after = fail_after
         self.analyze_calls = 0
+        self.modes = []
         service = self
 
         class Handler(BaseHTTPRequestHandler):
@@ -64,14 +65,17 @@ class FakeService:
                 if self.path == "/api/v1/info":
                     self._send(200, {"model_client": service.model_client,
                                      "model": "claude-opus-5-5" if service.model_client != "stub" else "stub",
-                                     "prompt_version": "v1", "max_attempts": 3})
+                                     "prompt_version": "v1", "max_attempts": 3,
+                                     "tiled_mode": "2x2 tiles, overlap 0.2, plus the whole image"})
                 else:
                     self._send(404, {})
 
             def do_POST(self):
                 length = int(self.headers.get("Content-Length", 0))
                 body = self.rfile.read(length)
-                if self.path != "/api/v1/analyze" or b'name="image"' not in body:
+                path, _, query = self.path.partition("?")
+                service.modes.append(query.replace("mode=", "") or "whole")
+                if path != "/api/v1/analyze" or b'name="image"' not in body:
                     self._send(400, {"status": "error", "damages": [], "overall_score": 0})
                     return
                 service.analyze_calls += 1

@@ -39,7 +39,7 @@ def get_info(api):
         return json.loads(resp.read().decode("utf-8"))
 
 
-def post_image(api, path, media_type, timeout):
+def post_image(api, path, media_type, timeout, mode="whole"):
     """Returns (http_status, parsed_json_body). Raises URLError on connection problems."""
     boundary = uuid.uuid4().hex
     with open(path, "rb") as f:
@@ -47,7 +47,7 @@ def post_image(api, path, media_type, timeout):
     body = (f"--{boundary}\r\n"
             f'Content-Disposition: form-data; name="image"; filename="{os.path.basename(path)}"\r\n'
             f"Content-Type: {media_type}\r\n\r\n").encode("utf-8") + data + f"\r\n--{boundary}--\r\n".encode("utf-8")
-    request = urllib.request.Request(api.rstrip("/") + "/api/v1/analyze", data=body, method="POST",
+    request = urllib.request.Request(api.rstrip("/") + "/api/v1/analyze?mode=" + mode, data=body, method="POST",
                                      headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
     try:
         with urllib.request.urlopen(request, timeout=timeout) as resp:
@@ -88,6 +88,8 @@ def main(argv=None):
     parser.add_argument("--out", required=True, help="predictions JSON (created or continued)")
     parser.add_argument("--api", default="http://localhost:8080")
     parser.add_argument("--timeout", type=int, default=600, help="seconds per image, incl. retries")
+    parser.add_argument("--mode", choices=["whole", "tiled"], default="whole",
+                        help="whole image (default) or whole image + overlapping tiles (several calls per image)")
     parser.add_argument("--allow-stub", action="store_true", help="allow running against the stub model")
     args = parser.parse_args(argv)
 
@@ -110,11 +112,14 @@ def main(argv=None):
 
     meta = {"model": info.get("model"), "model_client": info.get("model_client"),
             "prompt_version": info.get("prompt_version"), "max_attempts": info.get("max_attempts"),
-            "examples": args.examples}
+            "examples": args.examples, "mode": args.mode}
+    if args.mode == "tiled":
+        meta["tiled_mode"] = info.get("tiled_mode")
     if os.path.exists(args.out):
         doc = load_json(args.out)
         old = doc.get("meta", {})
-        for key in ("model", "model_client", "prompt_version"):
+        old.setdefault("mode", "whole")
+        for key in ("model", "model_client", "prompt_version", "mode"):
             if old.get(key) != meta[key]:
                 print(f"ERROR: {args.out} was produced with {key}={old.get(key)}, the service now has "
                       f"{key}={meta[key]}. Use a new --out file.", file=sys.stderr)
@@ -125,12 +130,12 @@ def main(argv=None):
 
     todo = [p for p in plan if p[0] not in doc["predictions"]]
     print(f"{len(plan)} images in sample, {len(plan) - len(todo)} already done, {len(todo)} to send "
-          f"(model: {meta['model']}, prompt {meta['prompt_version']})")
+          f"(model: {meta['model']}, prompt {meta['prompt_version']}, mode {args.mode})")
 
     for n, (image_id, path, media_type) in enumerate(todo, start=1):
         started = time.monotonic()
         try:
-            status, result = post_image(args.api, path, media_type, args.timeout)
+            status, result = post_image(args.api, path, media_type, args.timeout, args.mode)
         except (urllib.error.URLError, OSError) as e:
             print(f"ERROR: lost connection to the service at image {image_id}: {e}. "
                   f"Progress is saved, re-run the same command to continue.", file=sys.stderr)

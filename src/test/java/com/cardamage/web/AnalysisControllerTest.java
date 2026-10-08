@@ -56,6 +56,20 @@ class AnalysisControllerTest {
     }
 
     @Test
+    void tiledModeCallsTheModelOncePerTilePlusTheWholeImage() throws Exception {
+        mvc.perform(multipart("/api/v1/analyze").file(jpeg("image")).param("mode", "tiled"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("success"))
+                .andExpect(jsonPath("$.attempts").value(5));
+    }
+
+    @Test
+    void unknownModeIs400() throws Exception {
+        mvc.perform(multipart("/api/v1/analyze").file(jpeg("image")).param("mode", "zoom"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void unsupportedImageTypeIs400() throws Exception {
         MockMultipartFile gif = new MockMultipartFile("image", "car.gif", "image/gif", new byte[]{1});
         mvc.perform(multipart("/api/v1/analyze").file(gif))

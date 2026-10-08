@@ -6,6 +6,7 @@ import com.cardamage.core.pipeline.ResponseFormatValidator;
 import com.cardamage.core.pipeline.ResponseParser;
 import com.cardamage.core.pipeline.SingleImageAnalyzer;
 import com.cardamage.core.pipeline.StubVisionModelClient;
+import com.cardamage.core.pipeline.TiledImageAnalyzer;
 import com.cardamage.core.pipeline.VisionModelClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,6 +52,17 @@ public class PipelineConfig {
         return new SingleImageAnalyzer(client, new ResponseParser(objectMapper),
                 new ResponseFormatValidator(), maxAttempts, backoffMs, Thread::sleep,
                 new DownscalingImagePreprocessor(maxSide, maxBytes, 0.9f));
+    }
+
+    @Bean
+    public TiledImageAnalyzer tiledImageAnalyzer(
+            SingleImageAnalyzer single,
+            @Value("${pipeline.tiling.rows}") int rows,
+            @Value("${pipeline.tiling.cols}") int cols,
+            @Value("${pipeline.tiling.overlap}") double overlap,
+            @Value("${pipeline.tiling.include-full-image}") boolean includeFullImage,
+            @Value("${pipeline.tiling.merge-iou}") double mergeIou) {
+        return new TiledImageAnalyzer(single, rows, cols, overlap, includeFullImage, mergeIou);
     }
 
     @Bean

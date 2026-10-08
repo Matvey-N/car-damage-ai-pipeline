@@ -4,6 +4,7 @@ import com.cardamage.core.demo.DamageMergeService;
 import com.cardamage.core.model.DamageAssessment;
 import com.cardamage.core.pipeline.DamagePrompt;
 import com.cardamage.core.pipeline.SingleImageAnalyzer;
+import com.cardamage.core.pipeline.TiledImageAnalyzer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,8 @@ import java.util.Map;
 /**
  * HTTP entry points.
  *
- *   POST /api/v1/analyze       - ONE image (main path, used by the benchmark)
+ *   POST /api/v1/analyze       - ONE image (main path, used by the benchmark);
+ *                                ?mode=tiled also analyzes overlapping tiles (more calls)
  *   POST /api/v1/demo/analyze  - 3-10 photos of one car (demo, secondary)
  *   GET  /api/v1/info          - which model / prompt version is active
  *
@@ -40,17 +42,20 @@ public class AnalysisController {
     private static final int DEMO_MAX_IMAGES = 10;
 
     private final SingleImageAnalyzer analyzer;
+    private final TiledImageAnalyzer tiledAnalyzer;
     private final DamageMergeService mergeService;
     private final String clientType;
     private final String model;
     private final int maxAttempts;
 
     public AnalysisController(SingleImageAnalyzer analyzer,
+                              TiledImageAnalyzer tiledAnalyzer,
                               DamageMergeService mergeService,
                               @Value("${pipeline.model-client}") String clientType,
                               @Value("${anthropic.model}") String model,
                               @Value("${pipeline.max-attempts}") int maxAttempts) {
         this.analyzer = analyzer;
+        this.tiledAnalyzer = tiledAnalyzer;
         this.mergeService = mergeService;
         this.clientType = clientType;
         this.model = model;
@@ -58,9 +63,14 @@ public class AnalysisController {
     }
 
     @PostMapping("/analyze")
-    public ResponseEntity<DamageAssessment> analyzeSingle(@RequestParam("image") MultipartFile image)
+    public ResponseEntity<DamageAssessment> analyzeSingle(@RequestParam("image") MultipartFile image,
+                                                          @RequestParam(value = "mode", defaultValue = "whole") String mode)
             throws IOException {
-        return respond(analyzer.analyze(image.getBytes(), image.getContentType()));
+        return switch (mode) {
+            case "whole" -> respond(analyzer.analyze(image.getBytes(), image.getContentType()));
+            case "tiled" -> respond(tiledAnalyzer.analyze(image.getBytes(), image.getContentType()));
+            default -> throw new IllegalArgumentException("unknown mode '" + mode + "' (expected 'whole' or 'tiled')");
+        };
     }
 
     @PostMapping("/demo/analyze")
@@ -84,6 +94,7 @@ public class AnalysisController {
         info.put("model", "stub".equals(clientType) ? "stub (no model is called)" : model);
         info.put("prompt_version", DamagePrompt.VERSION);
         info.put("max_attempts", maxAttempts);
+        info.put("tiled_mode", tiledAnalyzer.describe());
         return info;
     }
 

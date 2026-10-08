@@ -40,6 +40,20 @@ class RunBenchmarkTest(unittest.TestCase):
         self.assertEqual(doc["meta"]["prompt_version"], "v1")
         self.assertEqual(self.service.analyze_calls, 5)
 
+    def test_tiled_mode_is_requested_and_recorded(self):
+        self.service = FakeService()
+        self.assertEqual(self.run_main("--mode", "tiled"), 0)
+        self.assertEqual(set(self.service.modes), {"tiled"})
+        with open(self.out) as f:
+            meta = json.load(f)["meta"]
+        self.assertEqual(meta["mode"], "tiled")
+        self.assertIn("2x2", meta["tiled_mode"])
+
+    def test_continuing_a_file_in_another_mode_is_refused(self):
+        self.service = FakeService()
+        self.assertEqual(self.run_main(), 0)
+        self.assertEqual(self.run_main("--mode", "tiled"), 1)
+
     def test_stub_service_is_refused(self):
         self.service = FakeService(model_client="stub")
         self.assertEqual(self.run_main(), 1)

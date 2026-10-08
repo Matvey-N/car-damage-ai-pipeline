@@ -17,6 +17,15 @@ pipeline:
     # scaled down and re-encoded as JPEG before being sent (API limit: 5 MB).
     max-side: 1568
     max-bytes: 4500000
+  # mode=tiled on /api/v1/analyze: the image is also analyzed as a grid of
+  # overlapping tiles, so small damages are seen at a higher resolution.
+  # Costs (rows x cols + 1) model calls per image.
+  tiling:
+    rows: 2
+    cols: 2
+    overlap: 0.2
+    include-full-image: true
+    merge-iou: 0.5
 
 anthropic:
   api-key: ${ANTHROPIC_API_KEY:}
