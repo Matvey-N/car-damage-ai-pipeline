@@ -41,7 +41,7 @@ class TiledImageAnalyzerTest {
         int calls;
 
         @Override
-        public String analyze(byte[] image, String mediaType, String prompt) {
+        public synchronized String analyze(byte[] image, String mediaType, String prompt) {
             calls++;
             try {
                 BufferedImage img = ImageIO.read(new ByteArrayInputStream(image));
@@ -114,6 +114,33 @@ class TiledImageAnalyzerTest {
         assertEquals(0.25, box.get(1), 1e-9);
         assertEquals(0.25, box.get(2), 1e-9);
         assertEquals(0.5, box.get(3), 1e-9);
+    }
+
+    @Test
+    void parallelTilesGiveTheSameResult() throws Exception {
+        RedTileModel model = new RedTileModel();
+        java.util.concurrent.ExecutorService pool = java.util.concurrent.Executors.newFixedThreadPool(3);
+        try {
+            DamageAssessment r = new TiledImageAnalyzer(single(model), 1, 2, 0.0, true, 0.5, pool)
+                    .analyze(twoColourImage(), "image/png");
+            assertTrue(r.isSuccess());
+            assertEquals(3, model.calls);
+            assertEquals(1, r.getDamages().size());
+            assertEquals(0.125, r.getDamages().get(0).getBoundingBox().get(0), 1e-9);
+        } finally {
+            pool.shutdownNow();
+        }
+    }
+
+    @Test
+    void wholeImageDecidesWhetherACarIsVisible() throws Exception {
+        VisionModelClient noCar = (image, mediaType, prompt) -> "{\"vehicle_visible\":false,\"damages\":[],\"overall_score\":0}";
+        DamageAssessment r = new TiledImageAnalyzer(single(noCar), 1, 2, 0.0, true, 0.5)
+                .analyze(twoColourImage(), "image/png", AnalysisProfile.GENERAL);
+        assertEquals(Boolean.FALSE, r.getVehicleVisible());
+        DamageAssessment b = new TiledImageAnalyzer(single(noCar), 1, 2, 0.0, true, 0.5)
+                .analyze(twoColourImage(), "image/png");
+        assertNull(b.getVehicleVisible(), "benchmark output unchanged");
     }
 
     @Test

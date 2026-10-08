@@ -3,7 +3,10 @@ package com.cardamage.web;
 import com.cardamage.core.demo.DamageMergeService;
 import com.cardamage.core.model.DamageAssessment;
 import com.cardamage.core.pipeline.DamagePrompt;
+import com.cardamage.core.pipeline.AnalysisProfile;
+import com.cardamage.core.pipeline.GeneralPrompt;
 import com.cardamage.core.pipeline.RegionDescriber;
+import com.cardamage.core.pipeline.RelookAnalyzer;
 import com.cardamage.core.pipeline.SingleImageAnalyzer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +33,8 @@ import java.util.Map;
  *
  *   POST /api/v1/analyze       - ONE image (main path, used by the benchmark);
  *                                ?mode=tiled also analyzes overlapping tiles (more calls)
+ *                                ?mode=relook adds a second look with the found damages marked
+ *                                ?profile=general: extended taxonomy for any car (not benchmarked)
  *   POST /api/v1/describe      - ONE image + regions found by a detector: the model only
  *                                describes them (hybrid scheme, research)
  *   POST /api/v1/demo/analyze  - 3-10 photos of one car (demo, secondary)
@@ -49,6 +54,7 @@ public class AnalysisController {
     private final SingleImageAnalyzer analyzer;
     private final TiledImageAnalyzer tiledAnalyzer;
     private final RegionDescriber regionDescriber;
+    private final RelookAnalyzer relookAnalyzer;
     private final ObjectMapper objectMapper;
     private final DamageMergeService mergeService;
     private final String clientType;
@@ -58,6 +64,7 @@ public class AnalysisController {
     public AnalysisController(SingleImageAnalyzer analyzer,
                               TiledImageAnalyzer tiledAnalyzer,
                               RegionDescriber regionDescriber,
+                              RelookAnalyzer relookAnalyzer,
                               ObjectMapper objectMapper,
                               DamageMergeService mergeService,
                               @Value("${pipeline.model-client}") String clientType,
@@ -66,6 +73,7 @@ public class AnalysisController {
         this.analyzer = analyzer;
         this.tiledAnalyzer = tiledAnalyzer;
         this.regionDescriber = regionDescriber;
+        this.relookAnalyzer = relookAnalyzer;
         this.objectMapper = objectMapper;
         this.mergeService = mergeService;
         this.clientType = clientType;
@@ -75,12 +83,15 @@ public class AnalysisController {
 
     @PostMapping("/analyze")
     public ResponseEntity<DamageAssessment> analyzeSingle(@RequestParam("image") MultipartFile image,
-                                                          @RequestParam(value = "mode", defaultValue = "whole") String mode)
+                                                          @RequestParam(value = "mode", defaultValue = "whole") String mode,
+                                                          @RequestParam(value = "profile", defaultValue = "benchmark") String profileName)
             throws IOException {
+        AnalysisProfile profile = AnalysisProfile.byName(profileName);
         return switch (mode) {
-            case "whole" -> respond(analyzer.analyze(image.getBytes(), image.getContentType()));
-            case "tiled" -> respond(tiledAnalyzer.analyze(image.getBytes(), image.getContentType()));
-            default -> throw new IllegalArgumentException("unknown mode '" + mode + "' (expected 'whole' or 'tiled')");
+            case "whole" -> respond(analyzer.analyze(image.getBytes(), image.getContentType(), profile));
+            case "tiled" -> respond(tiledAnalyzer.analyze(image.getBytes(), image.getContentType(), profile));
+            case "relook" -> respond(relookAnalyzer.analyze(image.getBytes(), image.getContentType(), profile));
+            default -> throw new IllegalArgumentException("unknown mode '" + mode + "' (expected 'whole', 'relook' or 'tiled')");
         };
     }
 
@@ -121,6 +132,8 @@ public class AnalysisController {
         info.put("max_attempts", maxAttempts);
         info.put("tiled_mode", tiledAnalyzer.describe());
         info.put("region_prompt_version", RegionDescriber.PROMPT_VERSION);
+        info.put("relook_prompt_version", RelookAnalyzer.PROMPT_VERSION);
+        info.put("general_prompt_version", GeneralPrompt.VERSION);
         return info;
     }
 

@@ -47,6 +47,7 @@ class FakeService:
         self.fail_after = fail_after
         self.analyze_calls = 0
         self.modes = []
+        self.lock = threading.Lock()
         self.describe_bodies = []
         service = self
 
@@ -68,7 +69,7 @@ class FakeService:
                                      "model": "claude-opus-5-5" if service.model_client != "stub" else "stub",
                                      "prompt_version": "v1", "max_attempts": 3,
                                      "tiled_mode": "2x2 tiles, overlap 0.2, plus the whole image",
-                                     "region_prompt_version": "r1"})
+                                     "region_prompt_version": "r1", "relook_prompt_version": "rl1"})
                 else:
                     self._send(404, {})
 
@@ -85,7 +86,8 @@ class FakeService:
                 if path != "/api/v1/analyze" or b'name="image"' not in body:
                     self._send(400, {"status": "error", "damages": [], "overall_score": 0})
                     return
-                service.analyze_calls += 1
+                with service.lock:
+                    service.analyze_calls += 1
                 if service.fail_after is not None and service.analyze_calls > service.fail_after:
                     self._send(502, {"status": "error", "damages": [], "overall_score": 0,
                                      "attempts": 3, "error_message": "fake model failure"})

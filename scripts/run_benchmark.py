@@ -19,6 +19,7 @@ Usage (service must be running, see README):
 """
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
 import sys
@@ -88,8 +89,12 @@ def main(argv=None):
     parser.add_argument("--out", required=True, help="predictions JSON (created or continued)")
     parser.add_argument("--api", default="http://localhost:8080")
     parser.add_argument("--timeout", type=int, default=600, help="seconds per image, incl. retries")
-    parser.add_argument("--mode", choices=["whole", "tiled"], default="whole",
-                        help="whole image (default) or whole image + overlapping tiles (several calls per image)")
+    parser.add_argument("--mode", choices=["whole", "relook", "tiled"], default="whole",
+                        help="whole image (default), relook (second look with found damages marked, 2 calls) "
+                             "or whole image + overlapping tiles (5 calls per image)")
+    parser.add_argument("--workers", type=int, default=1,
+                        help="images sent at the same time (default 1); 3-4 make a run several times faster "
+                             "if the API account allows it")
     parser.add_argument("--allow-stub", action="store_true", help="allow running against the stub model")
     args = parser.parse_args(argv)
 
@@ -115,6 +120,8 @@ def main(argv=None):
             "examples": args.examples, "mode": args.mode}
     if args.mode == "tiled":
         meta["tiled_mode"] = info.get("tiled_mode")
+    if args.mode == "relook":
+        meta["relook_prompt_version"] = info.get("relook_prompt_version")
     if os.path.exists(args.out):
         doc = load_json(args.out)
         old = doc.get("meta", {})
@@ -132,20 +139,30 @@ def main(argv=None):
     print(f"{len(plan)} images in sample, {len(plan) - len(todo)} already done, {len(todo)} to send "
           f"(model: {meta['model']}, prompt {meta['prompt_version']}, mode {args.mode})")
 
-    for n, (image_id, path, media_type) in enumerate(todo, start=1):
+    def send(item):
+        image_id, path, media_type = item
         started = time.monotonic()
-        try:
-            status, result = post_image(args.api, path, media_type, args.timeout, args.mode)
-        except (urllib.error.URLError, OSError) as e:
-            print(f"ERROR: lost connection to the service at image {image_id}: {e}. "
-                  f"Progress is saved, re-run the same command to continue.", file=sys.stderr)
-            return 1
-        doc["predictions"][image_id] = result
-        doc["meta"]["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-        write_json(args.out, doc)
-        print(f"[{n}/{len(todo)}] {image_id}: HTTP {status}, status={result.get('status')}, "
-              f"damages={len(result.get('damages', []))}, attempts={result.get('attempts')}, "
-              f"{time.monotonic() - started:.1f}s")
+        status, result = post_image(args.api, path, media_type, args.timeout, args.mode)
+        return image_id, status, result, time.monotonic() - started
+
+    # answers are saved in the main thread, one at a time, as they arrive
+    with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
+        futures = [pool.submit(send, item) for item in todo]
+        for n, future in enumerate(as_completed(futures), start=1):
+            try:
+                image_id, status, result, seconds = future.result()
+            except (urllib.error.URLError, OSError) as e:
+                for f in futures:
+                    f.cancel()
+                print(f"ERROR: lost connection to the service: {e}. "
+                      f"Progress is saved, re-run the same command to continue.", file=sys.stderr)
+                return 1
+            doc["predictions"][image_id] = result
+            doc["meta"]["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            write_json(args.out, doc)
+            print(f"[{n}/{len(todo)}] {image_id}: HTTP {status}, status={result.get('status')}, "
+                  f"damages={len(result.get('damages', []))}, attempts={result.get('attempts')}, "
+                  f"{seconds:.1f}s")
 
     errors = sum(1 for r in doc["predictions"].values() if r.get("status") != "success")
     print(f"done: {len(doc['predictions'])} answers in {args.out}, {errors} with status=error")

@@ -65,6 +65,24 @@ class AnalysisControllerTest {
     }
 
     @Test
+    void relookModeMakesTwoCallsAndDropsTheRepeatedDamage() throws Exception {
+        // the stub gives the same scratch twice: the second look must not add it again
+        mvc.perform(multipart("/api/v1/analyze").file(jpeg("image")).param("mode", "relook"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.attempts").value(2))
+                .andExpect(jsonPath("$.damages.length()").value(1));
+    }
+
+    @Test
+    void generalProfileIsAvailableAndUnknownProfileIs400() throws Exception {
+        mvc.perform(multipart("/api/v1/analyze").file(jpeg("image")).param("profile", "general"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.damages[0].damage_type").value("scratch"));
+        mvc.perform(multipart("/api/v1/analyze").file(jpeg("image")).param("profile", "cars"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void unknownModeIs400() throws Exception {
         mvc.perform(multipart("/api/v1/analyze").file(jpeg("image")).param("mode", "zoom"))
                 .andExpect(status().isBadRequest());
@@ -113,6 +131,8 @@ class AnalysisControllerTest {
         mvc.perform(get("/api/v1/info"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.model_client").value("stub"))
-                .andExpect(jsonPath("$.prompt_version").value("v3"));
+                .andExpect(jsonPath("$.prompt_version").value("v3"))
+                .andExpect(jsonPath("$.relook_prompt_version").value("rl1"))
+                .andExpect(jsonPath("$.general_prompt_version").value("g1"));
     }
 }

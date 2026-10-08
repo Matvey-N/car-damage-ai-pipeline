@@ -49,6 +49,23 @@ class RunBenchmarkTest(unittest.TestCase):
         self.assertEqual(meta["mode"], "tiled")
         self.assertIn("2x2", meta["tiled_mode"])
 
+    def test_relook_mode_records_its_prompt_version(self):
+        self.service = FakeService()
+        self.assertEqual(self.run_main("--mode", "relook"), 0)
+        self.assertEqual(set(self.service.modes), {"relook"})
+        with open(self.out) as f:
+            meta = json.load(f)["meta"]
+        self.assertEqual(meta["mode"], "relook")
+        self.assertEqual(meta["relook_prompt_version"], "rl1")
+
+    def test_parallel_workers_send_every_image_once(self):
+        self.service = FakeService()
+        self.assertEqual(self.run_main("--workers", "3"), 0)
+        with open(self.out) as f:
+            doc = json.load(f)
+        self.assertEqual(sorted(doc["predictions"]), ["0", "1", "2", "3", "4"])
+        self.assertEqual(self.service.analyze_calls, 5)
+
     def test_continuing_a_file_in_another_mode_is_refused(self):
         self.service = FakeService()
         self.assertEqual(self.run_main(), 0)

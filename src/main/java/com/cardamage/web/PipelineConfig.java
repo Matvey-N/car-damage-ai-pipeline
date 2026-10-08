@@ -4,6 +4,7 @@ import com.cardamage.core.demo.DamageMergeService;
 import com.cardamage.core.inspect.InspectionStore;
 import com.cardamage.core.pipeline.DownscalingImagePreprocessor;
 import com.cardamage.core.pipeline.RegionDescriber;
+import com.cardamage.core.pipeline.RelookAnalyzer;
 import com.cardamage.core.pipeline.ResponseFormatValidator;
 import com.cardamage.core.pipeline.ResponseParser;
 import com.cardamage.core.pipeline.SingleImageAnalyzer;
@@ -67,15 +68,31 @@ public class PipelineConfig {
                 new DownscalingImagePreprocessor(maxSide, maxBytes, 0.9f));
     }
 
+    @Bean(destroyMethod = "close")
+    public AnalysisExecutors analysisExecutors(
+            @Value("${pipeline.jobs.workers:2}") int jobThreads,
+            @Value("${pipeline.jobs.queue:20}") int jobQueue,
+            @Value("${pipeline.parallelism.photos:3}") int photoThreads,
+            @Value("${pipeline.parallelism.tiles:4}") int tileThreads) {
+        return new AnalysisExecutors(jobThreads, jobQueue, photoThreads, tileThreads);
+    }
+
+    @Bean
+    public RelookAnalyzer relookAnalyzer(SingleImageAnalyzer single,
+                                         @Value("${pipeline.tiling.merge-iou}") double mergeIou) {
+        return new RelookAnalyzer(single, mergeIou);
+    }
+
     @Bean
     public TiledImageAnalyzer tiledImageAnalyzer(
             SingleImageAnalyzer single,
+            AnalysisExecutors executors,
             @Value("${pipeline.tiling.rows}") int rows,
             @Value("${pipeline.tiling.cols}") int cols,
             @Value("${pipeline.tiling.overlap}") double overlap,
             @Value("${pipeline.tiling.include-full-image}") boolean includeFullImage,
             @Value("${pipeline.tiling.merge-iou}") double mergeIou) {
-        return new TiledImageAnalyzer(single, rows, cols, overlap, includeFullImage, mergeIou);
+        return new TiledImageAnalyzer(single, rows, cols, overlap, includeFullImage, mergeIou, executors.tiles());
     }
 
     @Bean

@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.Executor;
 
 /**
  * Analyzes one image as a grid of overlapping tiles (plus, optionally, the
@@ -39,9 +42,20 @@ public class TiledImageAnalyzer {
     private final double overlap;
     private final boolean includeFullImage;
     private final double mergeIou;
+    private final Executor executor;
 
     public TiledImageAnalyzer(SingleImageAnalyzer single, int rows, int cols, double overlap,
                               boolean includeFullImage, double mergeIou) {
+        this(single, rows, cols, overlap, includeFullImage, mergeIou, Runnable::run);
+    }
+
+    /**
+     * executor: runs the calls for the whole image and the tiles; a thread pool
+     * makes them parallel (about 5x faster for a 2x2 grid), Runnable::run keeps
+     * them sequential. The pool must not be one whose threads wait for this analyzer.
+     */
+    public TiledImageAnalyzer(SingleImageAnalyzer single, int rows, int cols, double overlap,
+                              boolean includeFullImage, double mergeIou, Executor executor) {
         if (rows < 1 || cols < 1 || overlap < 0 || overlap >= 0.5) {
             throw new IllegalArgumentException("need rows, cols >= 1 and 0 <= overlap < 0.5");
         }
@@ -51,6 +65,7 @@ public class TiledImageAnalyzer {
         this.overlap = overlap;
         this.includeFullImage = includeFullImage;
         this.mergeIou = mergeIou;
+        this.executor = executor;
     }
 
     /** One tile as a fraction of the image: x, y, w, h in [0, 1]. */
@@ -62,6 +77,10 @@ public class TiledImageAnalyzer {
     }
 
     public DamageAssessment analyze(byte[] image, String mediaType) {
+        return analyze(image, mediaType, AnalysisProfile.BENCHMARK);
+    }
+
+    public DamageAssessment analyze(byte[] image, String mediaType, AnalysisProfile profile) {
         if (image == null || image.length == 0) {
             throw new IllegalArgumentException("image is empty");
         }
@@ -70,42 +89,57 @@ public class TiledImageAnalyzer {
         }
         BufferedImage full = read(image);
 
-        List<Damage> found = new ArrayList<>();
-        List<String> failures = new ArrayList<>();
-        int calls = 0;
-        int succeeded = 0;
-        double scoreSum = 0;
-
+        // the whole image (tile null) first, then the grid; all calls may run in parallel
+        List<Tile> parts = new ArrayList<>();
         if (includeFullImage) {
-            DamageAssessment r = single.analyze(image, mediaType);
-            calls += r.getAttempts();
-            if (r.isSuccess()) {
-                succeeded++;
-                scoreSum += r.getOverallScore();
-                found.addAll(r.getDamages());
-            } else {
-                failures.add("whole image: " + r.getErrorMessage());
-            }
+            parts.add(null);
+        }
+        parts.addAll(tiles(rows, cols, overlap));
+        List<CompletableFuture<DamageAssessment>> calls = new ArrayList<>();
+        for (Tile t : parts) {
+            calls.add(CompletableFuture.supplyAsync(() -> t == null
+                    ? single.analyze(image, mediaType, profile)
+                    : single.analyze(crop(full, t), "image/png", profile), executor));
         }
 
-        for (Tile t : tiles(rows, cols, overlap)) {
-            DamageAssessment r = single.analyze(crop(full, t), "image/png");
-            calls += r.getAttempts();
+        List<Damage> found = new ArrayList<>();
+        List<String> failures = new ArrayList<>();
+        int callCount = 0;
+        int succeeded = 0;
+        double scoreSum = 0;
+        int noVehicle = 0;
+        for (int i = 0; i < parts.size(); i++) {
+            Tile t = parts.get(i);
+            DamageAssessment r;
+            try {
+                r = calls.get(i).join();
+            } catch (CompletionException e) {
+                r = DamageAssessment.error("internal error: " + e.getCause(), 0);
+            }
+            callCount += r.getAttempts();
             if (!r.isSuccess()) {
-                failures.add(String.format("tile %.2f,%.2f: %s", t.x(), t.y(), r.getErrorMessage()));
+                failures.add(t == null ? "whole image: " + r.getErrorMessage()
+                        : String.format("tile %.2f,%.2f: %s", t.x(), t.y(), r.getErrorMessage()));
                 continue;
             }
             succeeded++;
             scoreSum += r.getOverallScore();
+            if (t == null && Boolean.FALSE.equals(r.getVehicleVisible())) {
+                noVehicle++;
+            }
             for (Damage d : r.getDamages()) {
-                found.add(toImageCoordinates(d, t));
+                found.add(t == null ? d : toImageCoordinates(d, t));
             }
         }
 
         if (succeeded == 0) {
-            return DamageAssessment.error("No tile could be analyzed. " + String.join(" | ", failures), calls);
+            return DamageAssessment.error("No tile could be analyzed. " + String.join(" | ", failures), callCount);
         }
-        DamageAssessment result = DamageAssessment.success(merge(found, mergeIou), scoreSum / succeeded, calls);
+        DamageAssessment result = DamageAssessment.success(merge(found, mergeIou), scoreSum / succeeded, callCount);
+        if (profile != AnalysisProfile.BENCHMARK) {
+            // tiles of a car may show no recognisable car; only the whole image decides
+            result.setVehicleVisible(noVehicle == 0 || !result.getDamages().isEmpty());
+        }
         if (!failures.isEmpty()) {
             // partial result: still useful, but the caller should know some areas were not analyzed
             result.setErrorMessage("Some tiles failed: " + String.join(" | ", failures));
