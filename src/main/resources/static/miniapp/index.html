@@ -128,10 +128,10 @@
   const PART = { bumper: "бампер", door: "дверь", fender: "крыло", hood: "капот", trunk: "багажник", roof: "крыша",
                  sill: "порог", grille: "решётка радиатора", light: "фара/фонарь", mirror: "зеркало", window: "боковое стекло",
                  windshield: "лобовое/заднее стекло", wheel: "колесо/диск", other: "другое" };
-  const MODES = [["whole", "Быстрый", "1 проход — самый быстрый."],
-                 ["relook", "Внимательный", "2 прохода: модель ещё раз ищет то, что пропустила. Рекомендуется."],
+  const MODES = [["whole", "Быстрый", "1 проход. Рекомендуется."],
+                 ["relook", "Второй взгляд (эксперимент)", "2 прохода: модель ещё раз ищет пропущенное. Находит чуть больше, но и ошибается чаще."],
                  ["tiled", "Детальный", "Фото разбирается по частям: лучше видны мелкие повреждения, но дольше."]];
-  const MODE_NAME = { whole: "быстрый анализ", relook: "внимательный анализ", tiled: "детальный анализ" };
+  const MODE_NAME = { whole: "быстрый анализ", relook: "второй взгляд", tiled: "детальный анализ" };
   const PENDING = "pendingJob";
   const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
                   set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
@@ -287,19 +287,19 @@
   }
 
   function commonOptions() {
-    const saved = store.get("mode") || "relook";
+    const saved = store.get("mode2") || "whole";
     return `<input type="text" id="title" maxlength="80" placeholder="Название (необязательно), например «Golf серый»" style="margin-top:12px">
       <div class="modes">${MODES.map(([k, n, h]) => `<label class="${k === saved ? "on" : ""}"><input type="radio" name="mode" value="${k}" ${k === saved ? "checked" : ""}>
         <span><b>${n}</b><br><span class="hint">${h}</span></span></label>`).join("")}</div>`;
   }
   function chosenMode() {
     const r = document.querySelector("input[name=mode]:checked");
-    return r ? r.value : "relook";
+    return r ? r.value : "whole";
   }
   document.addEventListener("change", e => {
     if (e.target.name !== "mode") return;
     document.querySelectorAll(".modes label").forEach(l => l.classList.toggle("on", l.contains(e.target) ));
-    store.set("mode", e.target.value);
+    store.set("mode2", e.target.value);
   });
 
   // ------------------------------------------------------------ guided capture

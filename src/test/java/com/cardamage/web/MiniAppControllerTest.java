@@ -1,5 +1,6 @@
 package com.cardamage.web;
 
+import com.cardamage.core.inspect.Views;
 import com.cardamage.core.miniapp.InitDataValidator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -85,7 +86,7 @@ class MiniAppControllerTest {
         JsonNode inspection = analyze(10, "views", "front", "views", "rear", "title", "Golf");
         String id = inspection.get("id").asText();
         assertEquals(2, inspection.get("photos").size());
-        assertEquals("Сзади", inspection.get("photos").get(1).get("view_name").asText());
+        assertEquals(Views.name("rear"), inspection.get("photos").get(1).get("view_name").asText());
         assertEquals(1, inspection.get("summary").get("damages").size());
 
         mvc.perform(get("/api/v1/miniapp/inspections").header(H, initData(10)))
@@ -115,7 +116,8 @@ class MiniAppControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.photos[0].edited").value(true))
                 .andExpect(jsonPath("$.photos[0].damages.length()").value(0));
-        String bad = "[{\"damage_type\":\"dent\",\"part\":\"door\",\"severity\":\"minor\",\"action\":\"repair\","
+        // "flood" is in no taxonomy (dent became valid with the general profile)
+        String bad = "[{\"damage_type\":\"flood\",\"part\":\"door\",\"severity\":\"minor\",\"action\":\"repair\","
                 + "\"confidence\":0.5,\"bounding_box\":[0.1,0.1,0.1,0.1]}]";
         mvc.perform(put("/api/v1/miniapp/inspections/" + id + "/photos/1/damages").header(H, initData(13))
                         .contentType(MediaType.APPLICATION_JSON).content(bad))
