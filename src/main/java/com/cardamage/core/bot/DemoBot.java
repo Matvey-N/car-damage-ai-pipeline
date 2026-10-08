@@ -55,9 +55,17 @@ public class DemoBot {
     private final DamageMergeService mergeService;
     private final PriceEstimator prices;
     private final Map<Long, List<DamageAssessment>> sessions = new HashMap<>();
+    private final String miniAppUrl;
 
     public DemoBot(TelegramApi telegram, PhotoAnalyzer analyzer,
                    DamageMergeService mergeService, PriceEstimator prices) {
+        this(telegram, analyzer, mergeService, prices, null);
+    }
+
+    /** miniAppUrl: HTTPS address of the Mini App page, or null if it is not set up. */
+    public DemoBot(TelegramApi telegram, PhotoAnalyzer analyzer,
+                   DamageMergeService mergeService, PriceEstimator prices, String miniAppUrl) {
+        this.miniAppUrl = miniAppUrl == null || miniAppUrl.isBlank() ? null : miniAppUrl.trim();
         this.telegram = telegram;
         this.analyzer = analyzer;
         this.mergeService = mergeService;
@@ -76,11 +84,23 @@ public class DemoBot {
         switch (command) {
             case "/start" -> {
                 sessions.remove(chat);
-                telegram.sendMessage(chat, HELP);
+                telegram.sendMessage(chat, help());
             }
             case "/report" -> handleReport(chat);
-            default -> telegram.sendMessage(chat, HELP);
+            case "/app" -> {
+                if (miniAppUrl == null) {
+                    telegram.sendMessage(chat, "Mini App не настроен на этом сервере. Пришлите фото прямо сюда.");
+                } else {
+                    telegram.sendWebAppButton(chat, "Откройте приложение: фото, рамки повреждений и отчёт на одном экране.",
+                            "Открыть осмотр", miniAppUrl);
+                }
+            }
+            default -> telegram.sendMessage(chat, help());
         }
+    }
+
+    String help() {
+        return miniAppUrl == null ? HELP : HELP + "\n/app — открыть приложение с рамками повреждений на фото.";
     }
 
     private void handlePhoto(long chat, Update update) throws Exception {

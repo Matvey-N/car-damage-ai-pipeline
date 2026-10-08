@@ -25,6 +25,8 @@ public class TelegramBotRunner {
     private static final long ERROR_PAUSE_MS = 5000;
 
     private final String token;
+    private final String miniAppUrl;
+    private final boolean polling;
     private final String baseUrl;
     private final SingleImageAnalyzer analyzer;
     private final DamageMergeService mergeService;
@@ -34,10 +36,14 @@ public class TelegramBotRunner {
 
     public TelegramBotRunner(@Value("${telegram.bot-token:}") String token,
                              @Value("${telegram.base-url:https://api.telegram.org}") String baseUrl,
+                             @Value("${telegram.miniapp.url:}") String miniAppUrl,
+                             @Value("${telegram.polling:true}") boolean polling,
                              SingleImageAnalyzer analyzer,
                              DamageMergeService mergeService,
                              ObjectMapper mapper) {
         this.token = token == null ? "" : token.trim();
+        this.miniAppUrl = miniAppUrl == null ? "" : miniAppUrl.trim();
+        this.polling = polling;
         this.baseUrl = baseUrl;
         this.analyzer = analyzer;
         this.mergeService = mergeService;
@@ -46,12 +52,25 @@ public class TelegramBotRunner {
 
     @PostConstruct
     public void start() {
-        if (token.isEmpty()) {
-            log.info("Telegram demo bot is off (TELEGRAM_BOT_TOKEN is not set)");
+        if (token.isEmpty() || !polling) {
+            log.info("Telegram demo bot is off (TELEGRAM_BOT_TOKEN is not set or telegram.polling=false)");
             return;
         }
         TelegramApi telegram = new TelegramHttpApi(baseUrl, token, mapper);
-        DemoBot bot = new DemoBot(telegram, analyzer::analyze, mergeService, PriceEstimator.fromClasspath(mapper));
+        DemoBot bot = new DemoBot(telegram, analyzer::analyze, mergeService, PriceEstimator.fromClasspath(mapper),
+                miniAppUrl.isEmpty() ? null : miniAppUrl);
+        if (!miniAppUrl.isEmpty()) {
+            if (!miniAppUrl.startsWith("https://")) {
+                log.warn("TELEGRAM_MINIAPP_URL must start with https:// - Telegram refuses other addresses");
+            } else {
+                try {
+                    telegram.setMenuButton("Осмотр", miniAppUrl);
+                    log.info("Mini App menu button set");
+                } catch (Exception e) {
+                    log.warn("Could not set the Mini App menu button: {}", e.getMessage());
+                }
+            }
+        }
         running = true;
         thread = new Thread(() -> poll(telegram, bot), "telegram-demo-bot");
         thread.setDaemon(true);

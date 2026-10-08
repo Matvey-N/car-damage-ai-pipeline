@@ -76,6 +76,22 @@ public class TelegramHttpApi implements TelegramApi {
     }
 
     @Override
+    public void sendWebAppButton(long chatId, String text, String buttonText, String url) throws Exception {
+        Map<String, Object> button = Map.of("text", buttonText, "web_app", Map.of("url", url));
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("chat_id", chatId);
+        body.put("text", text);
+        body.put("reply_markup", Map.of("inline_keyboard", List.of(List.of(button))));
+        call("sendMessage", body, 30);
+    }
+
+    @Override
+    public void setMenuButton(String buttonText, String url) throws Exception {
+        Map<String, Object> menu = Map.of("type", "web_app", "text", buttonText, "web_app", Map.of("url", url));
+        call("setChatMenuButton", Map.of("menu_button", menu), 30);
+    }
+
+    @Override
     public byte[] downloadFile(String fileId) throws Exception {
         String path = call("getFile", Map.of("file_id", fileId), 30).path("file_path").asText();
         HttpRequest request = HttpRequest.newBuilder(URI.create(fileBase + path))

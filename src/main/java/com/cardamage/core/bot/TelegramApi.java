@@ -18,4 +18,10 @@ public interface TelegramApi {
     void sendMessage(long chatId, String text) throws Exception;
 
     byte[] downloadFile(String fileId) throws Exception;
+
+    /** A message with one button that opens the Mini App (url must be HTTPS). */
+    void sendWebAppButton(long chatId, String text, String buttonText, String url) throws Exception;
+
+    /** The bot's menu button (next to the input field) opens the Mini App. */
+    void setMenuButton(String buttonText, String url) throws Exception;
 }

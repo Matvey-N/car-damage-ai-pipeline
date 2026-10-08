@@ -43,4 +43,11 @@ telegram:
   # Demo bot (secondary). Empty = bot is off. Token comes from @BotFather;
   # set it as an environment variable, never write it into this file.
   bot-token: ${TELEGRAM_BOT_TOKEN:}
+  # false = do not poll Telegram even with a token (tests, or Mini App backend only)
+  polling: true
+  miniapp:
+    # HTTPS address of the Mini App page, e.g. https://xxxx.trycloudflare.com/miniapp/index.html
+    url: ${TELEGRAM_MINIAPP_URL:}
+    # protects the API key: photo analyses per user per hour (detailed mode counts 5 per photo)
+    photos-per-hour: 30
   base-url: https://api.telegram.org

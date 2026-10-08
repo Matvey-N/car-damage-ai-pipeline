@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Осмотр автомобиля</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root {
+    --bg: var(--tg-theme-bg-color, #f4f4f2);
+    --text: var(--tg-theme-text-color, #16202c);
+    --hint: var(--tg-theme-hint-color, #6b7480);
+    --card: var(--tg-theme-secondary-bg-color, #ffffff);
+    --accent: var(--tg-theme-button-color, #2f6fde);
+    --accent-text: var(--tg-theme-button-text-color, #ffffff);
+    --danger: #d64545;
+    --c-glass: #2f8fde; --c-lamp: #e08a1e; --c-crack: #b24bd6; --c-scratch: #2fae6a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 16px 16px 96px; }
+  h1 { font-size: 22px; margin: 4px 0 4px; }
+  h2 { font-size: 18px; margin: 0 0 8px; }
+  .hint { color: var(--hint); font-size: 14px; }
+  .card { background: var(--card); border-radius: 14px; padding: 14px; margin-top: 14px; }
+  .pick { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+          border: 2px dashed var(--hint); border-radius: 14px; padding: 18px; color: var(--text);
+          background: transparent; font-size: 16px; cursor: pointer; }
+  .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 12px; }
+  .thumb { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: #0002; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb button { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 13px;
+                  border: 0; background: #000a; color: #fff; font-size: 16px; line-height: 26px; padding: 0; }
+  label.toggle { display: flex; gap: 12px; align-items: flex-start; margin-top: 12px; }
+  label.toggle input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); }
+  .btn { width: 100%; padding: 14px; border: 0; border-radius: 12px; background: var(--accent);
+         color: var(--accent-text); font-size: 16px; font-weight: 600; margin-top: 14px; }
+  .btn:disabled { opacity: .5; }
+  .status { margin-top: 12px; }
+  .error { color: var(--danger); }
+  .total { font-size: 24px; font-weight: 700; margin: 6px 0; }
+  .dlist { list-style: none; padding: 0; margin: 8px 0 0; }
+  .dlist li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid #8882; }
+  .dlist li:first-child { border-top: 0; }
+  .dlist li.sel { background: #8881; border-radius: 8px; }
+  .num { flex: none; width: 24px; height: 24px; border-radius: 12px; color: #fff; font-size: 13px; font-weight: 700;
+         display: flex; align-items: center; justify-content: center; }
+  .chip { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; background: #8882; margin-right: 4px; }
+  .photo { position: relative; margin-top: 8px; border-radius: 10px; overflow: hidden; }
+  .photo img { display: block; width: 100%; }
+  .photo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--hint); margin-top: 8px; }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+                         margin-right: 4px; background: var(--c); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Осмотр автомобиля</h1>
+  <p class="hint">Пришлите от 1 до 10 фото одной машины. ИИ отметит видимые повреждения и даст ориентир стоимости.
+    Это исследовательский прототип, а не смета для страховой.</p>
+
+  <p id="outside" class="card error" hidden>Откройте эту страницу из Telegram-бота командой /app — иначе сервис не примет запрос.</p>
+
+  <section class="card" id="input">
+    <input id="file" type="file" accept="image/jpeg,image/png,image/*" multiple hidden>
+    <button class="pick" id="pick" type="button">📷 Добавить фото</button>
+    <div class="thumbs" id="thumbs"></div>
+    <label class="toggle">
+      <input type="checkbox" id="tiled">
+      <span>Подробный анализ<br><span class="hint">Снимок дополнительно разбирается по частям: лучше видны мелкие повреждения,
+        но в несколько раз дольше.</span></span>
+    </label>
+    <button class="btn" id="go" type="button" disabled>Анализировать</button>
+    <div class="status hint" id="status"></div>
+  </section>
+
+  <section id="results" hidden>
+    <div class="card" id="summary"></div>
+    <div id="photos"></div>
+    <button class="btn" id="again" type="button">Новый осмотр</button>
+  </section>
+</main>
+
+<script>
+(function () {
+  const tg = window.Telegram && window.Telegram.WebApp;
+  if (tg) { tg.ready(); tg.expand(); }
+  const initData = tg ? tg.initData : "";
+  if (!initData) document.getElementById("outside").hidden = false;
+
+  const TYPE = { glass_shatter: ["Разбитое стекло", "var(--c-glass)"], lamp_broken: ["Разбитая фара/фонарь", "var(--c-lamp)"],
+                 crack: ["Трещина", "var(--c-crack)"], scratch: ["Царапина", "var(--c-scratch)"] };
+  const PART = { bumper: "бампер/панель", door: "дверь", light: "фара/фонарь", window: "боковое стекло",
+                 windshield: "лобовое/заднее стекло", hood: "капот", fender: "крыло", mirror: "зеркало",
+                 wheel: "колесо", other: "другое" };
+  const SEV = { minor: "лёгкое", moderate: "среднее", severe: "тяжёлое" };
+  const ACT = { repair: "ремонт", replacement: "замена" };
+  const MAX_PHOTOS = 10, MAX_SIDE = 2400;
+
+  const $ = id => document.getElementById(id);
+  const files = [];   // {blob, url}
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+  // Phones make 12+ MP photos; the service scales to 1568 px anyway, so send at most 2400 px.
+  async function shrink(file) {
+    try {
+      const bmp = await createImageBitmap(file);
+      const k = Math.min(1, MAX_SIDE / Math.max(bmp.width, bmp.height));
+      if (k === 1 && file.size < 4e6 && /jpe?g|png/.test(file.type)) return file;
+      const c = document.createElement("canvas");
+      c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+      c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+      return await new Promise(r => c.toBlob(r, "image/jpeg", 0.92));
+    } catch (e) { return file; }
+  }
+
+  function renderThumbs() {
+    $("thumbs").innerHTML = "";
+    files.forEach((f, i) => {
+      const d = document.createElement("div"); d.className = "thumb";
+      d.innerHTML = `<img src="${f.url}" alt="фото ${i + 1}"><button type="button" aria-label="Убрать">×</button>`;
+      d.querySelector("button").onclick = () => { URL.revokeObjectURL(f.url); files.splice(i, 1); renderThumbs(); };
+      $("thumbs").append(d);
+    });
+    $("go").disabled = files.length === 0;
+    $("go").textContent = files.length ? `Анализировать (${files.length} фото)` : "Анализировать";
+    $("pick").hidden = files.length >= MAX_PHOTOS;
+  }
+
+  $("pick").onclick = () => $("file").click();
+  $("file").onchange = async e => {
+    const picked = [...e.target.files].slice(0, MAX_PHOTOS - files.length);
+    $("status").textContent = "Готовлю фото…";
+    for (const f of picked) { const blob = await shrink(f); files.push({ blob, url: URL.createObjectURL(blob) }); }
+    $("status").textContent = "";
+    e.target.value = "";
+    renderThumbs();
+  };
+
+  $("go").onclick = async () => {
+    const tiled = $("tiled").checked;
+    const form = new FormData();
+    files.forEach((f, i) => form.append("images", f.blob, `photo${i + 1}.jpg`));
+    form.append("mode", tiled ? "tiled" : "whole");
+    $("go").disabled = true; $("pick").disabled = true;
+    const sec = files.length * (tiled ? 50 : 12);
+    $("status").className = "status hint";
+    $("status").textContent = `Анализ… примерно ${sec < 90 ? sec + " с" : Math.round(sec / 60) + " мин"}. Не закрывайте приложение.`;
+    try {
+      const resp = await fetch("/api/v1/miniapp/analyze", { method: "POST", body: form,
+                                                            headers: { "X-Telegram-Init-Data": initData } });
+      const body = await resp.json().catch(() => ({}));
+      if (!resp.ok) {
+        const msg = resp.status === 401 ? "Откройте приложение из Telegram-бота (команда /app)."
+                  : resp.status === 429 ? "Достигнут часовой лимит анализов. Попробуйте позже."
+                  : body.error_message || `Ошибка сервиса (${resp.status}).`;
+        throw new Error(msg);
+      }
+      if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
+      showResults(body);
+    } catch (e) {
+      $("status").className = "status error";
+      $("status").textContent = e.message || "Нет связи с сервисом.";
+      if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("error");
+    } finally {
+      $("go").disabled = files.length === 0; $("pick").disabled = false;
+    }
+  };
+
+  function damageRow(d, n, price) {
+    const [label, color] = TYPE[d.damage_type] || [d.damage_type, "#888"];
+    const priceText = price && price.min != null ? ` · ${price.min}–${price.max} €` : "";
+    return `<span class="num" style="background:${color}">${n}</span>
+      <span><b>${esc(label)}</b> — ${esc(PART[d.part] || d.part)}<br>
+      <span class="chip">${esc(SEV[d.severity] || d.severity)}</span><span class="chip">${esc(ACT[d.action] || d.action)}</span>
+      <span class="hint">уверенность ${Math.round(d.confidence * 100)}%${priceText}</span></span>`;
+  }
+
+  function showResults(body) {
+    $("input").hidden = true; $("results").hidden = false;
+    const s = body.summary;
+    const list = s.damages.map((d, i) => `<li>${damageRow(d, i + 1, s.prices[i])}</li>`).join("");
+    $("summary").innerHTML = `<h2>Итог по ${body.photos.length} фото</h2>` +
+      (s.damages.length
+        ? `<div class="hint">Ориентир стоимости</div><div class="total">${s.total.min}–${s.total.max} ${esc(s.total.currency)}</div>
+           <ul class="dlist">${list}</ul>`
+        : `<p>Видимых повреждений не найдено.</p>`) +
+      `<p class="hint">Цены — условный справочник, не реальная смета. Модель пропускает часть мелких повреждений.</p>`;
+
+    $("photos").innerHTML = "";
+    body.photos.forEach((p, pi) => {
+      const card = document.createElement("div"); card.className = "card";
+      const ok = p.status === "success";
+      card.innerHTML = `<h2>Фото ${pi + 1}</h2>
+        <div class="photo"><img src="${files[pi] ? files[pi].url : ""}" alt="фото ${pi + 1}">
+          <svg aria-hidden="true"></svg></div>` +
+        (ok ? ((p.damages || []).length
+                ? `<ul class="dlist">${p.damages.map((d, i) => `<li data-i="${i}">${damageRow(d, i + 1)}</li>`).join("")}</ul>`
+                : `<p class="hint">На этом фото повреждений не найдено.</p>`)
+            : `<p class="error">Не удалось проанализировать это фото: модель не дала корректный ответ или файл не читается.</p>
+               <p class="hint">${esc(p.error_message || "")}</p>`) +
+        (ok && p.error_message ? `<p class="hint">Часть фрагментов не обработана.</p>` : "");
+      const img = card.querySelector("img"), svg = card.querySelector("svg");
+      const draw = () => {
+        const W = img.naturalWidth || 1000, H = img.naturalHeight || 750, f = Math.max(W, H) / 28;
+        svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+        svg.innerHTML = (p.damages || []).map((d, i) => {
+          const [x, y, w, h] = d.bounding_box || [0, 0, 0, 0];
+          const color = (TYPE[d.damage_type] || [0, "#888"])[1];
+          return `<g data-i="${i}"><rect x="${x * W}" y="${y * H}" width="${w * W}" height="${h * H}" fill="none"
+                     stroke="${color}" style="stroke-width:3px" vector-effect="non-scaling-stroke"/>
+                  <text x="${x * W + f * 0.2}" y="${Math.max(f, y * H - f * 0.2)}" fill="${color}" font-size="${f}"
+                     font-weight="700" stroke="#000" stroke-width="${f / 12}" paint-order="stroke">${i + 1}</text></g>`;
+        }).join("");
+      };
+      if (img.complete && img.naturalWidth) draw(); else img.onload = draw;
+      card.querySelectorAll("li[data-i]").forEach(li => li.onclick = () => {
+        card.querySelectorAll("li").forEach(x => x.classList.toggle("sel", x === li));
+        card.querySelectorAll("svg g").forEach(g => g.style.opacity = g.dataset.i === li.dataset.i ? 1 : 0.25);
+      });
+      $("photos").append(card);
+    });
+    const legend = document.createElement("div"); legend.className = "legend";
+    legend.innerHTML = Object.values(TYPE).map(([l, c]) => `<span style="--c:${c}">${l}</span>`).join("");
+    $("photos").prepend(legend);
+    window.scrollTo(0, 0);
+  }
+
+  $("again").onclick = () => {
+    files.splice(0).forEach(f => URL.revokeObjectURL(f.url));
+    renderThumbs();
+    $("results").hidden = true; $("input").hidden = false; $("status").textContent = "";
+  };
+})();
+</script>
+</body>
+</html>

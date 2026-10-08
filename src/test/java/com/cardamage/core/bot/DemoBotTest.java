@@ -35,6 +35,15 @@ class DemoBotTest {
             return fileId.getBytes();
         }
 
+        @Override
+        public void sendWebAppButton(long chatId, String text, String buttonText, String url) {
+            sent.add(chatId + ": [button " + buttonText + " -> " + url + "] " + text);
+        }
+
+        @Override
+        public void setMenuButton(String buttonText, String url) {
+        }
+
         String last() {
             return sent.get(sent.size() - 1);
         }
@@ -126,6 +135,19 @@ class DemoBotTest {
         assertTrue(telegram.last().contains("максимум"));
         text("/report");
         assertTrue(telegram.last().contains("Отчёт по 10 фото"));
+    }
+
+    @Test
+    void appCommandSendsTheMiniAppButtonWhenConfigured() throws Exception {
+        text("/app");
+        assertTrue(telegram.last().contains("не настроен"));
+        bot = new DemoBot(telegram, (image, mediaType) -> DamageAssessment.success(List.of(), 0, 1),
+                new DamageMergeService(), PriceEstimator.fromClasspath(new ObjectMapper()),
+                "https://example.trycloudflare.com/miniapp/index.html");
+        text("/app");
+        assertTrue(telegram.last().contains("[button Открыть осмотр -> https://example.trycloudflare.com/miniapp/index.html]"));
+        text("/start");
+        assertTrue(telegram.last().contains("/app"));
     }
 
     @Test
