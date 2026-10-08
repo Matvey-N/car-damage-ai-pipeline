@@ -202,7 +202,8 @@ def evaluate(ground_truth, predictions_doc, threshold=IOU_THRESHOLD):
     n = len(matched)
     severity_confusion = {g: {p: 0 for p in SEVERITIES} for g in SEVERITIES}
     for g, p, _ in matched:
-        severity_confusion[g["severity"]][p["severity"]] += 1
+        if p.get("severity") in SEVERITIES:
+            severity_confusion[g["severity"]][p["severity"]] += 1
 
     confidences = [p["confidence"] for _, p, _ in matched]
     type_correct = [1.0 if g["damage_type"] == p["damage_type"] else 0.0 for g, p, _ in matched]
@@ -236,10 +237,10 @@ def evaluate(ground_truth, predictions_doc, threshold=IOU_THRESHOLD):
         "matched_pairs": {
             "count": n,
             "damage_type_accuracy": ratio(sum(type_correct), n),
-            "severity_accuracy_exact": ratio(sum(1 for g, p, _ in matched if g["severity"] == p["severity"]), n),
+            "severity_accuracy_exact": field_accuracy(matched, "severity"),
             "severity_confusion_gt_rows_pred_cols": severity_confusion,
-            "part_accuracy": ratio(sum(1 for g, p, _ in matched if g["part"] == p["part"]), n),
-            "action_accuracy": ratio(sum(1 for g, p, _ in matched if g["action"] == p["action"]), n),
+            "part_accuracy": field_accuracy(matched, "part"),
+            "action_accuracy": field_accuracy(matched, "action"),
         },
         "confidence": {
             "definition": "matched pairs only; outcome = predicted damage_type is correct",
@@ -255,6 +256,13 @@ def evaluate(ground_truth, predictions_doc, threshold=IOU_THRESHOLD):
         },
         "per_image": per_image,
     }
+
+
+def field_accuracy(matched, field):
+    """Accuracy of one field on matched pairs. Predictions that do not carry the
+    field at all (e.g. a plain detector) are not counted; None if no pair has it."""
+    with_field = [(g, p) for g, p, _ in matched if p.get(field) is not None]
+    return ratio(sum(1 for g, p in with_field if g[field] == p[field]), len(with_field))
 
 
 def fmt(value):

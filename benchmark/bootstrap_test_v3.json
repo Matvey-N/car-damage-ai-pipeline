@@ -1,0 +1,56 @@
+{
+  "resamples": 2000,
+  "seed": 42,
+  "unit": "image",
+  "mode": "single",
+  "metrics": {
+    "recall": {
+      "ci95_low": 0.32121101526211016,
+      "ci95_high": 0.47262977649603444,
+      "resamples_used": 2000,
+      "value": 0.39436619718309857
+    },
+    "precision": {
+      "ci95_low": 0.5,
+      "ci95_high": 0.7087409364630699,
+      "resamples_used": 2000,
+      "value": 0.6021505376344086
+    },
+    "macro_f1": {
+      "ci95_low": 0.36431151267135,
+      "ci95_high": 0.5254634781581115,
+      "resamples_used": 2000,
+      "value": 0.44656187072804104
+    },
+    "type_accuracy": {
+      "ci95_low": 0.9137931034482759,
+      "ci95_high": 1.0,
+      "resamples_used": 2000,
+      "value": 0.9642857142857143
+    },
+    "severity_accuracy": {
+      "ci95_low": 0.375,
+      "ci95_high": 0.5517241379310345,
+      "resamples_used": 2000,
+      "value": 0.4642857142857143
+    },
+    "part_accuracy": {
+      "ci95_low": 0.7666666666666667,
+      "ci95_high": 0.945211706102117,
+      "resamples_used": 2000,
+      "value": 0.8571428571428571
+    },
+    "action_accuracy": {
+      "ci95_low": 0.6206896551724138,
+      "ci95_high": 0.8679245283018868,
+      "resamples_used": 2000,
+      "value": 0.75
+    },
+    "brier": {
+      "ci95_low": 0.08340120927318297,
+      "ci95_high": 0.18076037735849054,
+      "resamples_used": 2000,
+      "value": 0.12901607142857144
+    }
+  }
+}
